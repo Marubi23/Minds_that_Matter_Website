@@ -1,0 +1,78 @@
+.video-wrapper {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f2f5;
+}
+
+.video-container {
+  width: 360px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.video-title {
+  margin-bottom: 24px;
+  font-size: 22px;
+  color: #2d3748;
+}
+
+.input-label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #4a5568;
+}
+
+.meeting-input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+}
+
+.meeting-input:focus {
+  outline: none;
+  border-color: #3182ce;
+}
+
+.join-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2d8cff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.join-button:hover {
+  background-color: #1c6ed5;
+}
+.video-button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border: none;
+    background: hsl(267, 88%, 38%);
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.video-button :hover{
+    color: hsla(267, 88%, 45%);
+}

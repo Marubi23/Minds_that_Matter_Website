@@ -1,0 +1,23 @@
+.form-container{
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.821);
+       padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+     
+
+}
+.parent-input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.parent-button{
+    width: 100%;
+    padding: 10px;
+    background-color: hsl(198, 86%, 51%);
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+}
