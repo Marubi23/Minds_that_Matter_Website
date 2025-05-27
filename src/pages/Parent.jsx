@@ -64,7 +64,12 @@ function Parent() {
       </form>
     </div>
     <Link to={'/sign'}><button  style={{padding:'20px',background:'hsla(301, 67.50%, 44.70%, 0.77)',color:'white',border:'none',borderRadius:'13px',cursor:'pointer'}}> Dont have an MTM account? Create an Account</button></Link>
-
+        <button
+  onClick={() => navigate('/login')}
+  className="floating-home-btn"
+>
+◀  
+</button>
     </div>
   );
 }

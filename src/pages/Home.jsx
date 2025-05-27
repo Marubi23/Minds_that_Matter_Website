@@ -32,19 +32,23 @@ function Home() {
 
   return (
     <div className="home-container">
-      <button className="about-click-button" onClick={()=>{navigate('/about')}}>About Minds that Matter</button>
+      <button className="about-click-button" onClick={()=>{navigate('/about')}}>ℹ</button>
 
       <div
         className={`home-background ${isFading ? "fade" : ""}`}
         style={{ backgroundImage: `url(${backgrounds[currentBack]})` }}
       >
-        <h1  className="welcome" style={{fontFamily:'monospace',color:'yellow'}}><strong>Welcome to Minds that Matter</strong></h1>
+
+        
+              <h1  className="welcome" style={{fontFamily:'monospace',color:'yellow'}}><strong>Welcome to Minds that Matter</strong></h1>
+        
+    
         <div>
            <p style={{margin:'5px'}}><strong>Your simple and supportive learning companion.</strong></p>
         </div>
        
         <Link to ={'/contact'}>
-       <button className="chat-button">Chat with us</button> 
+       <button className="chat-button">💬</button> 
        </Link>
       </div>
       <div className="footer-container">

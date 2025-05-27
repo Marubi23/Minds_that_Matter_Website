@@ -29,8 +29,9 @@ function App() {
   },[]);
     return(
         <>
-        <Navbar student={student} setStudent={setStudent}/>
-        <div className='container'>
+        <div className="main">
+                  <Navbar student={student} setStudent={setStudent}/>
+        
         
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -52,7 +53,9 @@ function App() {
 
         </Routes>
         
+        
         </div>
+
 
         </>
        

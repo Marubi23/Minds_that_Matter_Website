@@ -21,7 +21,7 @@ const Contact = () => {
       <button onClick={()=>{
         navigate('/');
 
-      }} className="contact-page-button">Go back to homepage</button>
+      }} className="contact-page-button">◀</button>
       <h1 style={{ textAlign: "center", color: "#333",fontSize:'2.5rem',fontWeight:'bold' }}>Chat with Us</h1>
       <p style={{ textAlign: "center", color: "#555", fontSize: "1.1rem" }}>
         We’d love to hear from you. Send us a message using the form below.

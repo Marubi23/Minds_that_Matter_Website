@@ -7,10 +7,18 @@ html,body{
     display: flex;
     flex-direction: column;
     min-height: 10vh;
+     width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+
+  
 }
 .home-background{
     position: relative;
-    min-height: 74vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +47,7 @@ html,body{
     position: relative;
     z-index: 1;
     color: white;
-    font-size: 2.5rem;
+    font-size: 4rem;
     text-shadow: 1px 1px 2px black;
     background-color: rgba(0,0,0,0.5);
     padding: 2rem;
@@ -67,6 +75,22 @@ html,body{
     z-index: 1000;
     transition: background-color 0.3s ease;
 }
+.about-click-button{
+    bottom: 10px;
+    position: fixed;
+    left: 0px;
+    padding: 12px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: hsl(32, 100%, 50%);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    z-index: 1000;
+}
+
 .chat-button :hover{
     background-color: #0056b3;
 }
@@ -98,21 +122,13 @@ html,body{
         transform: translateY(0);
     }
 }
-.about-click-button{
-    bottom: 40px;
-    position: fixed;
-    left: 20px;
-    padding: 12px 16px;
-    border-radius: 30px;
-    font-size: 14px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    background-color: hsl(32, 100%, 50%);
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    
-
+@media(max-width:768px){
+    .about-click-button{
+        bottom: 105px;
+    }
+    .chat-button{
+        bottom: 105px;
+        right: 1px;
+    }
 }
 
-  

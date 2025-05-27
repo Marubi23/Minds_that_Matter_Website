@@ -16,15 +16,15 @@ const handleButton=()=>{
 
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif",marginTop:'210px' }}>
+    <div className="about-container" style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif",marginTop:'0px' }}>
     
 
        <div style={{margin:'80px',marginBottom:'0px',justifyContent:'center',alignContent:'center'}}>
-         <img style={{height:'400px',paddingTop:'160px',width:'400px'}} src={logo} alt="company-icon" />
+         <img classNamestyle={{height:'900px',paddingTop:'0px',width:'900px'}} src={logo} alt="company-icon" />
     
        </div>
       
-<button onClick={handleButton} className="about-page-btn">Contact Us</button>
+<button onClick={handleButton} className="about-page-btn">📞</button>
       <section style={{ marginTop: "2rem" }}>
         <h2 style={{ color: "#444" }}>Our Mission</h2>
         <p style={{ fontSize: "1.1rem", color: "#555" }}>

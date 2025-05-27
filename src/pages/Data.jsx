@@ -27,7 +27,7 @@ const handleStudentSubmit=(e)=>{
   onClick={() => navigate('/')}
   className="floating-home-btn"
 >
-  Go Back to Homepage
+◀  
 </button>
 
        

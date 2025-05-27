@@ -51,10 +51,10 @@ form {
     justify-content: center;
 }
 .floating-home-btn {
-  position: fixed;
+  position: top;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
+  background-color: hsl(196, 76%, 30%);
   color: white;
   border: none;
   padding: 12px 16px;
@@ -67,6 +67,26 @@ form {
 }
 
 .floating-home-btn:hover {
-  background-color: #0056b3;
+  background-color: #4ed71c;
+}
+
+@media (max-width:768px){
+    .login-container{
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    .formlogin-container,.logo-company{
+        width: 100%;
+        max-width: none;
+    }
+    .logo-company img{
+        width: 150px;
+        height: auto;
+    }
+    .floating-home-btn{
+        z-index: 2;
+    }
+  
 }
 

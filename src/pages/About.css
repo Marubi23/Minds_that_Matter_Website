@@ -14,3 +14,27 @@
   transition: background-color 0.3s ease;
 
 }
+img{
+  justify-content: center;
+}
+
+@media(max-width:768px){
+  .about-page-btn{
+   left: 0px;
+   padding: 5px 0px;
+   width: 40px;
+   height: 40px;
+   bottom: 620px;
+   position: fixed;
+   z-index: 1000;
+   margin: 20px;
+  }
+ img{
+  height: 150px;
+  width: 150px;
+  top: 0px;
+  left: 30px;
+ }
+
+
+}
