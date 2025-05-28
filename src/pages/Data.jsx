@@ -52,7 +52,7 @@ const handleStudentSubmit=(e)=>{
                 className="login-input"
                 max={18}
                 min={7}
-                placeholder="Student Age (Compulsary)"
+                placeholder="Student Age (Compulsory)"
                 value={student.id}
                 onChange={(e)=>setLocalStudent({...student,id:e.target.value})} 
                 required/>
