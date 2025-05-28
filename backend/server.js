@@ -10,6 +10,10 @@ app.use(express.json());
 const parentRoutes = require('./Routes/parentAuth.js');
 app.use('/api/parents', parentRoutes);
 
+app.get('/',(req,res)=>{
+  res.send('Welcome to Minds that Matter Backend ~inspired by felix')
+});
+
 // Connect to MongoDB WITHOUT deprecated options
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
