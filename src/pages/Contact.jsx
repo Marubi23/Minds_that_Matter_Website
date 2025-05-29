@@ -17,7 +17,7 @@ const Contact = () => {
   const navigate =useNavigate();
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", fontFamily: "sans-serif" }}>
+    <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", fontFamily: "sans-serif",paddingTop:'150px' }}>
       <button onClick={()=>{
         navigate('/');
 

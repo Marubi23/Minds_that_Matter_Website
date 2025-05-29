@@ -80,3 +80,27 @@
 .video-button :hover{
     color: hsla(267, 88%, 45%);
 }
+.waiting-room {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.waiting-img {
+  width: 180px;
+  margin-bottom: 1rem;
+}
+
+.waiting-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  font-family: 'monospace';
+}
+
+.waiting-subtext {
+  font-size: 1rem;
+  color: #666;
+}
