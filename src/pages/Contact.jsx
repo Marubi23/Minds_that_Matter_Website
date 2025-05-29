@@ -17,13 +17,14 @@ const Contact = () => {
   const navigate =useNavigate();
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", fontFamily: "sans-serif",paddingTop:'150px' }}>
+    <div className="contact-background">
+      <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", fontFamily: "sans-serif",paddingTop:'150px' }}>
       <button onClick={()=>{
         navigate('/');
 
       }} className="contact-page-button">◀</button>
-      <h1 style={{ textAlign: "center", color: "#333",fontSize:'2.5rem',fontWeight:'bold' }}>Chat with Us</h1>
-      <p style={{ textAlign: "center", color: "#555", fontSize: "1.1rem" }}>
+      <h1 style={{ textAlign: "center", color: "white",fontSize:'2.5rem',fontWeight:'bold' }}>Chat with Us</h1>
+      <p style={{ textAlign: "center", color: "pink", fontSize: "1.5rem" }}>
         We’d love to hear from you. Send us a message using the form below.
       </p>
 
@@ -69,6 +70,8 @@ const Contact = () => {
         <p><strong>Location:</strong> Nairobi County</p>
       </div>
     </div>
+    </div>
+    
   );
 };
 

@@ -1,0 +1,40 @@
+.teacher-login-background {
+  background-image: url('../assets/teacher.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.teacher-container {
+  width: 100%;
+  margin-left: 600px;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.teacher-container input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.teacher-container button {
+  margin-top: 10px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #9d19e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

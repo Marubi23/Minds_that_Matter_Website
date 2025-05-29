@@ -13,3 +13,12 @@
   z-index: 1000;
   transition: background-color 0.3s ease;
 }
+.contact-background{
+    background-image: url('../assets/contactback.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
