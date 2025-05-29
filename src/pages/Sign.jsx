@@ -35,9 +35,9 @@ function Sign() {
   };
 
   return (
-    <div className="main" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+    <div className="signUp-container" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
       
-      <button onClick={handleBack} className='navigate-button'>Go Back to login</button>
+      <button onClick={handleBack} className='navigate-button'>◀</button>
       <div className="form-sign">
         <h2>Sign Up</h2>
         <form onSubmit={handleSignUp}> 

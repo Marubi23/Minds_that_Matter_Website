@@ -36,7 +36,7 @@ function Parent() {
 
 
   return (
-    <div className="main" style={{display:'flex',flexDirection:'column',gap:'20px',alignItems:'center'}}>
+    <div className="container-parent" style={{display:'flex',flexDirection:'column',gap:'20px',alignItems:'center'}}>
     <div className="form-container" >
       <h2>Parent Login</h2>
       <form onSubmit={handleParentLogin}> 

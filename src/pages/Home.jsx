@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      <button className="about-click-button" onClick={()=>{navigate('/about')}}>ℹ</button>
+      <button className="about-click-button" onClick={()=>{navigate('/about')}}>❔</button>
 
       <div
         className={`home-background ${isFading ? "fade" : ""}`}

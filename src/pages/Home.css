@@ -7,7 +7,7 @@ html,body{
     display: flex;
     flex-direction: column;
     min-height: 10vh;
-     width: 100%;
+    width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ html,body{
 }
 .home-background{
     position: relative;
-    min-height: 80vh;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,20 +28,34 @@ html,body{
     background-size: cover;
     z-index: 0;
     width: 100vw;
-    height: 10vh;
     font-family: 'Poppins', sans-serif;
     flex: 1;
 
 
 }
-.home-background p{
-    font-size: 1.5rem;
-    color: white;
-    margin-top: 1rem;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
-    font-family: 'Roboto', sans-serif;
-    animation: fadeIn 2s ease-in-out;
+.home-background p {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px 30px;
+    margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    border-radius: 20px;
+    background: linear-gradient(135deg, hsla(0, 0%, 0%, 0.07), hsla(0, 0%, 0%, 0.601));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.304);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.6px;
+    transition: all 0.5s ease;
+    animation: glowFade 2.39s ease-in-out forwards;
+    border: 8px solid rgba(27, 171, 255, 0.1);
 }
+
 
 .welcome{
     position: relative;
@@ -100,7 +114,7 @@ html,body{
     text-align: center;
     padding: 2px 15px; 
     font-size: 0.85rem;  
-    line-height: 1.3;
+    line-height: 2.0;
     margin-top: auto;    
   }
   
@@ -131,4 +145,17 @@ html,body{
         right: 1px;
     }
 }
+@keyframes glowFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 

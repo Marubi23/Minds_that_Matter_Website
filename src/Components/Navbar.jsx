@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/front.png";
 
 function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
@@ -58,9 +58,9 @@ function Navbar({ student, setStudent }) {
             opacity: 0.8,
             mixBlendMode: "screen",
             position: "fixed",
-            top:"0px",
-            left:'0px',
-            width:'60px',
+            top:"24px",
+            left:'15px',
+            width:'120px',
             height:'auto',
             zIndex:999,
           }}
