@@ -144,7 +144,18 @@ html,body{
         bottom: 105px;
         right: 1px;
     }
+    .welcome{
+        font-size: 4rem;
+        left: 65px;
+    }
+    .home-background p{
+         border:none;
+         background: transparent;
+         font-size: 1.2rem;         
+     }
+     
 }
+
 @keyframes glowFade {
   0% {
     opacity: 0;

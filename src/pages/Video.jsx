@@ -16,7 +16,7 @@ const navigate=useNavigate();
   navigate('/lessons');
 }
   return (
-    <div className="main">
+    <div className="video-meeting-cont">
       <button onClick={handleBackLesson} className="video-button" >Go Back to Lessons</button>
         <div className="video-wrapper">
       <div className="video-container">
@@ -25,11 +25,22 @@ const navigate=useNavigate();
         <label htmlFor="meeting-id" className="input-label">
           Meeting ID
         </label>
+        
         <input
           id="meeting-id"
           type="text"
           className="meeting-input"
           placeholder="Enter Meeting ID"
+        />
+        
+        <label htmlFor="meeting-id" className="input-label">
+          Passcode
+        </label>
+          <input
+          id="passcode-id"
+          type="number"
+          className="meeting-input"
+          placeholder="Enter Meeting Passcode"
         />
 
         <button className="join-button">

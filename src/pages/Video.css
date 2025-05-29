@@ -5,6 +5,10 @@
   justify-content: center;
   background: #f0f2f5;
 }
+.video-meeting-cont{
+  height: 100vh;
+  padding-top: 150px;
+}
 
 .video-container {
   width: 360px;
