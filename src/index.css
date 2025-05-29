@@ -110,35 +110,71 @@
     transform: scale(1) translateY(0);
   }
 }
-/* Get started button */
-.page-btn button {
-  background: black;
-  color: white;
-  padding: 10px 25px;
-  border-radius: 30px;
+/* Default style for both versions */
+.start-button button {
+  padding: 10px 16px;
   border: none;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.page-btn :hover{
-  background: hsla(120, 94%, 49%, 0.944);
-  color: rgb(0, 0, 0);
-  font-weight: 700;
+/* Desktop-only button */
+.start-button.desktop-only {
+  display: block;
 }
-/* Mobile responsive */
+
+/* Hide desktop button on mobile */
 @media (max-width: 768px) {
-  .nav-links.desktop-only {
+  .start-button.desktop-only {
+    display: none;
+  }
+}
+
+/* Mobile-only button - hidden by default */
+.start-button.mobile-only {
+  display: none;
+}
+
+/* Show mobile-only button on small screens */
+@media (max-width: 768px) {
+  .start-button.mobile-only {
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 180px; /* 👈 change to right: 20px if you want it on the right */
+    z-index: 999;
+  }
+
+  .start-button.mobile-only button {
+    background-color: #101010;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: bold;
+
+  }
+
+  .start-button.mobile-only button:hover {
+    background-color: #07fd49;
+  }
+    .nav-links.desktop-only {
     display: none;
   }
 
   .hamburger {
     display: block;
   }
-  
-    
-
-  
-  
+  .navbar{
+    height: 90px;
+  }
+ 
 }
 
 
+
+
+/

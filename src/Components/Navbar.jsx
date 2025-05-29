@@ -90,12 +90,19 @@ function Navbar({ student, setStudent }) {
         <Link to="/progress"><li style={{ color: "purple" }}>Progress</li></Link>
         <Link to="/about"><li style={{ color: "blue" }}>About</li></Link>
         <Link to="/contact"><li style={{ color: "orange" }}>Contact</li></Link>
+     
       </ul>
-
-      <div className="page-btn">
+        <div className="start-button desktop-only">
         <button onClick={handleGetStartedClick}>Get Started</button>
       </div>
 
+       <div className="start-button mobile-only">
+        <button onClick={handleGetStartedClick}>Get Started</button>
+      </div>
+      
+
+
+     
       {student && (
         <div
           style={{

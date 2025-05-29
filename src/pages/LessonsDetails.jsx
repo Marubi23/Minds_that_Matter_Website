@@ -59,30 +59,44 @@ function LessonDetails() {
   }, [decodedTitle, lesson]);
 
   if (!lesson) {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center" }}>
-        <img style={{ height: '100px', width: '130px' }} src={b2} alt="error-pic" />
-        <h2 style={{ color: "red", fontSize: '1rem' }}>
-          Lesson "{decodedTitle}" not found!
-        </h2>
-        <p style={{ color: 'black', fontFamily: "monospace" }}>
-          If you get this message, it means you have not selected any subject to start learning! Please go back to the homepage and click the Get Started button.
-        </p>
-        <Link to="/login">
-          <button style={{
-            padding: '10px 15px',
-            color: 'white',
-            background: 'blue',
-            border: 'none',
-            cursor: 'pointer',
-            borderRadius: '5px'
-          }}>
-            Click here to solve this
-          </button>
-        </Link>
-      </div>
-    );
-  }
+  return (
+    <div
+      style={{
+        height: "100vh",                    // Full height of screen
+        display: "flex",                    // Flex layout for centering
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        padding: "2rem",
+        marginTop: "60px",                  // Push below navbar
+        gap: "20px",
+        background: "rgba(255,255,255,0.9)", // Optional: background to improve visibility
+      }}
+    >
+      <img style={{ height: '100px', width: '130px' }} src={b2} alt="error-pic" />
+      <h2 style={{ color: "red", fontSize: '1rem' }}>
+        Lesson "{decodedTitle}" not found!
+      </h2>
+      <p style={{ color: 'black', fontFamily: "monospace", maxWidth: "500px" }}>
+        If you get this message, it means you have not selected any subject to start learning! Please go back to the homepage and click the Get Started button.
+      </p>
+      <Link to="/login">
+        <button style={{
+          padding: '10px 15px',
+          color: 'white',
+          background: 'blue',
+          border: 'none',
+          cursor: 'pointer',
+          borderRadius: '5px'
+        }}>
+          Click here to solve this
+        </button>
+      </Link>
+    </div>
+  );
+}
+
 
   return (
     <>
