@@ -30,7 +30,7 @@ const handleStudentSubmit=(e)=>{
 ◀  
 </button>
 
-       
+       <div className="data-background">
         <div className="formlogin-container">
             <h2 style={{textAlign:'center',marginBottom:'40px'}}>Students Access</h2>
             <form onSubmit={handleStudentSubmit}>
@@ -72,6 +72,8 @@ const handleStudentSubmit=(e)=>{
        
 
     </div>
+    </div>
+        
  );
 
 

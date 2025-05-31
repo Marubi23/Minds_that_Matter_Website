@@ -3,11 +3,13 @@
        padding: 20px;
         border-radius: 8px;
         width: 300px;   
+        backdrop-filter: blur(6px);
           
 }
 .container-parent{
-      display: flex;
+ display: flex;
   flex-direction: column;
+  background-image: url('../assets/datapage.png');
   align-items: center;
   justify-content: center; /* vertically center */
   height: 110vh; /* full viewport height */
@@ -29,6 +31,16 @@
     color: white;
     cursor: pointer;
     font-weight: 700;
+}
+.trust-note{
+ font-size: 1rem;
+  color: lch(47.91% 4.97 19.92);
+  text-align: center;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  font-weight: bold;
+ 
+  border-radius: 10px;
 }
 
 @media (max-width:768px){

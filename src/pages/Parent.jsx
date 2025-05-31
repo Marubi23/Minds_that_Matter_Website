@@ -38,7 +38,7 @@ function Parent() {
   return (
     <div className="container-parent" style={{display:'flex',flexDirection:'column',gap:'20px',alignItems:'center'}}>
     <div className="form-container" >
-      <h2>Parent Login</h2>
+      <h2>🔒 Safe & Secure</h2>
       <form onSubmit={handleParentLogin}> 
         <input
           type="email"
@@ -59,6 +59,7 @@ function Parent() {
         <button className="parent-button" type="submit">
           View Child Progress
         </button>
+          <p className="trust-note">🔐 Protected by MTM Security Suite</p>
        
 
       </form>

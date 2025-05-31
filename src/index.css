@@ -1,6 +1,6 @@
 .navbar {
   width: 80%;
-  margin: 0 auto; /* 👈 Center horizontally */
+  margin: 0 auto; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,20 +35,17 @@
   display: inline-block;
   padding: 8px 14px;
   margin: 5px;
-  background-color: rgba(255, 255, 255, 0.8); /* light box */
-  border-radius: 10px; /* rounded corners */
-  border: 1px solid #ccc; /* subtle border */
+  background-color: rgba(255, 255, 255, 0.8); 
+  border-radius: 10px; 
+  border: 1px solid #ccc; 
   font-weight: bold;
-  color: #333; /* dark text */
+  color: #333; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: all 0.3s ease;
 }
   
   
-
-
-/* Desktop only nav links */
 .desktop-only {
   display: flex;
 }
@@ -63,15 +60,14 @@
   
 }
 
-/* Dropdown menu (hidden by default) */
 .dropdown-menu {
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 80px;
   left: 15px;
-  background: hsla(268, 83%, 34%, 0.644); /* subtle glassmorphism */
-  backdrop-filter: blur(12px);           /* blur background behind */
+  background: hsla(268, 83%, 34%, 0.644); 
+  backdrop-filter: blur(12px);           
   border-radius: 16px;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
   padding: 16px 20px;
@@ -96,7 +92,7 @@
 
 .dropdown-menu li:hover {
   color: #fff;
-  background: hsl(293, 62%, 67%); /* pleasant gradient */
+  background: hsl(293, 62%, 67%); 
   border-radius: 8px;
   padding-left: 12px;
 }
@@ -110,7 +106,7 @@
     transform: scale(1) translateY(0);
   }
 }
-/* Default style for both versions */
+
 .start-button button {
   padding: 10px 16px;
   border: none;
@@ -121,31 +117,29 @@
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
-/* Desktop-only button */
 .start-button.desktop-only {
   display: block;
 }
 
-/* Hide desktop button on mobile */
+
 @media (max-width: 768px) {
   .start-button.desktop-only {
     display: none;
   }
 }
 
-/* Mobile-only button - hidden by default */
+
 .start-button.mobile-only {
   display: none;
 }
 
-/* Show mobile-only button on small screens */
+
 @media (max-width: 768px) {
   .start-button.mobile-only {
     display: block;
     position: fixed;
     top: 70px;
-    left: 180px; /* 👈 change to right: 20px if you want it on the right */
+    left: 180px; 
     z-index: 999;
   }
 

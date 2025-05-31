@@ -108,14 +108,14 @@ function Navbar({ student, setStudent }) {
           style={{
             position: "absolute",
             top: "10px",
-            right: "20px",
+            right: "-100px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: "10px",
           }}
         >
-          <span style={{ fontWeight: "bold", color: "#333" }}>
+          <span style={{ fontWeight: "700", color: "white" }}>
             Hello {student.name}
           </span>
           <button
@@ -127,6 +127,7 @@ function Navbar({ student, setStudent }) {
               padding: "5px 10px",
               borderRadius: "5px",
               cursor: "pointer",
+              fontWeight:'bolder'
             }}
           >
             Logout

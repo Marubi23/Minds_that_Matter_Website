@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherLogin.css';
+import { Link } from 'react-router-dom';
 
 function TeacherLogin() {
   const [email, setEmail] = useState('');
@@ -21,7 +22,10 @@ function TeacherLogin() {
   return (
     <div className="teacher-login-background">
       <div className="teacher-container">
-        <h2>Teacher Login</h2>
+        <h2>🔒 Safe & Secure:
+          MTM Teachers Access
+        </h2>
+        <p>You are accessing a protected area.All information is encrypted and private</p>
         <form onSubmit={handleLogin}>
           <input 
             type="email" 
@@ -37,9 +41,14 @@ function TeacherLogin() {
             onChange={(e) => setPassword(e.target.value)} 
             required 
           />
-          <button type="submit">Login</button>
+         <Link to='/dashboard'><button type="submit">Login</button></Link> 
+         <p>✅ Protected by MTM  security suite</p>
         </form>
       </div>
+    <div className="teacher-back">
+      <button>◀</button>
+      
+    </div>
     </div>
   );
 }

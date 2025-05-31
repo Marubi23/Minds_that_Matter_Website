@@ -44,7 +44,7 @@ function Home() {
         
     
         <div>
-           <p style={{margin:'5px'}}><strong>Your simple and supportive learning companion.</strong></p>
+           <p style={{margin:'5px'}}><strong>Where The Future Begins With You</strong></p>
         </div>
        
         <Link to ={'/contact'}>

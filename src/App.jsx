@@ -16,6 +16,7 @@ import Success from './pages/Success.jsx';
 import CreateRoom from './pages/CreateRoom.jsx';
 import TeacherLogin from './pages/TeacherLogin.jsx';
 import TeacherDashboard from './pages/TeacherDashboard.jsx';
+import AttentionMonitor from './Components/AttentionMonitor.jsx';
 
 import { Routes,Route } from 'react-router-dom'
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/createroom" element={<CreateRoom/>}/>
           <Route path='/teacher-login' element={<TeacherLogin/>}/>
           <Route path='/dashboard' element={<TeacherDashboard/>}/>
+          <Route path='/monitor' element={<AttentionMonitor/>}/>
         
         
 

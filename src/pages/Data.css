@@ -1,59 +1,87 @@
-
-
-.login-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-    gap: 350px;
+/* Ensure full height on base elements */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 
-.formlogin-container{
-    background-color: white;
-    padding: 20px;
-    margin: 20px 0;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.821);
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/datapage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding: 20px;
+  gap: 350px;
 }
 
- 
-.login-input{
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.data-background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 390px;
 }
-.login-button{
-    width: 100%;
-    padding: 10px;
-    background-color: hsl(198, 86%, 51%);
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 700;
+
+.formlogin-container {
+  background-color: white;
+  padding: 20px;
+  margin: 20px 0;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.821);
+
 }
-.login-button :hover{
-    background-color: #45a049;
+
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: hsl(198, 86%, 51%);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-.logo-company{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+
+.logo-company {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
+
+
 .floating-home-btn {
-  position: top;
-  bottom: 20px;
-  right: 20px;
+  position: fixed;
+  bottom: 330px;
+  right: 1400px;
   background-color: hsl(196, 76%, 30%);
   color: white;
   border: none;
@@ -61,7 +89,7 @@ form {
   border-radius: 30px;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: background-color 0.3s ease;
 }
@@ -70,25 +98,32 @@ form {
   background-color: #4ed71c;
 }
 
-@media (max-width:768px){
-    .login-container{
-        flex-direction: column;
-        padding: 20px;
-        padding-top: 130px;
-         gap: 0px;
-    }
-    .formlogin-container,.logo-company{
-        width: 100%;
-        max-width: none;
-    }
-    .logo-company img{
-        width: 150px;
-        height: auto;
-    }
-   
-}
-.portal{
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    padding: 20px;
+    padding-top: 130px;
+    gap: 0;
+  }
+
+  .formlogin-container,
+  .logo-company {
+    width: 100%;
+    max-width: none;
+  
+  }
+
+  .logo-company img {
+    width: 150px;
+    height: auto;
+  }
+}
+
+
+.portal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }

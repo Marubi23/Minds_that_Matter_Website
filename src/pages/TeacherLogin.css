@@ -27,6 +27,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.teacher-container p{
+  color: gray;
+  font-size: 1px;
+}
 
 .teacher-container button {
   margin-top: 10px;
@@ -37,4 +41,25 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media (max-width:768px){
+  .teacher-container{
+    margin-left: 0px;
+    padding: 20px;
+    
+  }
+}
+.teacher-back{
+  position: absolute;
+  bottom: 320px;
+  right: 700px;
+  background-color: hsl(196, 76%, 30%);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1000;
+
 }
