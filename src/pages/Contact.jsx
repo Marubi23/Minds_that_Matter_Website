@@ -24,7 +24,7 @@ const Contact = () => {
 
       }} className="contact-page-button">◀</button>
       <h1 style={{ textAlign: "center", color: "white",fontSize:'2.5rem',fontWeight:'bold' }}>Chat with Us</h1>
-      <p style={{ textAlign: "center", color: "pink", fontSize: "1.5rem" }}>
+      <p style={{ textAlign: "center", color: "pink", fontSize: "1.5rem",fontWeight:'bold' }}>
         We’d love to hear from you. Send us a message using the form below.
       </p>
 
@@ -64,7 +64,7 @@ const Contact = () => {
         </button>
       </form>
 
-      <div style={{ marginTop: "2rem", textAlign: "center", color: "#555" }}>
+      <div style={{ marginTop: "2rem", textAlign: "center", color: "yellow",fontSize:'20px' }}>
         <p><strong>Email:</strong> felixmarubi2005@gmail.com</p>
         <p><strong>Phone:</strong> 0712683708</p>
         <p><strong>Location:</strong> Nairobi County</p>

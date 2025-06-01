@@ -18,7 +18,7 @@
 }
 
 .dashboard-card {
-  background: white;
+  background: rgba(9, 255, 1, 0.649);
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
@@ -31,11 +31,11 @@
 
 .dashboard-card:hover {
   transform: translateY(-5px);
-  background-color: #eef5ff;
+  background-color: #1473f8;
 }
 
 .dashboard-feed {
-  background: #fff;
+  background: #1941d493;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);

@@ -69,9 +69,9 @@ function LessonDetails() {
         alignItems: "center",
         textAlign: "center",
         padding: "2rem",
-        marginTop: "60px",                  // Push below navbar
+        marginTop: "0px",                  // Push below navbar
         gap: "20px",
-        background: "rgba(255,255,255,0.9)", // Optional: background to improve visibility
+        backgroundColor:'hsla(293, 94.20%, 27.30%, 0.15)', // Optional: background to improve visibility
       }}
     >
       <img style={{ height: '100px', width: '130px' }} src={b2} alt="error-pic" />
@@ -79,7 +79,7 @@ function LessonDetails() {
         Lesson "{decodedTitle}" not found!
       </h2>
       <p style={{ color: 'black', fontFamily: "monospace", maxWidth: "500px" }}>
-        If you get this message, it means you have not selected any subject to start learning! Please go back to the homepage and click the Get Started button.
+        If you get this message, it means you have not selected any subject to start learning! Please go proceed and click the <ul>Get Started button.</ul> 
       </p>
       <Link to="/login">
         <button style={{

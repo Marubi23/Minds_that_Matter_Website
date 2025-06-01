@@ -3,17 +3,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f2f5;
+  background: hsla(216, 87%, 28%, 0.4);
+  
 }
 .video-meeting-cont{
   height: 100vh;
+  background-image: url('../assets/children2.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding-top: 150px;
 }
 
 .video-container {
   width: 360px;
   padding: 30px;
-  background-color: #ffffff;
+  background-image: url('../assets/datapage.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -23,7 +31,7 @@
 .video-title {
   margin-bottom: 24px;
   font-size: 22px;
-  color: #2d3748;
+  color: rgb(45, 55, 72);
 }
 
 .input-label {
