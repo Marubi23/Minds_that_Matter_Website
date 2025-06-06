@@ -1,24 +1,104 @@
-.contact-page-button{
-    position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: hsl(0, 100%, 50%);
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 30px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
-.contact-background{
-    background-image: url('../assets/contactback.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+/* Background wrapper */
+.contact-modern-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to right, #1e1e2f, #34344e);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+  padding-top: 130px;
+}
+
+/* Main card */
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Top nav button */
+.back-nav-btn {
+  background: none;
+  border: none;
+  color: #ddd;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+.back-nav-btn:hover {
+  color: #ffffff;
+}
+
+.contact-card h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  color: #cccccc;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Form style */
+.contact-form-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form-modern input,
+.contact-form-modern textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.contact-form-modern input::placeholder,
+.contact-form-modern textarea::placeholder {
+  color: #bbbbbb;
+}
+
+.contact-form-modern input:focus,
+.contact-form-modern textarea:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00bfff;
+}
+
+/* Submit button */
+.contact-form-modern button {
+  background-color: #00bfff;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form-modern button:hover {
+  background-color: #0099cc;
+}
+
+/* Contact info */
+.contact-extra-info {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #cccccc;
+  text-align: center;
 }

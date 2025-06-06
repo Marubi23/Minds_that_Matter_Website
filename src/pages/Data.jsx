@@ -14,7 +14,7 @@ const handleStudentSubmit=(e)=>{
     localStorage.setItem('student',JSON.stringify(student));
     localStorage.setItem("isLoggedIn",true);
     setStudent(student);
-    navigate('/lessons');
+    navigate('/test');
 };
 
 
@@ -56,16 +56,15 @@ const handleStudentSubmit=(e)=>{
                 value={student.id}
                 onChange={(e)=>setLocalStudent({...student,id:e.target.value})} 
                 required/>
-                <button className="login-button" type="submit">Access Lessons</button>
+                <button className="login-button" type="submit">Take Test</button>
             </form>
            
         </div>
       <div className="logo-company"> <img style={{height:'200px',width:'180px'}}  src={logo} alt="company-logo" />
       <div className="portal">
-          <Link to={'/parent'}><button style={{padding:'20px',background:'hsl(151, 93.60%, 51.00%)',color:'black',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Parent Access Portal</button></Link>
-      <Link to={'/teacher-login'}><button style={{padding:'20px',background:'hsl(272, 74.10%, 39.40%)',color:'white',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Tutor Panel</button></Link>
+          <Link to={'/parent'}><button style={{padding:'20px',background:'hsl(151, 93.60%, 51.00%)',color:'black',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Parent Access </button></Link>
+      <Link to={'/teacher-login'}><button style={{padding:'20px',background:'hsl(272, 74.10%, 39.40%)',color:'white',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Psychiatrist Access</button></Link>
       </div>
-    
       </div>
       
        

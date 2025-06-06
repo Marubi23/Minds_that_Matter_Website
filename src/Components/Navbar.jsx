@@ -72,9 +72,9 @@ function Navbar({ student, setStudent }) {
         {menuOpen && (
           <ul className="dropdown-menu" ref={dropdownRef}>
             <Link to="/" onClick={() => setMenuOpen(false)}><li style={{ color: "yellow" }}>Home</li></Link>
-            <Link to="/lessons" onClick={() => setMenuOpen(false)}><li style={{ color: "white" }}>Lessons</li></Link>
-            <Link to="/lessonsdetails" onClick={() => setMenuOpen(false)}><li style={{ color: "red" }}>LessonsDetails</li></Link>
-            <Link to="/videocall" onClick={() => setMenuOpen(false)}><li style={{ color: "tomato" }}>Video</li></Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}><li style={{ color: "white" }}>Portals</li></Link>
+            <Link to="/lessonsdetails" onClick={() => setMenuOpen(false)}><li style={{ color: "red" }}>Sessions Details</li></Link>
+            <Link to="/videocall" onClick={() => setMenuOpen(false)}><li style={{ color: "tomato" }}>Live Sessions</li></Link>
             <Link to="/progress" onClick={() => setMenuOpen(false)}><li style={{ color: "wheat" }}>Progress</li></Link>
             <Link to="/about" onClick={() => setMenuOpen(false)}><li style={{ color: "white" }}>About</li></Link>
             <Link to="/contact" onClick={() => setMenuOpen(false)}><li style={{ color: "orange" }}>Contact</li></Link>
@@ -84,9 +84,9 @@ function Navbar({ student, setStudent }) {
 
       <ul className="nav-links desktop-only">
         <Link to="/"><li style={{ color: "blue" }}>Home</li></Link>
-        <Link to="/lessons"><li style={{ color: "brown" }}>Lessons</li></Link>
-        <Link to="/lessonsdetails"><li style={{ color: "red" }}>LessonsDetails</li></Link>
-        <Link to="/videocall"><li style={{ color: "tomato" }}>Video</li></Link>
+        <Link to="/login"><li style={{ color: "brown" }}>Portals</li></Link>
+        <Link to="/lessonsdetails"><li style={{ color: "red" }}>Sessions Details</li></Link>
+        <Link to="/videocall"><li style={{ color: "tomato" }}>Live Sessions</li></Link>
         <Link to="/progress"><li style={{ color: "purple" }}>Progress</li></Link>
         <Link to="/about"><li style={{ color: "blue" }}>About</li></Link>
         <Link to="/contact"><li style={{ color: "orange" }}>Contact</li></Link>

@@ -4,18 +4,16 @@ import  "./App.css";
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx'
 import Home from './pages/Home.jsx';
-import Lessons from './pages/Lessons.jsx';
-import LessonsDetails from './pages/LessonsDetails.jsx';
+import StudentTest from './pages/StudentTest.jsx';
 import Progress from './pages/Progress.jsx';
 import Video from './pages/Video.jsx';
-import MathQuiz from "./pages/MathQuiz";
 import Data from './pages/Data.jsx';
 import Parent from './pages/Parent.jsx';
 import Sign from './pages/Sign.jsx';
 import Success from './pages/Success.jsx';
 import CreateRoom from './pages/CreateRoom.jsx';
 import TeacherLogin from './pages/TeacherLogin.jsx';
-import TeacherDashboard from './pages/TeacherDashboard.jsx';
+import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
 import AttentionMonitor from './Components/AttentionMonitor.jsx';
 
 import { Routes,Route } from 'react-router-dom'
@@ -41,24 +39,17 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          <Route path='/lessons' element={<Lessons/>}/>
-          <Route path='/lessonsdetails' element={<LessonsDetails/>}/>
           <Route path='/progress' element={<Progress/>}/>
           <Route path='/videocall' element={<Video/>}/>
-          <Route path="/lesson/:lessonTitle" element={<LessonsDetails />} />
-          <Route path="/quizzes/maths" element={<MathQuiz />} />
+          <Route path='/test' element={<StudentTest/>}/>
           <Route path='/login' element={<Data setStudent={setStudent} />} />
           <Route path='/parent'element={<Parent/>}/>
           <Route path='/sign'  element={<Sign/>}/>
           <Route path='/success' element={<Success/>}/>
           <Route path="/createroom" element={<CreateRoom/>}/>
           <Route path='/teacher-login' element={<TeacherLogin/>}/>
-          <Route path='/dashboard' element={<TeacherDashboard/>}/>
+          <Route path='/dashboard' element={<PsychiatristDashboard/>}/>
           <Route path='/monitor' element={<AttentionMonitor/>}/>
-        
-        
-
-
         </Routes>
         
         

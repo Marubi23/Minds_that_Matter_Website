@@ -79,9 +79,9 @@ function Video() {
       {view === "form" && (
         <div className="video-wrapper">
           <div className="video-container">
-            <h2 className="video-title">Join a Meeting</h2>
+            <h2 className="video-title">Join a Session</h2>
 
-            <label htmlFor="meeting-id" className="input-label">Meeting ID</label>
+            <label htmlFor="meeting-id" className="input-label">Session ID</label>
             <input
               id="meeting-id"
               type="text"
@@ -100,7 +100,7 @@ function Video() {
             {error && <p className="error-text">{error}</p>}
 
             <button className="join-button" onClick={handleJoinMeeting}>
-              Start Video Conferencing
+              Start Session 
             </button>
           </div>
         </div>

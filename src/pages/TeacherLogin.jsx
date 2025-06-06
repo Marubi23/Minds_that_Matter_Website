@@ -23,7 +23,7 @@ function TeacherLogin() {
     <div className="teacher-login-background">
       <div className="teacher-container">
         <h2>🔒 Safe & Secure:
-          MTM Teachers Access
+          MTM Psychiatrist Access
         </h2>
         <p>You are accessing a protected area.All information is encrypted and private</p>
         <form onSubmit={handleLogin}>
@@ -45,10 +45,7 @@ function TeacherLogin() {
          <p>✅ Protected by MTM  security suite</p>
         </form>
       </div>
-    <div className="teacher-back">
-      <button>◀</button>
-      
-    </div>
+
     </div>
   );
 }

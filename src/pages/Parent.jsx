@@ -39,6 +39,7 @@ function Parent() {
     <div className="container-parent" style={{display:'flex',flexDirection:'column',gap:'20px',alignItems:'center'}}>
     <div className="form-container" >
       <h2>🔒 Safe & Secure</h2>
+      <p>Parental Access</p>
       <form onSubmit={handleParentLogin}> 
         <input
           type="email"

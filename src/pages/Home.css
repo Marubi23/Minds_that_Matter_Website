@@ -115,6 +115,7 @@ html,body{
     padding: 2px 15px; 
     font-size: 0.85rem;  
     line-height: 2.0;
+ 
     margin-top: auto;    
   }
   
@@ -122,6 +123,7 @@ html,body{
     margin: 0;
     max-width: 500px;    
     margin-left: auto;
+       animation: fadeIn 2s ease-in-out;
     margin-right: auto;
     font-family: 'Lexend', sans-serif; 
   }
