@@ -10,6 +10,7 @@ function TeacherLogin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    localStorage.setItem('role','psychiatrist');
 
     // Replace this mock check with real backend auth later
     if (email === 'teacher@example.com' && password === 'password123') {

@@ -13,6 +13,7 @@ const handleStudentSubmit=(e)=>{
     e.preventDefault();
     localStorage.setItem('student',JSON.stringify(student));
     localStorage.setItem("isLoggedIn",true);
+    localStorage.setItem('role','student');
     setStudent(student);
     navigate('/test');
 };
@@ -62,7 +63,7 @@ const handleStudentSubmit=(e)=>{
         </div>
       <div className="logo-company"> <img style={{height:'200px',width:'180px'}}  src={logo} alt="company-logo" />
       <div className="portal">
-          <Link to={'/parent'}><button style={{padding:'20px',background:'hsl(151, 93.60%, 51.00%)',color:'black',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Parent Access </button></Link>
+    <Link to={'/parent'}><button style={{padding:'20px',background:'hsl(151, 93.60%, 51.00%)',color:'black',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Parent Access </button></Link>
       <Link to={'/teacher-login'}><button style={{padding:'20px',background:'hsl(272, 74.10%, 39.40%)',color:'white',border:'none',borderRadius:'10px',cursor:'pointer',fontFamily:'verdana'}}>Psychiatrist Access</button></Link>
       </div>
       </div>

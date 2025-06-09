@@ -1,79 +1,64 @@
-/* Progress.css */
 .progress-container {
   padding: 2rem;
-  max-width: 800px;
+  padding-top:130px;
+  max-width: 1200px;
   margin: auto;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.progress-main{
+  background-image: url('../assets/progess.png');
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #e8e8e8;
-  padding: 1rem;
-  border-radius: 8px;
+.dashboard-title {
+  font-size: 2rem;
   margin-bottom: 2rem;
-}
-
-.progress-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.progress-header button {
-  background-color: #c0392b;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.progress-header button:hover {
-  background-color: #e74c3c;
-}
-
-.summary {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.chart-box {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 2rem;
-}
-
-.button-container {
+  color: #333;
   text-align: center;
 }
 
-.button-container button {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
-.button-container button:hover {
-  background-color: #45a049;
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
 }
 
-.parent-logout-btn{
-    background-color: #c0392b;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
+.card:hover {
+  transform: translateY(-5px);
+}
 
+.metric-card .metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4e73df;
+}
+
+.info-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-card li {
+  padding: 0.5rem 0;
+}
+
+a {
+  color: #4e73df;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

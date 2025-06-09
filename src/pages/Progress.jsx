@@ -1,95 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { Bar } from 'react-chartjs-2';
-import './Progress.css';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-import { useNavigate,Link } from 'react-router-dom';
+import React from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import "./Progress.css";
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
-
-function Progress() {
-  const [progressData, setProgressData] = useState({});
-  const [completedCount, setCompletedCount] = useState(0);
-  const [totalLessons, setTotalLessons] = useState(0);
-  const parentAuthentication=localStorage.getItem("isAuthenticated")==="true";
-  const userRole=localStorage.getItem("userRole");
-  const navigate =useNavigate();
-
-
-
-  useEffect(()=>{
-    if (!parentAuthentication || userRole !=="parent"){
-      navigate('/parent');
-
-      
-    }
-  },[parentAuthentication,userRole,navigate]);
-
-  
-  useEffect(() => {
-    const storedProgress = JSON.parse(localStorage.getItem("progress")) || {};
-    setProgressData(storedProgress);
-    setCompletedCount(Object.values(storedProgress).filter(status => status === "completed").length);
-    setTotalLessons(Object.keys(storedProgress).length);
-  }, []);
-
-  const handleLogout =()=>{
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("userRole");
-    navigate('/parent');
-  }
-
-  
-  const chartData = {
-    labels: ['Completed', 'Remaining'],
-    datasets: [
-      {
-        label: 'Lesson Completion',
-        data: [completedCount, totalLessons - completedCount],
-        backgroundColor: ['#4caf50', '#e0e0e0'],
-        borderRadius: 10
-      },
-    ],
+const Progress = () => {
+  const student = JSON.parse(localStorage.getItem("student")) || {
+    name: "Null",
+    age:'Null'
   };
 
+  const metadata = {
+    age: student.age || "N/A",
+    duration: "",
+    focusScore: "",
+    emotionStats: {
+      neutral: 0,
+      happy: 0,
+      sad: 0,
+    },
+    onCamTime: "",
+    psychiatristNotes:"",
+    lessonObjectives: [],
+    attachments: [],
+  };
+
+  const emotionData = [
+    { name: "Neutral", value: metadata.emotionStats.neutral },
+    { name: "Happy", value: metadata.emotionStats.happy },
+    { name: "Sad", value: metadata.emotionStats.sad },
+  ];
+
+  const COLORS = ["#8884d8", "#82ca9d", "#ff6b6b"];
+
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Student Progress</h1>
-      <button className='parent-logout-btn' onClick={handleLogout}>Logout</button>
-      <p style={{ marginBottom: '1rem', fontSize: '1.2rem' }}>
-        {completedCount} of {totalLessons} lessons completed.
-      </p>
+    <div className="progress-main">
+       <div className="progress-container">
+      <h1 className="dashboard-title">📈 Student Behavior Dashboard</h1>
 
-    
-      <Bar
-        data={chartData}
-        options={{
-          responsive: true,
-          plugins: {
-            legend: { position: 'top' },
-            title: { display: true, text: 'Lesson Completion Status' },
-          },
-        }}
-      />
+      <div className="card info-card">
+        <p><strong>👦 Student:</strong> {student.name}</p>
+        <p><strong>🎂 Age:</strong> {metadata.age}</p>
+        <p><strong>⏱️ Duration:</strong> {metadata.duration}</p>
+      </div>
 
-      
-      <div style={{ marginTop: '2rem' }}>
-        <Link to="/lessons">
-          <button style={{
-            backgroundColor: '#4caf50',
-            color: 'white',
-            padding: '1rem 2rem',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '1rem',
-          }}>
-            Back to Lessons
-          </button>
-        </Link>
+      <div className="metrics-grid">
+        <div className="card metric-card">
+          <h2>🧠 Focus Score</h2>
+          <p className="metric-value">{metadata.focusScore}%</p>
+        </div>
+
+        <div className="card chart-card">
+          <h2>😊 Emotion Breakdown</h2>
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie
+                data={emotionData}
+                cx="50%"
+                cy="50%"
+                label
+                outerRadius={70}
+                dataKey="value"
+              >
+                {emotionData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="card metric-card">
+          <h2>🎥 On-Camera Time</h2>
+          <p className="metric-value">{metadata.onCamTime}</p>
+        </div>
+      </div>
+
+      <div className="card info-card">
+        <h2>🧑‍⚕️ Psychiatrist Notes</h2>
+        <p>{metadata.psychiatristNotes}</p>
+      </div>
+
+      <div className="card info-card">
+        <h2>📚 Lesson Objectives</h2>
+        <ul>
+          {metadata.lessonObjectives.map((obj, i) => (
+            <li key={i}>
+              {obj.done ? "✅" : "❌"} {obj.task}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="card info-card">
+        <h2>📎 Attachments</h2>
+        <ul>
+          {metadata.attachments.map((file, i) => (
+            <li key={i}>
+              <a href={file.link} target="_blank" rel="noopener noreferrer">
+                {file.name}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
+    </div>
+   
   );
-}
+};
 
 export default Progress;
-

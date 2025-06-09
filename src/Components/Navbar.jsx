@@ -6,12 +6,18 @@ function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [logoutMessage, setLogoutMessage] = useState("");
 
   const handleLogout = () => {
     localStorage.removeItem("student");
     localStorage.removeItem("isLoggedIn");
     setStudent(null);
-    navigate("/login");
+
+    setLogoutMessage("👋 Come back later! We'll miss you 💖");
+    setTimeout(() => {
+      setLogoutMessage("");
+      navigate("/login");
+    }, 2000);
   };
 
   const handleGetStartedClick = () => {
@@ -58,11 +64,11 @@ function Navbar({ student, setStudent }) {
             opacity: 0.8,
             mixBlendMode: "screen",
             position: "fixed",
-            top:"24px",
-            left:'15px',
-            width:'120px',
-            height:'auto',
-            zIndex:999,
+            top: "24px",
+            left: "15px",
+            width: "120px",
+            height: "auto",
+            zIndex: 999,
           }}
         />
       </div>
@@ -71,52 +77,80 @@ function Navbar({ student, setStudent }) {
         ☰
         {menuOpen && (
           <ul className="dropdown-menu" ref={dropdownRef}>
-            <Link to="/" onClick={() => setMenuOpen(false)}><li style={{ color: "yellow" }}>Home</li></Link>
-            <Link to="/login" onClick={() => setMenuOpen(false)}><li style={{ color: "white" }}>Portals</li></Link>
-            <Link to="/lessonsdetails" onClick={() => setMenuOpen(false)}><li style={{ color: "red" }}>Sessions Details</li></Link>
-            <Link to="/videocall" onClick={() => setMenuOpen(false)}><li style={{ color: "tomato" }}>Live Sessions</li></Link>
-            <Link to="/progress" onClick={() => setMenuOpen(false)}><li style={{ color: "wheat" }}>Progress</li></Link>
-            <Link to="/about" onClick={() => setMenuOpen(false)}><li style={{ color: "white" }}>About</li></Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}><li style={{ color: "orange" }}>Contact</li></Link>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "yellow" }}>Home</li>
+            </Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "white" }}>Portals</li>
+            </Link>
+            <Link to="/resources" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "red" }}>Resources</li>
+            </Link>
+            <Link to="/videocall" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "tomato" }}>Live Sessions</li>
+            </Link>
+            <Link to="/progress" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "wheat" }}>Progress</li>
+            </Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "white" }}>About</li>
+            </Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>
+              <li style={{ color: "orange" }}>Contact</li>
+            </Link>
           </ul>
         )}
       </div>
 
       <ul className="nav-links desktop-only">
-        <Link to="/"><li style={{ color: "blue" }}>Home</li></Link>
-        <Link to="/login"><li style={{ color: "brown" }}>Portals</li></Link>
-        <Link to="/lessonsdetails"><li style={{ color: "red" }}>Sessions Details</li></Link>
-        <Link to="/videocall"><li style={{ color: "tomato" }}>Live Sessions</li></Link>
-        <Link to="/progress"><li style={{ color: "purple" }}>Progress</li></Link>
-        <Link to="/about"><li style={{ color: "blue" }}>About</li></Link>
-        <Link to="/contact"><li style={{ color: "orange" }}>Contact</li></Link>
-     
+        <Link to="/">
+          <li style={{ color: "blue" }}>Home</li>
+        </Link>
+        <Link to="/login">
+          <li style={{ color: "brown" }}>Portals</li>
+        </Link>
+        <Link to="/resources">
+          <li style={{ color: "red" }}>Resources</li>
+        </Link>
+        <Link to="/videocall">
+          <li style={{ color: "tomato" }}>Live Sessions</li>
+        </Link>
+        <Link to="/progress">
+          <li style={{ color: "purple" }}>Progress</li>
+        </Link>
+        <Link to="/about">
+          <li style={{ color: "blue" }}>About</li>
+        </Link>
+        <Link to="/contact">
+          <li style={{ color: "orange" }}>Contact</li>
+        </Link>
       </ul>
-        <div className="start-button desktop-only">
+
+      <div className="start-button desktop-only">
         <button onClick={handleGetStartedClick}>Get Started</button>
       </div>
 
-       <div className="start-button mobile-only">
+      <div className="start-button mobile-only">
         <button onClick={handleGetStartedClick}>Get Started</button>
       </div>
-      
 
-
-     
       {student && (
         <div
           style={{
             position: "absolute",
-            top: "10px",
-            right: "-100px",
+            top: "30px",
+            right: "10px", // Changed from -100px to visible area
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             gap: "10px",
+            backgroundColor: "#1e3a8a",
+            padding: "8px 12px",
+            borderRadius: "8px",
+            zIndex: 1000,
           }}
         >
           <span style={{ fontWeight: "700", color: "white" }}>
-            Hello {student.name}
+            Hello, {student.name || student.email}
           </span>
           <button
             onClick={handleLogout}
@@ -127,11 +161,31 @@ function Navbar({ student, setStudent }) {
               padding: "5px 10px",
               borderRadius: "5px",
               cursor: "pointer",
-              fontWeight:'bolder'
+              fontWeight: "bolder",
             }}
           >
             Logout
           </button>
+        </div>
+      )}
+
+      {/* Logout message shown separately so it’s visible */}
+      {logoutMessage && (
+        <div
+          style={{
+            position: "absolute",
+            top: "80px",
+            right: "10px",
+            backgroundColor: "#f0f8ff",
+            color: "#333",
+            padding: "10px 15px",
+            borderRadius: "8px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+            fontWeight: "bold",
+            zIndex: 9999,
+          }}
+        >
+          {logoutMessage}
         </div>
       )}
     </div>

@@ -1,10 +1,14 @@
 import { useEffect,useState } from 'react';
 import Navbar from './Components/Navbar.jsx'
+import StudentResources from './Components/StudentResources.jsx';
+import ParentResources from './Components/ParentResources.jsx';
 import  "./App.css";
+import ProtectedRoute from './Components/ProtectedRoute.jsx'; 
+import Resources from './pages/Resources.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx'
 import Home from './pages/Home.jsx';
-import StudentTest from './pages/StudentTest.jsx';
+import CompleteProfile from './pages/CompleteProfile.jsx';
 import Progress from './pages/Progress.jsx';
 import Video from './pages/Video.jsx';
 import Data from './pages/Data.jsx';
@@ -22,8 +26,10 @@ function App() {
   const [student,setStudent]= useState(null);
 
 
+
   useEffect(()=>{
     const storedStudent =localStorage.getItem('student');
+    
     if(storedStudent){
       setStudent(JSON.parse(storedStudent));
     }
@@ -39,17 +45,20 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          <Route path='/progress' element={<Progress/>}/>
+          <Route path='/progress' element={<ProtectedRoute isAuthenticated={!!student}><Progress/></ProtectedRoute>}/>
           <Route path='/videocall' element={<Video/>}/>
-          <Route path='/test' element={<StudentTest/>}/>
+          <Route path='/test' element={<CompleteProfile/>}/>
           <Route path='/login' element={<Data setStudent={setStudent} />} />
           <Route path='/parent'element={<Parent/>}/>
           <Route path='/sign'  element={<Sign/>}/>
+          <Route path="/resources"element={<ProtectedRoute isAuthenticated={!!student}><Resources /></ProtectedRoute>}/>
           <Route path='/success' element={<Success/>}/>
           <Route path="/createroom" element={<CreateRoom/>}/>
           <Route path='/teacher-login' element={<TeacherLogin/>}/>
           <Route path='/dashboard' element={<PsychiatristDashboard/>}/>
           <Route path='/monitor' element={<AttentionMonitor/>}/>
+          <Route path='/student/resource' element={<StudentResources/>}/>
+          <Route path='/parent/resource' element={<ParentResources/>}/>
         </Routes>
         
         
