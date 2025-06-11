@@ -19,6 +19,9 @@ import CreateRoom from './pages/CreateRoom.jsx';
 import TeacherLogin from './pages/TeacherLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
 import AttentionMonitor from './Components/AttentionMonitor.jsx';
+import StudentRecords from './pages/studentRecords.jsx';
+
+
 
 import { Routes,Route } from 'react-router-dom'
 
@@ -43,6 +46,7 @@ function App() {
         
         <Routes>
           <Route path='/' element={<Home/>}/>
+          <Route path='/records' element={<StudentRecords/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/progress' element={<ProtectedRoute isAuthenticated={!!student}><Progress/></ProtectedRoute>}/>
@@ -59,6 +63,7 @@ function App() {
           <Route path='/monitor' element={<AttentionMonitor/>}/>
           <Route path='/student/resource' element={<StudentResources/>}/>
           <Route path='/parent/resource' element={<ParentResources/>}/>
+        
         </Routes>
         
         

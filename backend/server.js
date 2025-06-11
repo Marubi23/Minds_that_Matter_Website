@@ -7,8 +7,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const parentRoutes = require('./Routes/parentAuth.js');
+const parentRoutes = require('./Routes/parentAuth');
+const recordRoutes = require('./Routes/records');
 app.use('/api/parents', parentRoutes);
+app.use('/api/records',recordRoutes);
 
 app.get('/',(req,res)=>{
   res.send('Welcome to Minds that Matter Backend ~inspired by felix')

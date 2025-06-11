@@ -1,0 +1,15 @@
+.records-container {
+  padding: 2rem;
+}
+
+.record-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.record-card {
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
