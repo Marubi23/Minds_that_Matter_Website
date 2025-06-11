@@ -19,7 +19,7 @@ import CreateRoom from './pages/CreateRoom.jsx';
 import TeacherLogin from './pages/TeacherLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
 import AttentionMonitor from './Components/AttentionMonitor.jsx';
-import StudentRecords from './pages/studentRecords.jsx';
+import Records from './pages/Records.jsx';
 
 
 
@@ -46,7 +46,7 @@ function App() {
         
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/records' element={<StudentRecords/>}/>
+          <Route path='/records' element={<Records/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/progress' element={<ProtectedRoute isAuthenticated={!!student}><Progress/></ProtectedRoute>}/>

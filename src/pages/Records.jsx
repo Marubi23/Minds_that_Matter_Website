@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './StudentRecords.css'; // Optional for styles
+import './Records.css'; // Optional for styles
 
-const StudentRecords = () => {
+const Records = () => {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const StudentRecords = () => {
   );
 };
 
-export default StudentRecords;
+export default Records;
