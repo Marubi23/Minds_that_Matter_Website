@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Video.css';
 import { useNavigate } from "react-router-dom";
-import waitingImage from "../assets/waiting.gif";
 
 function Video() {
   const [view, setView] = useState("form"); // form → waiting → conference
@@ -10,6 +9,8 @@ function Video() {
   const [error, setError] = useState('');
   const jitsiContainerRef = useRef(null);
   const navigate = useNavigate();
+  const student = JSON.parse(localStorage.getItem('student') || '{}');
+
 
   useEffect(() => {
     if (view === "conference" && roomID) {
@@ -108,7 +109,8 @@ function Video() {
 
       {view === "waiting" && (
         <div className="waiting-room">
-          <img src={waitingImage} alt="waiting" className="waiting-img" />
+    <img src="/waiting.gif" alt="waiting" className="waiting-img" />
+
           <h3 className="waiting-text">Please wait while we register you to the meeting...</h3>
           <p className="waiting-subtext">This won't take long. Thank you for your patience 😊</p>
         </div>
