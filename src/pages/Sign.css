@@ -40,7 +40,7 @@ position: fixed;
 }
 .signUp-container{
   display: flex;
-   background-image: url('../assets/vidaloco.jpeg');
+   background-image: url('../assets/prodgy.jpeg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -50,6 +50,9 @@ position: fixed;
   height: 100vh; 
   padding: 20px;
   gap: 20px;
+}
+.signUp-container h2{
+  color: white;
 }
 
 

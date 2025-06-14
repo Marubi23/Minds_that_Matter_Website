@@ -1,20 +1,25 @@
 .form-container{
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.821);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
        padding: 20px;
         border-radius: 8px;
         width: 300px;   
-        backdrop-filter: blur(6px);
+        backdrop-filter: blur(3px);
           
 }
 .form-container p{
     text-align: center;
     font-weight: 700;
-    color:hsl(0, 11%, 29%);
+    color:wheat;
+}
+.form-container h2{
+    color: white;
 }
 .container-parent{
  display: flex;
   flex-direction: column;
-  background-image: url('../assets/datapage.png');
+  background-image: url('../assets/prodgy.jpeg');
+  background-position: center;
+  background-size: contain;
   align-items: center;
   justify-content: center; /* vertically center */
   height: 110vh; /* full viewport height */
