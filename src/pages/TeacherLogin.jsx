@@ -12,7 +12,7 @@ function TeacherLogin() {
     e.preventDefault();
     localStorage.setItem('role','psychiatrist');
 
-    // Replace this mock check with real backend auth later
+    
     if (email === 'teacher@example.com' && password === 'password123') {
       navigate('/teacher-dashboard');
     } else {

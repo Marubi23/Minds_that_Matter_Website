@@ -1,74 +1,81 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Video.css';
-import { useNavigate } from "react-router-dom";
 
 function Video() {
-  const [view, setView] = useState("form"); // form → waiting → conference
+  const [view, setView] = useState('form'); // form → waiting → conference
   const [roomID, setRoomID] = useState('');
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState('');
-  const jitsiContainerRef = useRef(null);
+  const videoContainerRef = useRef(null);
+  const apiRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const student = JSON.parse(localStorage.getItem('student') || '{}');
 
-
+  // Get prefilled room from URL
   useEffect(() => {
-    if (view === "conference" && roomID) {
-      const domain = "meet.jit.si";
+    const queryParams = new URLSearchParams(location.search);
+    const prefillRoom = queryParams.get('room');
+    if (prefillRoom) setRoomID(prefillRoom);
+  }, [location.search]);
+
+  // Initialize Jitsi when in conference view
+  useEffect(() => {
+    if (view === 'conference' && roomID && videoContainerRef.current) {
+      const domain = 'meet.jit.si';
       const options = {
         roomName: roomID,
-        parentNode: jitsiContainerRef.current,
+        parentNode: videoContainerRef.current,
         width: '100%',
         height: 600,
-        configOverwrite: {},
-        interfaceConfigOverwrite: {},
-        userInfo:{
-          displayName: student.name || "Student"
-
+        userInfo: {
+          displayName: student.name || 'Student',
         },
-        defaultLanguage:'en',
+        configOverwrite: {
+          disableInviteFunctions: true,
+          defaultLanguage: 'en', // Force English UI
+        },
       };
 
-      // eslint-disable-next-line no-undef
-      const api = new window.JitsiMeetExternalAPI(domain, options);
+      apiRef.current = new window.JitsiMeetExternalAPI(domain, options);
 
-      return () => api.dispose();
+      return () => {
+        apiRef.current?.dispose();
+      };
     }
-  }, [view, roomID]);
+  }, [view, roomID, student.name]);
 
   const handleBackLesson = () => {
-    navigate("/lessons");
+    navigate('/lessons');
   };
 
   const handleJoinMeeting = () => {
     setError('');
-    const meetingIdInput = document.getElementById("meeting-id").value.trim();
-    const passcodeInput = document.getElementById("passcode-id").value.trim();
+    const enteredRoomID = roomID.trim();
+    const enteredPasscode = passcode.trim();
 
-    if (!meetingIdInput || !passcodeInput) {
-      setError('Please enter both Meeting ID and Passcode');
+    if (!enteredRoomID || !enteredPasscode) {
+      setError('Please enter both Room ID and Passcode');
       return;
     }
 
     const storedRooms = JSON.parse(localStorage.getItem('rooms') || '{}');
 
-    if (!storedRooms[meetingIdInput]) {
-      setError('Meeting ID does not exist');
+    if (!storedRooms[enteredRoomID]) {
+      setError('Room ID does not exist');
       return;
     }
-    if (storedRooms[meetingIdInput] !== passcodeInput) {
+
+    if (storedRooms[enteredRoomID] !== enteredPasscode) {
       setError('Incorrect passcode');
       return;
     }
 
-    setRoomID(meetingIdInput);
-    setPasscode(passcodeInput);
-    setView("waiting");
-
-    // Simulate waiting room delay before joining
+    setView('waiting');
     setTimeout(() => {
-      setView("conference");
-    }, 4000);
+      setView('conference');
+    }, 2000);
   };
 
   return (
@@ -77,47 +84,47 @@ function Video() {
         Go Back to Lessons
       </button>
 
-      {view === "form" && (
+      {view === 'form' && (
         <div className="video-wrapper">
           <div className="video-container">
             <h2 className="video-title">Join a Session</h2>
 
-            <label htmlFor="meeting-id" className="input-label">Session ID</label>
+            <label>Room ID</label>
             <input
-              id="meeting-id"
               type="text"
+              value={roomID}
+              onChange={(e) => setRoomID(e.target.value)}
               className="meeting-input"
-              placeholder="Enter Meeting ID"
+              placeholder="Enter Room ID"
             />
 
-            <label htmlFor="passcode-id" className="input-label">Passcode</label>
+            <label>Passcode</label>
             <input
-              id="passcode-id"
               type="password"
+              value={passcode}
+              onChange={(e) => setPasscode(e.target.value)}
               className="meeting-input"
-              placeholder="Enter Meeting Passcode"
+              placeholder="Enter Passcode"
             />
 
             {error && <p className="error-text">{error}</p>}
 
             <button className="join-button" onClick={handleJoinMeeting}>
-              Start Session 
+              Start Session
             </button>
           </div>
         </div>
       )}
 
-      {view === "waiting" && (
+      {view === 'waiting' && (
         <div className="waiting-room">
-    <img src="/waiting.gif" alt="waiting" className="waiting-img" />
-
-          <h3 className="waiting-text">Please wait while we register you to the meeting...</h3>
-          <p className="waiting-subtext">This won't take long. Thank you for your patience 😊</p>
+          <img src="/Waiting.gif" alt="waiting" className="waiting-img" />
+          <h3>Please wait while we connect you...</h3>
         </div>
       )}
 
-      {view === "conference" && (
-        <div ref={jitsiContainerRef} style={{ height: 600, width: '100%' }} />
+      {view === 'conference' && (
+        <div ref={videoContainerRef} style={{ width: '100%', height: 600 }} />
       )}
     </div>
   );

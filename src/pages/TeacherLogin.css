@@ -1,5 +1,5 @@
 .teacher-login-background {
-  background-image: url('../assets/teacher.jpeg');
+  background-image: url('../assets/parentkid.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -10,7 +10,8 @@
 
 .teacher-container {
   width: 100%;
-  margin-left: 600px;
+  margin-left: 990px;
+  margin-top: 100px;
   max-width: 400px;
   padding: 2rem;
   border-radius: 10px;

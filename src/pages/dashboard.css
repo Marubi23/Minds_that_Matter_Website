@@ -3,6 +3,10 @@
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
   padding-top: 130px;
+  background-image: url('../assets/sev.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .dashboard-sidebar {

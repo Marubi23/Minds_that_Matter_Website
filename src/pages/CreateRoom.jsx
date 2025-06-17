@@ -10,32 +10,41 @@ function CreateRoom() {
 
   const generateRoomID = () => {
     const random = Math.floor(1000 + Math.random() * 9000);
-    return `${roomName.toLowerCase().replace(/\s+/g, '-')}-${random}`;
+    const cleanName = roomName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    return `${cleanName}-${random}`;
   };
 
   const handleCreateRoom = (e) => {
     e.preventDefault();
 
-    if (!roomName.trim() || !passcode.trim()) {
-      alert('Please fill in both fields.');
+    if (roomName.trim().length < 3 || passcode.trim().length < 4) {
+      alert('Room name must be at least 3 characters and passcode at least 4.');
       return;
     }
 
     const roomID = generateRoomID();
-    const storedRooms =JSON.parse(localStorage.getItem('rooms') || '{}');
-    storedRooms[roomName]=passcode; //save new room
-     localStorage.setItem('rooms',JSON.stringify(storedRooms));
 
-    navigate(`/waiting?room=${encodeURIComponent(roomID)}`);
+    // Save to localStorage
+    const storedRooms = JSON.parse(localStorage.getItem('rooms') || '{}');
+    if (storedRooms[roomID]) {
+      alert('Room already exists, please try another name.');
+      return;
+    }
+
+    storedRooms[roomID] = passcode.trim();
+    localStorage.setItem('rooms', JSON.stringify(storedRooms));
+
+    navigate(`/video?room=${encodeURIComponent(roomID)}`);
   };
 
   return (
     <div className="create-room-container glass-panel">
-      <h2 className="animated-title">📹 Create Your Video Room</h2>
-
+      <div className="create-container">
+         <h2 className="animated-title">📹 Create Your Video Room</h2>
       <form onSubmit={handleCreateRoom} className="room-form">
         <label>Room Name</label>
         <input
+          required
           type="text"
           placeholder="e.g. Math Class"
           value={roomName}
@@ -45,6 +54,7 @@ function CreateRoom() {
         <label>Passcode</label>
         <div className="passcode-input">
           <input
+            required
             type={showPasscode ? 'text' : 'password'}
             placeholder="Enter Passcode"
             value={passcode}
@@ -54,6 +64,7 @@ function CreateRoom() {
             type="button"
             className="toggle-pass"
             onClick={() => setShowPasscode(!showPasscode)}
+            aria-label="Toggle passcode visibility"
           >
             {showPasscode ? '🙈 Hide' : '👁️ Show'}
           </button>
@@ -62,8 +73,10 @@ function CreateRoom() {
         <button type="submit" className="submit-btn">✨ Create Room</button>
       </form>
     </div>
+
+      </div>
+     
   );
 }
 
 export default CreateRoom;
-
