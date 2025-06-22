@@ -13,10 +13,12 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
             <Ban size={40} color="#dc2626" />
             <h2 style={styles.title}>Access Denied</h2>
           </div>
-          <p style={styles.message}>You must be logged in to view this page.</p>
-          <button onClick={() => navigate('/login')} style={styles.button}>
-            Go to Login
-          </button>
+          <p style={styles.message}>You must be logged in as a student or parent to view this page.</p>
+          
+          <button onClick={() => navigate('/login')} style={styles.button}>Login</button>
+   
+        
+        
         </div>
   
       
@@ -73,6 +75,7 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
   },
+ 
 };
 
 export default ProtectedRoute;

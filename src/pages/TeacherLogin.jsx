@@ -1,52 +1,50 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherLogin.css';
-import { Link } from 'react-router-dom';
 
 function TeacherLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [psychiatrist, setPsychiatrist] = useState({ name: '', password: '' });
+
+  const handleBack = () => {
+    navigate('/login');
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem('role','psychiatrist');
-
-    
-    if (email === 'teacher@example.com' && password === 'password123') {
-      navigate('/teacher-dashboard');
-    } else {
-      alert('Invalid credentials');
-    }
+    localStorage.setItem('psychiatrist', JSON.stringify(psychiatrist));
+    navigate('/dashboard');
   };
 
   return (
     <div className="teacher-login-background">
       <div className="teacher-container">
-        <h2>🔒 Safe & Secure:
-          MTM Psychiatrist Access
-        </h2>
-        <p>You are accessing a protected area.All information is encrypted and private</p>
+        <h2>🔒 Safe & Secure: MTM Psychiatrist Access</h2>
+        <p>You are accessing a protected area. All information is encrypted and private.</p>
         <form onSubmit={handleLogin}>
-          <input 
-            type="email" 
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
+          <input
+            type="text"
+            placeholder="Name"
+            value={psychiatrist.name}
+            onChange={(e) =>
+              setPsychiatrist({ ...psychiatrist, name: e.target.value })
+            }
+            required
           />
-          <input 
-            type="password" 
+          <input
+            type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
+            value={psychiatrist.password}
+            onChange={(e) =>
+              setPsychiatrist({ ...psychiatrist, password: e.target.value })
+            }
+            required
           />
-         <Link to='/dashboard'><button type="submit">Login</button></Link> 
-         <p>✅ Protected by MTM  security suite</p>
+          <button type="submit">Login</button>
+          <p>✅ Protected by MTM security suite</p>
         </form>
       </div>
-
+      <button className="psych" onClick={handleBack}>◀ Back</button>
     </div>
   );
 }

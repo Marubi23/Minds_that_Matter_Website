@@ -102,12 +102,14 @@ form {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: background-color 0.3s ease;
+   animation: bounce 1.5s infinite ease-in-out;
 }
+
 
 .floating-home-btn:hover {
   background-color: #4ed71c;
+    
 }
-
 
 @media (max-width: 768px) {
   .login-container {
@@ -140,4 +142,12 @@ form {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

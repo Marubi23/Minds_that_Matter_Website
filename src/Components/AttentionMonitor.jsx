@@ -3,7 +3,7 @@ import * as faceapi from 'face-api.js';
 
 function AttentionMonitor({ onAttentionDrop }) {
   const videoRef = useRef();
-  const [status, setStatus] = useState('Loading models...');
+  const [status, setStatus] = useState('Loading models...98%');
 
   useEffect(() => {
     const startVideo = async () => {
@@ -30,10 +30,10 @@ function AttentionMonitor({ onAttentionDrop }) {
           new faceapi.TinyFaceDetectorOptions()
         );
         if (!detections) {
-          setStatus('No face detected 😐');
+          setStatus('No face detected ');
           if (onAttentionDrop) onAttentionDrop();
         } else {
-          setStatus('Student is present 🙂');
+          setStatus('Student is present ');
         }
       }
     }, 2000);
@@ -43,7 +43,7 @@ function AttentionMonitor({ onAttentionDrop }) {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute',top:'300px',left:'900px' }}>
         <video
           ref={videoRef}
           autoPlay

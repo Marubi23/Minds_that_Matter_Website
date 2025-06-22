@@ -7,6 +7,11 @@
   justify-content: center;
   align-items: center;
 }
+.psych{
+  position: absolute;
+  left: 900px;
+  top: 400px;
+}
 
 .teacher-container {
   width: 100%;

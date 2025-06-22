@@ -28,7 +28,7 @@ const handleStudentSubmit=(e)=>{
   onClick={() => navigate('/')}
   className="floating-home-btn"
 >
-◀  
+◀Back  
 </button>
 
        <div className="data-background">

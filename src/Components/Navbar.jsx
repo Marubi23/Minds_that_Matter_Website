@@ -16,7 +16,7 @@ function Navbar({ student, setStudent }) {
     setLogoutMessage("👋 Come back later! We'll miss you 💖");
     setTimeout(() => {
       setLogoutMessage("");
-      navigate("/login");
+      navigate("/");
     }, 1000);
   };
 

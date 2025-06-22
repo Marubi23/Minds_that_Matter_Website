@@ -51,7 +51,7 @@ function Parent() {
       </Link>
 
       <button onClick={() => navigate('/login')} className="floating-home-btn">
-        ◀
+        ◀Back
       </button>
     </div>
   );

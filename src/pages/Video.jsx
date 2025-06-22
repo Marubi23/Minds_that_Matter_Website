@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import AttentionMonitor from '../Components/AttentionMonitor';
 import './Video.css';
 
 function Video() {
@@ -13,14 +14,13 @@ function Video() {
   const location = useLocation();
   const student = JSON.parse(localStorage.getItem('student') || '{}');
 
-  // Get prefilled room from URL
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const prefillRoom = queryParams.get('room');
     if (prefillRoom) setRoomID(prefillRoom);
   }, [location.search]);
 
-  // Initialize Jitsi when in conference view
+  
   useEffect(() => {
     if (view === 'conference' && roomID && videoContainerRef.current) {
       const domain = 'meet.jit.si';
@@ -34,7 +34,7 @@ function Video() {
         },
         configOverwrite: {
           disableInviteFunctions: true,
-          defaultLanguage: 'en', // Force English UI
+          defaultLanguage: 'en',
         },
       };
 
@@ -124,7 +124,14 @@ function Video() {
       )}
 
       {view === 'conference' && (
-        <div ref={videoContainerRef} style={{ width: '100%', height: 600 }} />
+        <div style={{ position: 'relative' }}>
+          <div ref={videoContainerRef} style={{ width: '100%', height: 600 }} />
+          <AttentionMonitor
+            onAttentionDrop={() => {
+              console.warn('⚠️ Attention dropped!');
+            }}
+          />
+        </div>
       )}
     </div>
   );

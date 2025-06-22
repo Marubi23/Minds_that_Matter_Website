@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   background: hsla(216, 87%, 28%, 0.4);
+ gap: 50px;
   
 }
 .video-meeting-cont{
@@ -111,4 +112,15 @@
 .waiting-subtext {
   font-size: 1rem;
   color: #666;
+}
+.monitor{
+   background-color: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+   max-width: 600px,;
+  
+}
+.monitor button{
+  background-color:peru;
 }

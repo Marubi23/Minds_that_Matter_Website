@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Home,
-  Video,
-  FileText,
-  Users,
-  Calendar,
-  Settings,
-  Bell,
-  Clock,
-  ClipboardList,
-  UserCheck
+  Home, Video, FileText, Users, Calendar, Settings,
+  Bell, Clock, ClipboardList, UserCheck
 } from 'lucide-react';
 import './dashboard.css';
 
 function PsychiatristDashboard() {
+  const [psychiatrist, setPsychiatrist] = useState({ name: 'Null' });
+
+  // Load psychiatrist from localStorage on mount
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("psychiatrist"));
+    if (data?.name) {
+      setPsychiatrist(data);
+    }
+  }, []);
+
+  // Avoid duplicate "Dr." prefix
+  const displayName = psychiatrist.name?.startsWith("Dr.")
+    ? psychiatrist.name
+    : `Dr. ${psychiatrist.name}`;
+
   return (
     <div className="dashboard-layout">
       <aside className="dashboard-sidebar">
-        <h2> MTM Portal</h2>
+        <h2>MTM Portal</h2>
         <nav>
           <Link to="/dashboard"><Home size={16} /> Dashboard</Link>
           <Link to="/createroom"><Video size={16} /> Start Session</Link>
@@ -32,7 +39,7 @@ function PsychiatristDashboard() {
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div>
-            <h1>Welcome, Dr. Jane</h1>
+            <h1>Welcome {displayName}</h1>
             <p>Manage sessions, appointments, and reports with ease.</p>
           </div>
           <input className="search-bar" placeholder="Search students or sessions..." />
