@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Home, Video, FileText, Users, Calendar, Settings,
-  Bell, Clock, ClipboardList, UserCheck
+  Bell, Clock, ClipboardList, UserCheck, LogOut
 } from 'lucide-react';
 import './dashboard.css';
 
 function PsychiatristDashboard() {
   const [psychiatrist, setPsychiatrist] = useState({ name: 'Null' });
+  const navigate = useNavigate();
 
   // Load psychiatrist from localStorage on mount
   useEffect(() => {
@@ -17,7 +18,13 @@ function PsychiatristDashboard() {
     }
   }, []);
 
-  // Avoid duplicate "Dr." prefix
+  const handleLogout = () => {
+    localStorage.removeItem("psychiatrist");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("hasClickedGetStarted");
+    navigate("/teacher-login"); // or navigate("/") if you prefer homepage
+  };
+
   const displayName = psychiatrist.name?.startsWith("Dr.")
     ? psychiatrist.name
     : `Dr. ${psychiatrist.name}`;
@@ -25,7 +32,7 @@ function PsychiatristDashboard() {
   return (
     <div className="dashboard-layout">
       <aside className="dashboard-sidebar">
-        <h2>MTM Portal</h2>
+        <h2>Dashboard</h2>
         <nav>
           <Link to="/dashboard"><Home size={16} /> Dashboard</Link>
           <Link to="/createroom"><Video size={16} /> Start Session</Link>
@@ -33,6 +40,27 @@ function PsychiatristDashboard() {
           <Link to="/records"><Users size={16} /> View Student Records</Link>
           <Link to="/reports"><FileText size={16} /> Reports</Link>
           <Link to="/settings"><Settings size={16} /> Settings</Link>
+
+          {/* ✅ Logout button added here */}
+          <button
+            onClick={handleLogout}
+            style={{
+              marginTop: "10px",
+              background: "crimson",
+              color: "white",
+              border: "none",
+              padding: "8px 12px",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer"
+            }}
+          >
+            <LogOut size={16} />
+            Logout
+          </button>
         </nav>
       </aside>
 

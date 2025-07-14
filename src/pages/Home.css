@@ -1,161 +1,331 @@
-html,body{
-    height: 100%;
-    margin: 0;
-    
-}
-.home-container{
-    display: flex;
-    flex-direction: column;
-    min-height: 10vh;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-
-
-  
-}
-.home-background{
-    position: relative;
-    min-height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../assets/background.JPG');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    z-index: 0;
-    width: 100vw;
-    font-family: 'Poppins', sans-serif;
-    flex: 1;
-
-
-}
-.home-background p {
-    font-size: 1.8rem;
-    color: #ffffff;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    padding: 20px 30px;
-    margin-top: 1.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 90%;
-    border-radius: 20px;
-    background: linear-gradient(135deg, hsla(0, 0%, 0%, 0.07), hsla(0, 0%, 0%, 0.601));
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.304);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
-    letter-spacing: 0.6px;
-    transition: all 0.5s ease;
-    animation: glowFade 2.39s ease-in-out forwards;
-    border: 8px solid rgba(27, 171, 255, 0.1);
+/* --- General Reset --- */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
-
-.welcome{
-    position: relative;
-    z-index: 1;
-    color: white;
-    font-size: 4rem;
-    text-shadow: 1px 1px 2px black;
-    background-color: rgba(0,0,0,0.5);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    color: white;
-    max-width: 600px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    font-family: 'Poppins', sans-serif;
-    animation: fadeIn 1s ease-in;
-    
-}
-.chat-button{
-    position: fixed;
-    bottom: 5px;
-    right: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    padding: 12px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-.about-click-button{
-    bottom: 10px;
-    position: fixed;
-    left: 0px;
-    padding: 12px 16px;
-    border-radius: 30px;
-    font-size: 14px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    background-color: hsl(32, 100%, 50%);
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    z-index: 1000;
+.scroll-indicator {
+  margin-top: 2rem;
+  cursor: pointer;
+  animation: bounce 2s infinite;
 }
 
-.chat-button :hover{
-    background-color: #0056b3;
+.arrow-down {
+  font-size: 3rem;
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
-.footer {
-    background-color: hsl(0, 7%, 9%);
-    color: white;
-    text-align: center;
-    padding: 2px 15px; 
-    font-size: 0.85rem;  
-    line-height: 2.0;
- 
-    margin-top: auto;    
+
+.arrow-down:hover {
+  opacity: 1;
+}
+
+/* Arrow bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
   }
-  
-  .footer p {
-    margin: 0;
-    max-width: 500px;    
-    margin-left: auto;
-       animation: fadeIn 2s ease-in-out;
-    margin-right: auto;
-    font-family: 'Lexend', sans-serif; 
+  40% {
+    transform: translateY(6px);
   }
-  
+  60% {
+    transform: translateY(3px);
+  }
+}
+
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #10b7ef;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #10b7ef;
+}
+
+/* --- Background and Crossfade --- */
+.home-background-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* cover full screen height */
+  overflow: hidden;
+  margin-top: 0; /* remove the gap */
+}
+
+
+.background-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in {
+  z-index: 1;
+  opacity: 1;
+}
+
+.fade-out {
+  z-index: 0;
+  opacity: 0;
+}
+
+/* --- Content Layer --- */
+.content-layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* --- Text Styling --- */
+.inspo-message,
+.home-background-wrapper p {
+  font-size: 2.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px 30px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
+  animation: glowFade 2.4s ease-in-out forwards;
+  border: 8px solid rgba(27, 171, 255, 0.1);
+}
+
+.welcome {
+  color: white;
+  font-size: 4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1s ease-in;
+  text-shadow: 1px 1px 2px black;
+}
+
+.cta-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background-color: #10b7ef;
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #0a9bc7;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 2px solid #10b7ef;
+  color: #10b7ef;
+}
+
+.secondary-btn:hover {
+  background-color: #10b7ef;
+  color: white;
+}
+
+/* --- Floating Buttons --- */
+.chat-button {
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.chat-button:hover {
+  background-color: #0056b3;
+}
+
+.about-click-button {
+  position: fixed;
+  bottom: 10px;
+  left: 0px;
+  padding: 12px 16px;
+  border-radius: 30px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background-color: hsl(32, 100%, 50%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* --- Features Section --- */
+.features-section {
+  background-image: url('../assets/ngo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  background-image: url('../assets/school.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+  color: #0e81a4;
+font-weight: 500;
+}
+.feature-card p{
+  color: hsl(0, 0%, 0%);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* --- Partners Section --- */
+.partners-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #fefefe;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.partners-logos img {
+  max-height: 50px;
+  object-fit: contain;
+}
+
+/* --- Footer --- */
+.enhanced-footer {
+  background-color: hsl(0, 9%, 9%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-content h4 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-content ul li {
+  margin: 5px 0;
+}
+
+.footer-content ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-content ul li a:hover {
+  color: #10b7ef;
+}
+
+/* --- Animations --- */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@media(max-width:768px){
-    .about-click-button{
-        bottom: 105px;
-    }
-    .chat-button{
-        bottom: 105px;
-        right: 1px;
-    }
-    .welcome{
-        font-size: 4rem;
-        left: 65px;
-    }
-    .home-background p{
-         border:none;
-         background: transparent;
-         font-size: 1.2rem;         
-     }
-     
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes glowFade {
@@ -171,4 +341,33 @@ html,body{
   }
 }
 
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .main-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .about-click-button,
+  .chat-button {
+    bottom: 90px;
+  }
+
+  .welcome {
+    font-size: 2.5rem;
+  }
+
+  .inspo-message,
+  .home-background-wrapper p {
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 10px;
+  }
+}

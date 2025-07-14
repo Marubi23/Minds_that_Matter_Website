@@ -1,0 +1,115 @@
+/* Layout */
+
+.settings-layout {
+  display: flex;
+  height: 100vh;
+  padding-top:155px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.settings-sidebar {
+  width: 300px;
+ background-color: rgb(94, 36, 219);
+  padding: 1.5rem;
+  height: 90vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.settings-sidebar nav a {
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.settings-sidebar nav a svg {
+  margin-right: 0.5rem;
+}
+
+.settings-sidebar nav a:hover,
+.settings-sidebar .active-link {
+  color: white;
+  font-weight: bold;
+}
+
+/* Main Content */
+
+.settings-main {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.settings-header h1 {
+  margin-bottom: 0.2rem;
+  font-size: 1.8rem;
+}
+
+.settings-header p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Panel */
+
+.settings-panel {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+.settings-section {
+  margin-bottom: 2rem;
+}
+
+.settings-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.settings-section label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 500;
+}
+
+.settings-section input,
+.settings-section select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.settings-section button {
+  margin-top: 0.6rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #0d5718;
+  color: white;
+  font-size: 1rem;
+}
+
+.logout-btn {
+  background: rgb(116, 26, 44);
+  color: white;
+}

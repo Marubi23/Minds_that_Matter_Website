@@ -38,7 +38,8 @@ function CreateRoom() {
   };
 
   return (
-    <div className="create-room-container glass-panel">
+    <div className="create-room">
+       <div className="create-room-container glass-panel">
       <div className="create-container">
          <h2 className="animated-title">📹 Create Your Video Room</h2>
       <form onSubmit={handleCreateRoom} className="room-form">
@@ -76,6 +77,8 @@ function CreateRoom() {
 
       </div>
      
+    </div>
+   
   );
 }
 

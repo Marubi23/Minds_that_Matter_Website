@@ -16,10 +16,17 @@ import Parent from './pages/Parent.jsx';
 import Sign from './pages/Sign.jsx';
 import Success from './pages/Success.jsx';
 import CreateRoom from './pages/CreateRoom.jsx';
-import TeacherLogin from './pages/TeacherLogin.jsx';
+import PsychiatristLogin from './pages/PsychiatristLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
 import AttentionMonitor from './Components/AttentionMonitor.jsx';
 import Records from './pages/Records.jsx';
+import Settings from './Components/Settings.jsx';
+import Notifications from './pages/Notifications.jsx';
+import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';
+import ParentDashboard from './Components/ParentDashboard.jsx';
+
+
+
 
 
 
@@ -49,7 +56,7 @@ function App() {
           <Route path='/records' element={<Records/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          <Route path='/progress' element={<ProtectedRoute isAuthenticated={!!student}><Progress/></ProtectedRoute>}/>
+          <Route path="/progress" element={<ParentDashboard />} />
           <Route path='/videocall' element={<Video/>}/>
           <Route path='/test' element={<CompleteProfile/>}/>
           <Route path='/login' element={<Data setStudent={setStudent} />} />
@@ -58,11 +65,14 @@ function App() {
           <Route path="/resources"element={<ProtectedRoute isAuthenticated={!!student}><Resources /></ProtectedRoute>}/>
           <Route path='/success' element={<Success/>}/>
           <Route path="/createroom" element={<CreateRoom/>}/>
-          <Route path='/teacher-login' element={<TeacherLogin/>}/>
-          <Route path='/dashboard' element={<PsychiatristDashboard/>}/>
+          <Route path='teacher-login' element={<PsychiatristLogin/>}/>
+          <Route path='/dashboard' element={<RequirePsychiatristAuth><PsychiatristDashboard /></RequirePsychiatristAuth>}/>
           <Route path='/monitor' element={<AttentionMonitor/>}/>
           <Route path='/student/resource' element={<StudentResources/>}/>
           <Route path='/parent/resource' element={<ParentResources/>}/>
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/notifications" element={<Notifications />} />
+
         
         </Routes>
         

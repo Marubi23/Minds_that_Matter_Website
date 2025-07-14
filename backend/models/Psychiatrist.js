@@ -1,8 +1,23 @@
-const mongoose =require('mongoose');
+// models/Psychiatrist.js
 
-const psychiatristSchema=new mongoose.Schema({
-name: {type:String,required:true},
-password: {type: String, required:true}
+const mongoose = require('mongoose');
+
+const psychiatristSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Psychiatrist',psychiatristSchema);
+const Psychiatrist = mongoose.model('Psychiatrist', psychiatristSchema);
+
+module.exports = Psychiatrist;

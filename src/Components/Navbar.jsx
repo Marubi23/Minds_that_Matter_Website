@@ -1,17 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/front.png";
 
 function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [logoutMessage, setLogoutMessage] = useState("");
 
+  const [hasClickedGetStarted, setHasClickedGetStarted] = useState(() => {
+    return localStorage.getItem("hasClickedGetStarted") === "true";
+  });
+
   const handleLogout = () => {
     localStorage.removeItem("student");
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("hasClickedGetStarted"); // Reset get started state
     setStudent(null);
+    setHasClickedGetStarted(false);
 
     setLogoutMessage("👋 Come back later! We'll miss you 💖");
     setTimeout(() => {
@@ -21,6 +29,8 @@ function Navbar({ student, setStudent }) {
   };
 
   const handleGetStartedClick = () => {
+    localStorage.setItem("hasClickedGetStarted", "true");
+    setHasClickedGetStarted(true);
     navigate("/login");
   };
 
@@ -28,24 +38,20 @@ function Navbar({ student, setStudent }) {
     setMenuOpen((prev) => !prev);
   };
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
     };
-
     if (menuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen]);
 
-  // Close on resize (for responsiveness)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setMenuOpen(false);
@@ -107,39 +113,43 @@ function Navbar({ student, setStudent }) {
           <li style={{ color: "blue" }}>Home</li>
         </Link>
         <Link to="/login">
-          <li style={{ color: "brown" }}>Portals</li>
+          <li style={{ color: "purple" }}>Portals</li>
         </Link>
         <Link to="/resources">
-          <li style={{ color: "red" }}>Resources</li>
+          <li style={{ color: "purple" }}>Resources</li>
         </Link>
         <Link to="/videocall">
-          <li style={{ color: "tomato" }}>Live Sessions</li>
+          <li style={{ color: "purple" }}>Live Sessions</li>
         </Link>
         <Link to="/progress">
           <li style={{ color: "purple" }}>Progress</li>
         </Link>
         <Link to="/about">
-          <li style={{ color: "blue" }}>About</li>
+          <li style={{ color: "purple" }}>About</li>
         </Link>
         <Link to="/contact">
-          <li style={{ color: "orange" }}>Contact</li>
+          <li style={{ color: "blue" }}>Contact</li>
         </Link>
       </ul>
 
-      <div className="start-button desktop-only">
-        <button onClick={handleGetStartedClick}>Get Started</button>
-      </div>
-
-      <div className="start-button mobile-only">
-        <button onClick={handleGetStartedClick}>Get Started</button>
-      </div>
+      {/* ✅ Show only on Home + only if not already clicked */}
+      {isHomePage && !hasClickedGetStarted && (
+        <>
+          <div className="start-button desktop-only">
+            <button onClick={handleGetStartedClick}>Get Started</button>
+          </div>
+          <div className="start-button mobile-only">
+            <button onClick={handleGetStartedClick}>Get Started</button>
+          </div>
+        </>
+      )}
 
       {student && (
         <div
           style={{
             position: "absolute",
             top: "30px",
-            right: "10px", // Changed from -100px to visible area
+            right: "10px",
             display: "flex",
             alignItems: "center",
             gap: "10px",
@@ -169,7 +179,6 @@ function Navbar({ student, setStudent }) {
         </div>
       )}
 
-      {/* Logout message shown separately so it’s visible */}
       {logoutMessage && (
         <div
           style={{

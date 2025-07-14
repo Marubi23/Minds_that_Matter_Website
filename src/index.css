@@ -110,7 +110,7 @@
 .start-button button {
   padding: 10px 16px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #643abe;
   color: white;
   font-weight: bold;
   border-radius: 8px;
@@ -119,7 +119,7 @@
 }
 .start-button.desktop-only {
   display: block;
-    animation: bounce 1.5s infinite ease-in-out;
+  animation: bounce 1.5s infinite ease-in-out;
 }
 
 

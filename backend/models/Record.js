@@ -46,6 +46,11 @@ const recordSchema = new mongoose.Schema({
     trim: true,
     default: '',
   },
+  parentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Parent',
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
