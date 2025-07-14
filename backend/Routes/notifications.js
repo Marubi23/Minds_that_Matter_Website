@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Notification = require('../Models/Notification'); // adjust path if needed
+const Notification = require('../models/notifications'); // adjust path if needed
 
 // GET all psychiatrist notifications
 router.get("/notifications", async (req, res) => {
