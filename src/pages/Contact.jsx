@@ -152,14 +152,14 @@ const Contact = () => {
 
   <div className="faq-item">
     <div className="faq-question">
-      <img src="/profiles/user1.jpg" alt="User" className="faq-avatar" />
+      <img src="src/assets/customerA.jpeg" alt="User" className="faq-avatar" />
       <div>
         <p className="faq-name">Alice K.</p>
         <p className="faq-text"><strong>Q:</strong> How long will it take to get a response?</p>
       </div>
     </div>
     <div className="faq-answer">
-      <img src="/profiles/org-logo.png" alt="Org" className="faq-avatar" />
+      <img src="src/assets/logo.png" alt="Org" className="faq-avatar" />
       <div>
         <p className="faq-name">Minds that matter</p>
         <p className="faq-text"><strong>A:</strong> We usually respond within 24 hours.</p>
@@ -169,14 +169,14 @@ const Contact = () => {
 
   <div className="faq-item">
     <div className="faq-question">
-      <img src="/profiles/user2.jpg" alt="User" className="faq-avatar" />
+      <img src="src/assets/customerB.jpeg" alt="User" className="faq-avatar" />
       <div>
         <p className="faq-name">John M.</p>
         <p className="faq-text"><strong>Q:</strong> Can I contact you for partnerships?</p>
       </div>
     </div>
     <div className="faq-answer">
-      <img src="/profiles/org-logo.png" alt="Org" className="faq-avatar" />
+      <img src="src/assets/logo.png" alt="Org" className="faq-avatar" />
       <div>
         <p className="faq-name">Minds that matter</p>
         <p className="faq-text"><strong>A:</strong> Absolutely! Use the form above or email us directly.</p>
