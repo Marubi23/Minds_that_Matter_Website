@@ -218,7 +218,7 @@ html, body {
 
 /* --- Features Section --- */
 .features-section {
-  background-image: url('../assets/ngo.jpeg');
+  background-image: url('../assets/insoo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -230,7 +230,7 @@ html, body {
 }
 
 .feature-card {
-  background-image: url('../assets/school.jpeg');
+  background:#fefefe;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -260,7 +260,13 @@ font-weight: 500;
 .partners-section {
   text-align: center;
   padding: 3rem 1rem;
-  background-color: #fefefe;
+  background-image: url('../assets/minds.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.partners-section h2{
+  color: white;
 }
 
 .partners-logos {
@@ -272,7 +278,7 @@ font-weight: 500;
 }
 
 .partners-logos img {
-  max-height: 50px;
+  max-height: 90px;
   object-fit: contain;
 }
 

@@ -1,69 +1,117 @@
-import React from "react";
-import logo from "../assets/logo.png";
-import './About.css';
-import { useNavigate } from "react-router-dom";
+import "./About.css";
+import { 
+  FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube,
+  FaBullseye, FaStar, FaBriefcase, FaEnvelope
+} from "react-icons/fa";
 
-function About(){
-  const navigate = useNavigate();
-
-  const handleButton = () => {
-    navigate('/contact');
-  };
-
+export default function About() {
   return (
-    <div className="about-container" style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif", marginTop: '0px' }}>
-
-      <div style={{ margin: '80px', marginBottom: '0px', justifyContent: 'center', alignContent: 'center' }}>
-        <img classNamestyle={{ height: '900px', paddingTop: '0px', width: '900px' }} src={logo} alt="company-icon" />
-      </div>
+    <div className="about-container">
       
-      <button onClick={handleButton} className="about-page-btn">📞</button>
+      <header className="about-header">
+        <h1>Minds That Matter</h1>
+        <p>
+          Empowering students with learning difficulties through technology,
+          inclusivity, and innovation. Every learner deserves to shine.
+        </p>
+      </header>
 
-      <section style={{ marginTop: "2rem" }}>
-        <h2 style={{ color: "#444" }}>Our Mission</h2>
-        <p style={{ fontSize: "1.1rem", color: "#555" }}>
-          Minds that Matter is dedicated to supporting special children with special needs by providing easy-to-follow lessons,
-          visual content, and interactive tools designed to align with the CBC curriculum.
+   
+      <section className="about-mission">
+        <h2><FaBullseye style={{ marginRight: "8px" }} />Our Mission</h2>
+        <p>
+          To make learning easy, engaging, and accessible for students with special needs,
+          while supporting parents and professionals with the right tools.
         </p>
       </section>
 
-      <section style={{ marginTop: "2rem" }}>
-        <h2 style={{ color: "#444" }}>Who We Are</h2>
-        <p style={{ fontSize: "1.1rem", color: "#555" }}>
-          This project was built by <strong>Moguche Felix Onyancha</strong>, a passionate fullstack developer focused on building
-          technology that creates equal learning opportunities for all children, especially those with special needs.
-        </p>
-      </section>
-      
-      <section style={{ marginTop: "2rem" }}>
-        <h2 style={{ color: "#444" }}>What We Offer</h2>
-        <ul style={{ fontSize: "1.1rem", color: "#555", lineHeight: "1.8" }}>
-          <li>Video-based lessons tailored to learners’ needs</li>
-          <li>Live class support with integrated conferencing</li>
-          <li>Progress tracking for parents and teachers</li>
-          <li>Visually friendly, distraction-free interface</li>
-        </ul>
-      </section>
-
-      <section style={{ marginTop: "2rem" }}>
-        <h2 style={{ color: "#444" }}>Future Plans</h2>
-        <p style={{ fontSize: "1.1rem", color: "#555" }}>
-          We're working on quizzes, rewards, and AI tutors to make learning even more engaging and accessible for every special child.
-        </p>
+    
+      <section className="about-values">
+        <h2><FaStar style={{ marginRight: "8px",marginLeft:"300px" }} />Our Values</h2>
+        <div className="values-grid">
+          <div className="value-card">
+            <h3>Inclusivity</h3>
+            <p>We design for all learners and celebrate uniqueness.</p>
+          </div>
+          <div className="value-card">
+            <h3>Innovation</h3>
+            <p>We harness technology to create exciting learning journeys.</p>
+          </div>
+          <div className="value-card">
+            <h3>Support</h3>
+            <p>We stand with families and professionals to unlock potential.</p>
+          </div>
+        </div>
       </section>
 
-      <section style={{ marginTop: "2rem" }}>
-        <h2 style={{ color: "#444" }}>Contact Us</h2>
-        <p style={{ fontSize: "1.1rem", color: "#555" }}>
-          Have questions, feedback, or want to support the mission? Reach out at:
-          <br />
-          <strong>Email:</strong> felixmarubi2005@gmail.com
-          <br />
-          <strong>Phone:</strong> 0712683708
-        </p>
+      {/* Packages */}
+      <section className="about-packages">
+        <h2><FaBriefcase style={{ marginRight: "8px" }} />Subscription Packages</h2>
+        <div className="package-grid">
+          <div className="package-card basic">
+            <h3>Basic</h3>
+            <p>Learning Materials Access</p>
+            <p className="price">KES 500 / month</p>
+            <button className="btn-outline">Choose Basic</button>
+          </div>
+          <div className="package-card standard">
+            <h3>Standard</h3>
+            <p>Materials + Live Sessions</p>
+            <p className="price">KES 1000 / month</p>
+            <button className="btn-outline">Choose Standard</button>
+          </div>
+          <div className="package-card premium">
+            <h3>Premium</h3>
+            <p>All Features + Reports</p>
+            <p className="price">KES 1500 / month</p>
+            <button className="btn-outline">Choose Premium</button>
+          </div>
+        </div>
       </section>
+
+      {/* Subscribe Section */}
+      <section className="about-subscribe">
+        <h2><FaEnvelope style={{ marginRight: "8px" }} />Subscribe for Updates</h2>
+        <p>
+          Stay in the loop and be the first to access new features, discounts,
+          and content made for learners.
+        </p>
+
+        <form className="subscribe-form">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="subscribe-input"
+          />
+          <button type="submit" className="subscribe-btn">Subscribe Now</button>
+        </form>
+
+        {/* Social Media Icons */}
+        <div className="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <FaFacebookF />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <FaTwitter />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <FaInstagram />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <FaLinkedinIn />
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <FaYoutube />
+          </a>
+        </div>
+      </section>
+
+      {/* Footer Links */}
+      <footer className="about-footer">
+        <a href="/contact" className="footer-link">Contact Us</a>
+        <a href="/resources" className="footer-link">Resources</a>
+        <a href="/live" className="footer-link">Live Sessions</a>
+      </footer>
     </div>
   );
-};
-
-export default About;
+}

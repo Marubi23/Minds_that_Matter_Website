@@ -21,18 +21,17 @@ function Parent() {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message || 'Login failed. Please check your credentials.');
+        alert(data.message || 'Login failed.');
         setLoading(false);
         return;
       }
 
-      // ✅ Store JWT and parent info in localStorage
-      localStorage.setItem('token', data.token);
+      // ✅ Store parent token and info
+      localStorage.setItem('parentToken', data.token);
       localStorage.setItem('role', 'parent');
       localStorage.setItem('parent', JSON.stringify(data.parent));
 
-      // ✅ Navigate to dashboard
-      navigate('/progress');
+      navigate('/parent-dash');
     } catch (err) {
       console.error('Login error:', err);
       alert('An unexpected error occurred.');
@@ -64,11 +63,9 @@ function Parent() {
             onChange={(e) => setParent({ ...parent, password: e.target.value })}
             required
           />
-
           <button className="parent-button" type="submit" disabled={loading}>
             {loading ? 'Logging in...' : 'View Child Progress'}
           </button>
-
           <p className="trust-note">🔐 Protected by MTM Security Suite</p>
         </form>
 

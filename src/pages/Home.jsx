@@ -149,6 +149,7 @@ function Home() {
             </div>
           </div>
           <p>© 2025 Minds That Matter. All rights reserved.</p>
+          <p>0712683708</p>
         </footer>
       </div>
     </div>

@@ -1,24 +1,23 @@
-// backend/middleware/authParent.js
-
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
-  const token = req.header('Authorization');
+  const authHeader = req.header('Authorization');
 
-  if (!token) {
+  if (!authHeader) {
     return res.status(401).json({ message: 'No token, authorization denied' });
   }
+
+  // ✅ Remove "Bearer " from the token string
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // ✅ Check if the token contains a user with role 'parent'
     if (decoded.user?.role !== 'parent') {
       return res.status(403).json({ message: 'Access denied: Parents only' });
     }
 
-    // ✅ Attach parent info to the request
-    req.parent = decoded.user; // Now you can use req.parent._id
+    req.parent = decoded.user;
     next();
   } catch (err) {
     console.error('❌ Invalid token:', err.message);

@@ -1,81 +1,41 @@
-import { Navigate, useNavigate } from 'react-router-dom';
-import errorGif from '../assets/errorpage.gif';
-import { Ban } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import profile from '../assets/father.JPG';
+import profile2 from '../assets/siblings.JPG';
+import './ProtectedRoute.css';
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
   const navigate = useNavigate();
 
   if (!isAuthenticated) {
     return (
-      <div style={styles.container}>
-        <div style={styles.overlay}>
-          <div style={styles.iconTitle}>
-            <Ban size={40} color="#dc2626" />
-            <h2 style={styles.title}>Access Denied</h2>
+      <div className="protected-container">
+        <div className="protected-card">
+          <h2 className="protected-title">Choose Your Profile</h2>
+          <p className="protected-subtext">Select your profile to view the appropriate Resources</p>
+
+          <div className="protected-profiles">
+            <div className="protected-profile" onClick={() => navigate('/parent')}>
+              <img src={profile} alt="Parent Profile" className="protected-image" />
+              <h4>Parent</h4>
+              <button className="protected-button">Access</button>
+            </div>
+
+            <div className="protected-profile" onClick={() => navigate('/login')}>
+              <img src={profile2} alt="Student Profile" className="protected-image" />
+              <h4>Student</h4>
+              <button className="protected-button">Access</button>
+            </div>
           </div>
-          <p style={styles.message}>You must be logged in as a student or parent to view this page.</p>
-          
-          <button onClick={() => navigate('/login')} style={styles.button}>Login</button>
-   
-        
-        
+
+          <p className="protected-notice">
+            <strong>Note:</strong> Once logged in, return to the Resources page to access content for your role.
+          </p>
         </div>
-  
-      
       </div>
     );
   }
 
   return children;
-};
-
-const styles = {
-  container: {
-    backgroundImage: `url(${errorGif})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    height: '100vh',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  overlay: {
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    padding: '40px',
-    borderRadius: '12px',
-    textAlign: 'center',
-    maxWidth: '600px',
-  },
-  iconTitle: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: '16px',
-    gap: '10px',
-  },
-  title: {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    color: '#1e293b',
-  },
-  message: {
-    fontSize: '18px',
-    color: 'black',
-    marginBottom: '24px',
-  },
-  button: {
-    padding: '10px 24px',
-    backgroundColor: '#3b82f6',
-    color: '#fff',
-    borderRadius: '8px',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    border: 'none',
-    cursor: 'pointer',
-  },
- 
 };
 
 export default ProtectedRoute;

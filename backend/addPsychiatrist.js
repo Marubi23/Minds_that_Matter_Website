@@ -6,7 +6,6 @@ const Psychiatrist = require('./models/Psychiatrist');
 const addPsychiatrist = async () => {
   await mongoose.connect(process.env.MONGO_URI);
 
-  // Hash the password before saving
   const hashedPassword = await bcrypt.hash('felo2305', 10);
 
   const psychiatrist = new Psychiatrist({

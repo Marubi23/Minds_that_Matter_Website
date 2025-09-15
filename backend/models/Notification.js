@@ -5,7 +5,7 @@ const notificationSchema = new mongoose.Schema({
   title: String,
   message: String,
   studentId: String,
-  role: String, // psychiatrist, parent, etc.
+  role: String, 
   read: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });

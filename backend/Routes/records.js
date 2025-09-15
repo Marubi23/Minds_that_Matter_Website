@@ -1,61 +1,78 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Record = require('../models/Record');
-const authParent = require('../middleware/authParent'); // 🔒 Make sure you have this
+const Record = require("../models/Record");
 
-// 🔐 POST: Create a new record for the logged-in parent
-router.post('/', authParent, async (req, res) => {
-  console.log('📥 Incoming record submission:', req.body);
-
-  const {
-    name,
-    age,
-    gender,
-    school,
-    grade,
-    contactNumber,
-    emergencyContact,
-    medicalConditions,
-    additionalNotes,
-  } = req.body;
-
-  if (!name || !age || !gender || !school || !grade) {
-    return res.status(400).json({
-      message: 'Please fill all required fields: name, age, gender, school, and grade.',
-    });
-  }
-
+// ✅ Create new student record
+router.post("/", async (req, res) => {
   try {
+    const { fullName, age, gender, school, avatar, pin, parentId } = req.body;
+
     const newRecord = new Record({
-      name,
+      fullName,
       age,
       gender,
       school,
-      grade,
-      contactNumber,
-      emergencyContact,
-      medicalConditions,
-      additionalNotes,
-      parentId: req.parent._id, // ✅ Save this record under this parent
+      avatar,
+      pin,
+      parentId: parentId || null,
+      hasPaid: false, // default lock when student is created
     });
 
     await newRecord.save();
-    console.log('✅ Record saved to database.');
-    res.status(201).json({ message: 'Record saved successfully' });
+    res.status(201).json(newRecord);
   } catch (err) {
-    console.error('❌ Failed to save record:', err.message);
-    res.status(400).json({ message: err.message });
+    console.error("❌ Error saving record:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 });
 
-// 🔐 GET: Fetch only records belonging to the logged-in parent
-router.get('/', authParent, async (req, res) => {
+// ✅ Fetch all student records (optionally filter by parentId)
+router.get("/", async (req, res) => {
   try {
-    const records = await Record.find({ parentId: req.parent._id }).sort({ createdAt: -1 });
+    const { parentId } = req.query;
+    const query = parentId ? { parentId } : {};
+    const records = await Record.find(query);
     res.json(records);
   } catch (err) {
-    console.error('❌ Failed to fetch records:', err.message);
-    res.status(500).json({ message: err.message });
+    console.error("❌ Error fetching records:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+// ✅ Student login with subscription check
+router.post("/login", async (req, res) => {
+  try {
+    const { avatar, pin } = req.body;
+
+    if (!avatar || !pin) {
+      return res.status(400).json({ message: "Avatar and PIN are required" });
+    }
+
+    const student = await Record.findOne({ avatar, pin });
+
+    if (!student) {
+      return res.status(401).json({ message: "Invalid avatar or PIN" });
+    }
+
+    // 🚨 Subscription check
+    if (!student.hasPaid) {
+      return res.status(403).json({ message: "Subscription required before login" });
+    }
+
+    res.json({
+      message: "Login successful",
+      student: {
+        id: student._id,
+        fullName: student.fullName,
+        avatar: student.avatar,
+        school: student.school,
+        hasPaid: student.hasPaid,
+        subscriptionExpiry: student.subscriptionExpiry || null,
+      },
+    });
+  } catch (err) {
+    console.error("❌ Error during student login:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 });
 

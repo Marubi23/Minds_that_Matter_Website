@@ -1,0 +1,81 @@
+.mtm-card {
+  background-color: #102A4D;
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+
+  margin: auto;
+  text-align: center;
+}
+
+.portal {
+  display: flex;
+  gap: 15px;
+}
+
+.portal button {
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.portal button:hover {
+  transform: translateY(-3px);
+}
+
+.portal button:first-child {
+  background-color: hsl(151, 93%, 50%);
+  color: #000;
+}
+
+.portal button:last-child {
+  background-color: hsl(272, 74%, 39%);
+  color: #fff;
+}
+.mtm-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.mtm-logo {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+}
+
+.mtm-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #FFD700;
+}
+
+.mtm-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d0d0d0;
+  margin: 1rem 0;
+}
+
+.mtm-button {
+  background-color: #FFD700;
+  color: #102A4D;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mtm-button:hover {
+  background-color: #e6c200;
+}

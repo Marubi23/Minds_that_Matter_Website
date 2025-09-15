@@ -93,72 +93,103 @@ form {
   width: 160px;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
-.homedata-button {
-  background-color: #877485;
-  border: none;
-  color: #fefefe;
-  padding: 8px 12px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.homedata-button:hover {
-  background-color: #ddd;
-}
 
 
 
-
-.portal {
-  display: flex;
-  gap: 15px;
-}
-
-.portal button {
-  padding: 14px 24px;
-  border-radius: 10px;
+/* ✅ Avatar Section Styling */
+.avatar-select {
+  margin-top: 15px;
+  color: white;
   font-weight: 600;
-  font-size: 0.95rem;
-  border: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.avatar-options {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.avatar-box {
+  background: rgba(255, 255, 255, 0.85);
+  border: 3px solid transparent;
+  padding: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  width: 90px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.portal button:hover {
-  transform: translateY(-3px);
+.avatar-box img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-.portal button:first-child {
-  background-color: hsl(151, 93%, 50%);
+.avatar-box p {
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 5px;
+}
+
+.avatar-box:hover {
+  transform: scale(1.05);
+  background-color: #e6f7ff;
+}
+
+.avatar-box.selected {
+  border-color: #4caf50;
+  background-color: #eaffea;
+  transform: scale(1.05);
+}
+.new-student-section {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.new-student-section p{
   color: #000;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 20px;
 }
 
-.portal button:last-child {
-  background-color: hsl(272, 74%, 39%);
-  color: #fff;
+.new-student-button {
+  padding: 0.5rem 1rem;
+  background-color: #f18f0fb7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
 }
 
+.new-student-button:hover {
+  background-color: #f18f0f;
+}
+
+
+/* ✅ Responsive */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
     padding-top: 100px;
     gap: 50px;
   }
-.login-button{
-  width: 50%;
-  margin-left: 80px;
-}
+
+  .login-button {
+    width: 50%;
+    margin-left: 80px;
+  }
+
   .data-background {
     flex-direction: column;
     gap: 40px;
-  }
-
-  .floating-home-btn {
-    top: 10px;
-    left: 10px;
-    padding: 10px 16px;
   }
 
   .formlogin-container {
@@ -168,6 +199,20 @@ form {
   .logo-company img {
     width: 140px;
     height: auto;
+  }
+
+  .avatar-box {
+    width: 80px;
+    padding: 8px;
+  }
+
+  .avatar-box img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatar-box p {
+    font-size: 0.8rem;
   }
 }
 

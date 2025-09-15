@@ -1,75 +1,56 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Parent = require('../models/parent.js');
+const Parent = require('../models/parent');
 
-// ✅ JWT Token Generator (now includes role)
-const generateToken = (parent) => {
-  return jwt.sign(
-    {
-      user: {
-        _id: parent._id,
-        role: 'parent',
-      },
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: '7d' }
-  );
+// Generate JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
 
-// ✅ Register (Sign Up)
+// Parent Registration
 router.post('/register', async (req, res) => {
-  const { email, password, name } = req.body;
+  const { name, email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
 
   try {
-    const existingParent = await Parent.findOne({ email });
-    if (existingParent) {
-      return res.status(400).json({ message: 'Email already registered' });
-    }
+    const existing = await Parent.findOne({ email });
+    if (existing) return res.status(400).json({ message: 'Parent already exists' });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newParent = new Parent({ email, password: hashedPassword, name });
-    await newParent.save();
+    const parent = new Parent({ name, email, password });
+    await parent.save();
 
-    res.status(201).json({ message: 'Parent registered successfully' });
-  } catch (error) {
-    console.error('Register error:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(201).json({
+      message: 'Parent registered successfully',
+      parent: { id: parent._id, name: parent.name, email: parent.email },
+      token: generateToken(parent._id)
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
-// ✅ Login
+// Parent Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
 
   try {
     const parent = await Parent.findOne({ email });
-    if (!parent) {
-      return res.status(404).json({ message: 'Parent not found' });
-    }
+    if (!parent) return res.status(400).json({ message: 'Parent not found' });
 
-    const isMatch = await bcrypt.compare(password, parent.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid password' });
-    }
-
-    // ✅ Updated to include role and _id
-    const token = generateToken(parent);
+    const isMatch = await parent.matchPassword(password);
+    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
     res.status(200).json({
       message: 'Login successful',
-      token,
-      parent: {
-        _id: parent._id,
-        email: parent.email,
-        name: parent.name || '',
-      },
+      parent: { id: parent._id, name: parent.name, email: parent.email },
+      token: generateToken(parent._id)
     });
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
 module.exports = router;
+

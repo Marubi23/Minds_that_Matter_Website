@@ -2,15 +2,13 @@
 
 const express = require('express');
 const router = express.Router();
-const Notification = require('../models/Notification.js'); // adjust path if needed
+const Notification = require('../models/Notification.js'); 
 
-// GET all psychiatrist notifications
 router.get("/notifications", async (req, res) => {
   const notifications = await Notification.find({ role: "psychiatrist" }).sort({ createdAt: -1 });
   res.json(notifications);
 });
 
-// PATCH mark one as read
 router.patch("/notifications/:id/read", async (req, res) => {
   await Notification.findByIdAndUpdate(req.params.id, { read: true });
   res.sendStatus(204);

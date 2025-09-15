@@ -64,8 +64,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 80px;
-  left: 15px;
+  top: -35px;
+  left: 35px;
   background: hsla(268, 83%, 34%, 0.644); 
   backdrop-filter: blur(12px);           
   border-radius: 16px;
@@ -162,6 +162,9 @@
 
   .hamburger {
     display: block;
+    top: 125px;
+    color: white;
+    font-weight: bolder;
   }
   .navbar{
     height: 90px;

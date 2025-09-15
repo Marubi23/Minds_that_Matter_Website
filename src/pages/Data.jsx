@@ -1,77 +1,119 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './Data.css';
-import logo from '../assets/logo.png';
+import MTMInfoCard from "../Components/MTMInfoCard";
 
 function Data({ setStudent }) {
   const navigate = useNavigate();
-  const [student, setLocalStudent] = useState({ name: '', grade: '', id: '' });
+  const [student, setLocalStudent] = useState({
+    pin: '',
+    avatar: '',
+  });
 
-  const handleStudentSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem('student', JSON.stringify(student));
-    localStorage.setItem("isLoggedIn", true);
-    localStorage.setItem('role', 'student');
-    setStudent(student);
-    navigate('/test');
-  };
+  const avatars = [
+    { label: '', url: '/avatars/cat.jpeg' },
+    { label: '', url: '/avatars/duck.jpeg' },
+    { label: '', url: '/avatars/panda.jpeg' },
+    { label: '', url: '/avatars/jokey.jpeg' },
+  ];
+
+const handleStudentSubmit = async (e) => {
+  e.preventDefault();
+
+  if (student.pin.length !== 4) {
+    alert("PIN must be exactly 4 digits");
+    return;
+  }
+
+  if (!student.avatar) {
+    alert("Please select an avatar.");
+    return;
+  }
+
+  try {
+  const response = await fetch(`http://localhost:5000/api/records/login`, {
+
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(student),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data) {
+      // ✅ Login success
+      localStorage.setItem("student", JSON.stringify(data));
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("role", "student");
+
+      setStudent(data);
+      navigate("/resources");
+    } else {
+      // ❌ Login failed – student not found
+      alert("Student not found. Please take the test.");
+      localStorage.setItem("pendingStudent", JSON.stringify(student));
+      navigate("/test");
+    }
+
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong. Try again.");
+  }
+};
+
 
   return (
     <div className="login-container">
-  
-
       <div className="data-background">
         <div className="formlogin-container">
-          <h2>Students Access</h2>
+          <h2> Student </h2>
           <div style={{ marginBottom: '1rem' }}>
-  <Link to="/">
-    <button className="homedata-button">← Back to Home</button>
-  </Link>
-</div>
+            
+          </div>
 
           <form onSubmit={handleStudentSubmit}>
+            <div className="avatar-select">
+              <p>Select Your Avatar:</p>
+              <div className="avatar-options">
+                {avatars.map((av) => (
+                  <div
+                    key={av.url}
+                    className={`avatar-box ${student.avatar === av.url ? 'selected' : ''}`}
+                    onClick={() => setLocalStudent({ ...student, avatar: av.url })}
+                  >
+                    <img src={av.url} alt="avatar" />
+                    <p>{av.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <input
-              type="text"
+              type="password"
               className="login-input"
-              placeholder="First Name"
-              value={student.name}
-              onChange={(e) => setLocalStudent({ ...student, name: e.target.value })}
+              placeholder="Enter 4-digit PIN"
+              value={student.pin}
+              maxLength="4"
+              pattern="\d*"
+              onChange={(e) => setLocalStudent({ ...student, pin: e.target.value })}
               required
             />
-            <input
-              type="number"
-              className="login-input"
-              placeholder="Grade/Class"
-              value={student.grade}
-              min={0}
-              max={10}
-              onChange={(e) => setLocalStudent({ ...student, grade: e.target.value })}
-              required
-            />
-            <input
-              type="number"
-              className="login-input"
-              placeholder="Student Age (Compulsory)"
-              value={student.id}
-              min={7}
-              max={18}
-              onChange={(e) => setLocalStudent({ ...student, id: e.target.value })}
-              required
-            />
-            <button className="login-button" type="submit">Take Test</button>
+
+            <button className="login-button" type="submit">LOGIN</button>
           </form>
+
+          {/* 👇 New Student Button */}
+          <div className="new-student-section">
+            <p>New Student?</p>
+            <button className="new-student-button" onClick={() => navigate('/test')}>
+              Take The Entry Test
+            </button>
+          </div>
         </div>
 
         <div className="logo-company">
-          <img src={logo} alt="company-logo" />
-          <div className="portal">
-            <Link to="/parent">
-              <button>Parental Access</button>
-            </Link>
-            <Link to="/teacher-login">
-              <button>Psychiatrist Access</button>
-            </Link>
-          </div>
+          <MTMInfoCard/>
+         
         </div>
       </div>
     </div>

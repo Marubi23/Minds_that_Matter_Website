@@ -1,157 +1,217 @@
-import React, { useState } from 'react';
-import './CompleteProfile.css';
-import {
-  Hand, Cake, UserCircle, School, BookOpenText,
-  Phone, AlertCircle, Pill, StickyNote,
-} from 'lucide-react';
-
-const steps = [
-  { key: 'name', icon: <Hand />, label: 'Hi there! What is your name?', type: 'text', placeholder: 'e.g. Brian Mwangi', required: true },
-  { key: 'age', icon: <Cake />, label: 'How old are you?', type: 'number', placeholder: 'e.g. 12', required: true },
-  { key: 'gender', icon: <UserCircle />, label: 'Select your gender', type: 'select', options: ['Male', 'Female', 'Other'], required: true },
-  { key: 'school', icon: <School />, label: 'What school do you go to?', type: 'text', placeholder: 'e.g. ABC Primary School', required: true },
-  { key: 'grade', icon: <BookOpenText />, label: 'What is your grade?', type: 'text', placeholder: 'e.g. Grade 5', required: true },
-  { key: 'contactNumber', icon: <Phone />, label: 'Your contact number?', type: 'text', placeholder: 'e.g. +254 700 000 000' },
-  { key: 'emergencyContact', icon: <AlertCircle />, label: 'Emergency contact number?', type: 'text', placeholder: 'e.g. +254 711 111 111' },
-  { key: 'medicalConditions', icon: <Pill />, label: 'Any medical conditions or allergies?', type: 'textarea', placeholder: 'Write here...' },
-  { key: 'additionalNotes', icon: <StickyNote />, label: 'Anything else we should know?', type: 'textarea', placeholder: 'Write here...' },
-];
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./CompleteProfile.css"; // CSS for styling
 
 const CompleteProfile = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({});
-  const [submitting, setSubmitting] = useState(false);
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    age: "",      // kept for UI but won’t be saved
+    gender: "",   // kept for UI but won’t be saved
+    school: "",
+    avatar: "",
+    pin: "",
+  });
+
+  const navigate = useNavigate();
+
+  const steps = ["Full Name", "Age", "Gender", "School", "Avatar"];
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // ✅ validation before next step
   const nextStep = () => {
-    const currentField = steps[currentStep];
-    const value = formData[currentField.key];
-    if (currentField.required && (!value || value.trim() === '')) {
-      alert(`❌ Please fill in the required field: ${currentField.label}`);
+    if (step === 1 && !formData.fullName.trim()) {
+      alert("Please enter your full name.");
       return;
     }
-    setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
+    if (step === 2 && (!formData.age || formData.age <= 0)) {
+      alert("Please enter a valid age.");
+      return;
+    }
+    if (step === 3 && !formData.gender) {
+      alert("Please select your gender.");
+      return;
+    }
+    if (step === 4 && !formData.school.trim()) {
+      alert("Please enter your school.");
+      return;
+    }
+    setStep(step + 1);
   };
 
-  const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 0));
-const handleSubmit = async () => {
-  // Step 1: Validate all required fields are filled and not just empty strings
-  const missing = steps.filter(
-    step => step.required && (!formData[step.key] || String(formData[step.key]).trim() === '')
-  );
+  const prevStep = () => setStep(step - 1);
 
-  if (missing.length > 0) {
-    alert(`❌ Missing required fields: ${missing.map(m => m.label).join(', ')}`);
-    return;
-  }
-
+const handleSubmit = async (e) => {
+  e.preventDefault();
   try {
-    setSubmitting(true);
+    const pin = Math.floor(1000 + Math.random() * 9000).toString();
 
-    // Step 2: Log what will be submitted
-    const payload = { ...formData };
+    const finalData = { ...formData, pin };
 
-    // Convert age to number explicitly
-    if (payload.age) {
-      payload.age = Number(payload.age);
-    }
+    await axios.post("http://localhost:5000/api/records", finalData);
 
-    console.log("👉 Submitting formData:", payload);
-
-    // Step 3: Submit to API
-    const res = await fetch('http://localhost:5000/api/records', {
-
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+    navigate("/pin", {
+      state: {
+        pin,
+        name: finalData.fullName,
+        avatar: finalData.avatar,
+      },
     });
 
-    // Step 4: Handle response
-    if (res.ok) {
-      alert('✅ Profile submitted! Thank you.');
-      setFormData({});
-      setCurrentStep(0);
-    } else {
-      const error = await res.json();
-      alert('❌ Error: ' + (error.message || 'Unknown error'));
-      console.error('🚨 Backend error details:', error.details || error);
-    }
+    setFormData({
+      fullName: "",
+      age: "",
+      gender: "",
+      school: "",
+      avatar: "",
+      pin: "",
+    });
+    setStep(1);
   } catch (err) {
-    alert('🚫 Submission failed. Please try again.');
-    console.error('❌ Submission exception:', err);
-  } finally {
-    setSubmitting(false);
+    console.error("❌ Error creating profile:", err);
+    alert("Error creating profile");
   }
 };
 
-  const step = steps[currentStep];
-  const progressPercent = ((currentStep + 1) / steps.length) * 100;
-
   return (
-    <div className="wizard-container">
+    <div className="profile-form">
+      <h2 className="form-title">Complete Student Profile</h2>
+
       {/* Progress Bar */}
-      <div className="progress-wrapper">
-        <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }}></div>
+      <div className="progress-bar">
+        {steps.map((label, index) => (
+          <div
+            key={index}
+            className={`step ${step === index + 1 ? "active" : ""} ${
+              step > index + 1 ? "completed" : ""
+            }`}
+          >
+            {index + 1}
+            <span>{label}</span>
+          </div>
+        ))}
       </div>
-      <div className="progress-text">Step {currentStep + 1} of {steps.length}</div>
 
-      {/* Main Flex Layout */}
-      <div className="wizard-content">
-        {/* Left Side: Form Card */}
-        <div className="card">
-          <h2 className="step-label">
-            <span className="icon">{step.icon}</span>
-            {step.label}
-          </h2>
-
-          {step.type === 'select' ? (
-            <select name={step.key} value={formData[step.key] || ''} onChange={handleChange}>
-              <option value="">-- Choose --</option>
-              {step.options.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          ) : step.type === 'textarea' ? (
-            <textarea
-              name={step.key}
-              value={formData[step.key] || ''}
-              onChange={handleChange}
-              placeholder={step.placeholder}
-            />
-          ) : (
+      <form onSubmit={handleSubmit}>
+        {step === 1 && (
+          <div className="form-step">
+            <label>Full Name</label>
             <input
-              type={step.type}
-              name={step.key}
-              value={formData[step.key] || ''}
+              type="text"
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
-              placeholder={step.placeholder}
-              aria-required={step.required || false}
+              required
             />
-          )}
-
-          <div className="buttons">
-            <button onClick={prevStep} disabled={currentStep === 0}>⬅ Back</button>
-            {currentStep < steps.length - 1 ? (
-              <button onClick={nextStep}>Next ➡</button>
-            ) : (
-              <button onClick={handleSubmit} disabled={submitting}>
-                {submitting ? 'Submitting...' : 'Finish ✅'}
+            <div className="form-buttons">
+              <button type="button" onClick={nextStep}>
+                Next ➡
               </button>
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Right Side: Step Icon Illustration */}
-        <div className="step-illustration">
-          <div className="icon-large">
-            {step.icon}
+        {step === 2 && (
+          <div className="form-step">
+            <label>Age</label>
+            <input
+              type="number"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+              required
+            />
+            <div className="form-buttons">
+              <button type="button" onClick={prevStep}>
+                ⬅ Back
+              </button>
+              <button type="button" onClick={nextStep}>
+                Next ➡
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+
+        {step === 3 && (
+          <div className="form-step">
+            <label>Gender</label>
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Select Gender --</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <div className="form-buttons">
+              <button type="button" onClick={prevStep}>
+                ⬅ Back
+              </button>
+              <button type="button" onClick={nextStep}>
+                Next ➡
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div className="form-step">
+            <label>School</label>
+            <input
+              type="text"
+              name="school"
+              value={formData.school}
+              onChange={handleChange}
+              required
+            />
+            <div className="form-buttons">
+              <button type="button" onClick={prevStep}>
+                ⬅ Back
+              </button>
+              <button type="button" onClick={nextStep}>
+                Next ➡
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 5 && (
+          <div className="form-step">
+            <label>Choose Your Avatar</label>
+            <div className="avatar-grid">
+              {["cat.jpeg", "duck.jpeg", "jokey.jpeg", "panda.jpeg"].map(
+                (file, index) => (
+                  <img
+                    key={index}
+                    src={`/avatars/${file}`}
+                    alt={`Avatar ${index + 1}`}
+                    className={`avatar-option ${
+                      formData.avatar === `/avatars/${file}` ? "selected" : ""
+                    }`}
+                    onClick={() =>
+                      setFormData({ ...formData, avatar: `/avatars/${file}` })
+                    }
+                  />
+                )
+              )}
+            </div>
+            <div className="form-buttons">
+              <button type="button" onClick={prevStep}>
+                ⬅ Back
+              </button>
+              <button type="submit" className="submit-btn">
+                🎉 Finish
+              </button>
+            </div>
+          </div>
+        )}
+      </form>
     </div>
   );
 };

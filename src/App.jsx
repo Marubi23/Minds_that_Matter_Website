@@ -1,13 +1,15 @@
-import { useEffect,useState } from 'react';
-import Navbar from './Components/Navbar.jsx'
+import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import Navbar from './Components/Navbar.jsx';
 import StudentResources from './Components/StudentResources.jsx';
 import ParentResources from './Components/ParentResources.jsx';
-import  "./App.css";
-import ProtectedRoute from './Components/ProtectedRoute.jsx'; 
-import Resources from './pages/Resources.jsx';
-import About from './pages/About.jsx';
-import Contact from './pages/Contact.jsx'
+import ProtectedRoute from './Components/ProtectedRoute.jsx';
+import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';
+
 import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Contact from './pages/Contact.jsx';
 import CompleteProfile from './pages/CompleteProfile.jsx';
 import Progress from './pages/Progress.jsx';
 import Video from './pages/Video.jsx';
@@ -22,67 +24,99 @@ import AttentionMonitor from './Components/AttentionMonitor.jsx';
 import Records from './pages/Records.jsx';
 import Settings from './Components/Settings.jsx';
 import Notifications from './pages/Notifications.jsx';
-import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';
 import ParentDashboard from './Components/ParentDashboard.jsx';
+import Resources from './pages/Resources.jsx';
+import PinDisplay from './Components/PinDisplay.jsx';
 
-
-
-
-
-
-import { Routes,Route } from 'react-router-dom'
+import './App.css';
 
 function App() {
-  const [student,setStudent]= useState(null);
+  const [student, setStudent] = useState(null);
+  const [parent, setParent] = useState(null);
 
+  useEffect(() => {
+    const safeParse = (key) => {
+      try {
+        const value = localStorage.getItem(key);
+        if (!value || value === 'undefined' || value === 'null') return null;
+        return JSON.parse(value);
+      } catch (error) {
+        console.error(`Error parsing ${key} from localStorage:`, error);
+        return null;
+      }
+    };
 
+    setStudent(safeParse('student'));
+    setParent(safeParse('parent'));
+  }, []);
 
-  useEffect(()=>{
-    const storedStudent =localStorage.getItem('student');
-    
-    if(storedStudent){
-      setStudent(JSON.parse(storedStudent));
-    }
+  const handleLogout = () => {
+    localStorage.removeItem('student');
+    localStorage.removeItem('parent');
+    localStorage.removeItem('token');
+    localStorage.removeItem('parentToken');
+    localStorage.removeItem('role');
+    setStudent(null);
+    setParent(null);
+  };
 
-  },[]);
-    return(
-        <>
-        <div className="main">
-                  <Navbar student={student} setStudent={setStudent}/>
-        
-        
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/records' element={<Records/>}/>
-          <Route path='/about' element={<About/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path="/progress" element={<ParentDashboard />} />
-          <Route path='/videocall' element={<Video/>}/>
-          <Route path='/test' element={<CompleteProfile/>}/>
-          <Route path='/login' element={<Data setStudent={setStudent} />} />
-          <Route path='/parent'element={<Parent/>}/>
-          <Route path='/sign'  element={<Sign/>}/>
-          <Route path="/resources"element={<ProtectedRoute isAuthenticated={!!student}><Resources /></ProtectedRoute>}/>
-          <Route path='/success' element={<Success/>}/>
-          <Route path="/createroom" element={<CreateRoom/>}/>
-          <Route path='teacher-login' element={<PsychiatristLogin/>}/>
-          <Route path='/dashboard' element={<RequirePsychiatristAuth><PsychiatristDashboard /></RequirePsychiatristAuth>}/>
-          <Route path='/monitor' element={<AttentionMonitor/>}/>
-          <Route path='/student/resource' element={<StudentResources/>}/>
-          <Route path='/parent/resource' element={<ParentResources/>}/>
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/notifications" element={<Notifications />} />
+  return (
+    <div className="main">
+      <Navbar
+        student={student}
+        parent={parent}
+        setStudent={setStudent}
+        setParent={setParent}
+        onLogout={handleLogout}
+      />
 
-        
-        </Routes>
-        
-        
-        </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/records" element={<Records />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/videocall" element={<Video />} />
+        <Route path="/test" element={<CompleteProfile />} />
+        <Route path="/login" element={<Data setStudent={setStudent} />} />
+        <Route path="/parent" element={<Parent setParent={setParent} />} />
+        <Route path="/sign" element={<Sign />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/createroom" element={<CreateRoom />} />
+        <Route path="/teacher-login" element={<PsychiatristLogin />} />
+        <Route path="/monitor" element={<AttentionMonitor />} />
+        <Route path="/student/resource" element={<StudentResources />} />
+        <Route path="/parent/resource" element={<ParentResources />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/parent-dash" element={<ParentDashboard />} />
+        <Route path="/pin" element={<PinDisplay />} />
+        <Route path="/progress" element={<Progress />} />
 
+        {/* Protected student route */}
+        <Route
+          path="/resources"
+          element={
+            <ProtectedRoute isAuthenticated={!!student}>
+              <Resources />
+            </ProtectedRoute>
+          }
+        />
 
-        </>
-       
-    );
-  
+   
+
+        {/* Protected psychiatrist route */}
+        <Route
+          path="/dashboard"
+          element={
+            <RequirePsychiatristAuth>
+              <PsychiatristDashboard />
+            </RequirePsychiatristAuth>
+          }
+        />
+      </Routes>
+    </div>
+  );
 }
+
 export default App;
+

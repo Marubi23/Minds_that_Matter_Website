@@ -1,8 +1,8 @@
-// /controllers/notificationController.js
+
 
 const Notification = require('../models/Notification');
 
-// CREATE a new notification
+
 const createNotification = async (req, res) => {
   try {
     const { title, message, recipientRole } = req.body;
@@ -10,7 +10,7 @@ const createNotification = async (req, res) => {
     const newNotification = new Notification({
       title,
       message,
-      recipientRole, // e.g., 'psychiatrist', 'parent', 'student'
+      recipientRole, 
     });
 
     await newNotification.save();
@@ -21,10 +21,10 @@ const createNotification = async (req, res) => {
   }
 };
 
-// GET all notifications (optionally filtered by role)
+
 const getNotifications = async (req, res) => {
   try {
-    const roleFilter = req.query.role; // Optional ?role=psychiatrist
+    const roleFilter = req.query.role; 
     const query = roleFilter ? { recipientRole: roleFilter } : {};
 
     const notifications = await Notification.find(query).sort({ createdAt: -1 });

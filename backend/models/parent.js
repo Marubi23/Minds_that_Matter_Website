@@ -2,12 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const ParentSchema = new mongoose.Schema({
-  name: { type: String, required: false }, // Optional, for dashboard display
+  name: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
-// 🔒 Hash the password before saving
 ParentSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   try {
@@ -19,9 +18,9 @@ ParentSchema.pre('save', async function (next) {
   }
 });
 
-// ✅ Add method to compare passwords
 ParentSchema.methods.matchPassword = function (enteredPassword) {
   return bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.model('Parent', ParentSchema);
+module.exports = mongoose.models.Parent || mongoose.model('Parent', ParentSchema);
+

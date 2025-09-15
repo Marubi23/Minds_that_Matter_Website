@@ -1,19 +1,16 @@
-// Routes/psychiatrist.js
-
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Psychiatrist = require('../models/Psychiatrist'); // <-- ensure this path is correct
+const Psychiatrist = require('../models/Psychiatrist'); 
 
-// POST /api/psychiatrist/login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
     console.log('📨 Incoming login:', email);
 
-    const user = await Psychiatrist.findOne({ email }); // <-- should now work
+    const user = await Psychiatrist.findOne({ email }); 
     if (!user) {
       console.log('❌ No psychiatrist found');
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -28,7 +25,7 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, role: 'psychiatrist' },
-      process.env.JWT_SECRET || 'default_secret', // fallback in case .env is missing
+      process.env.JWT_SECRET || 'default_secret', 
       { expiresIn: '7d' }
     );
 

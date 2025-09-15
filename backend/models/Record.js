@@ -1,60 +1,12 @@
-const mongoose = require('mongoose');
-
+// models/Record.js
 const recordSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Name is required'],
-    trim: true,
-  },
-  age: {
-    type: Number,
-    required: [true, 'Age is required'],
-    min: [1, 'Age must be at least 1'],
-  },
-  gender: {
-    type: String,
-    enum: ['Male', 'Female', 'Other'],
-    required: [true, 'Gender is required'],
-  },
-  school: {
-    type: String,
-    required: [true, 'School is required'],
-    trim: true,
-  },
-  grade: {
-    type: String,
-    required: [true, 'Grade is required'],
-    trim: true,
-  },
-  contactNumber: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-  emergencyContact: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-  medicalConditions: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-  additionalNotes: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-  parentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Parent',
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
+  fullName: { type: String, required: true },
+  avatar: { type: String, required: true },
+  pin: { type: String, required: true },
+  school: { type: String, required: true },
+  age: { type: Number, required: true },
+  gender: { type: String, required: true },
+  hasPaid: { type: Boolean, default: false }, // ✅ subscription flag
+  subscriptionExpiry: { type: Date },         // optional, if you want expiry
+  createdAt: { type: Date, default: Date.now }
 });
-
-module.exports = mongoose.model('Record', recordSchema);
