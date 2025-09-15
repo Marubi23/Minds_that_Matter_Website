@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import StudentResources from '../Components/StudentResources';
-import ParentResources from '../Components/ParentResources';
+import StudentResources from '../components/StudentResources';
+import ParentResources from '../components/ParentResources';
 
 const Resources = () => {
   const [role, setRole] = useState(null);
