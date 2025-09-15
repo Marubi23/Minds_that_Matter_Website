@@ -74,14 +74,28 @@ function Home() {
             </p>
           )}
 
-          <div className="cta-buttons">
-            <Link to="/login">
-              <button className="primary-btn">Get Started</button>
-            </Link>
-            <Link to="/resources">
-              <button className="secondary-btn">Explore Resources</button>
-            </Link>
-          </div>
+      <div className="cta-buttons">
+  <button
+    className="primary-btn"
+    onClick={() => {
+      // If already on About page, scroll to Packages
+      if (window.location.pathname === "/about") {
+        const packagesSection = document.querySelector("#packages");
+        packagesSection?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Navigate to About with hash
+        navigate("/about#packages");
+      }
+    }}
+  >
+    Get Started
+  </button>
+
+  <Link to="/resources">
+    <button className="secondary-btn">Explore Resources</button>
+  </Link>
+</div>
+
 
           <div
             className="scroll-indicator"

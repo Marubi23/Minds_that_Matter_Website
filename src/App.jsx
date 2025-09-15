@@ -27,6 +27,7 @@ import Notifications from './pages/Notifications.jsx';
 import ParentDashboard from './Components/ParentDashboard.jsx';
 import Resources from './pages/Resources.jsx';
 import PinDisplay from './Components/PinDisplay.jsx';
+import OfflinePayment from './Components/offlinePayment.jsx';
 
 import './App.css';
 
@@ -91,6 +92,7 @@ function App() {
         <Route path="/parent-dash" element={<ParentDashboard />} />
         <Route path="/pin" element={<PinDisplay />} />
         <Route path="/progress" element={<Progress />} />
+        <Route path='/payment'  element={<OfflinePayment/>} />
 
         {/* Protected student route */}
         <Route

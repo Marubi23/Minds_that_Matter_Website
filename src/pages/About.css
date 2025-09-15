@@ -231,3 +231,32 @@
   background: linear-gradient(90deg, #ee0979, #ff6a00);
   transform: translateY(-4px);
 }
+/* Toggle buttons for Subscribe/Login choice */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  gap: 1rem;
+}
+
+.toggle-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.toggle-btn.active {
+  background: #f39c12;  /* Gold highlight for active */
+  border-color: #f39c12;
+  color: white;
+}

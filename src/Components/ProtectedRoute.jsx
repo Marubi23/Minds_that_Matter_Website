@@ -14,7 +14,7 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
           <p className="protected-subtext">Select your profile to view the appropriate Resources</p>
 
           <div className="protected-profiles">
-            <div className="protected-profile" onClick={() => navigate('/parent')}>
+            <div className="protected-profile" onClick={() => navigate('/about#packages')}>
               <img src={profile} alt="Parent Profile" className="protected-image" />
               <h4>Parent</h4>
               <button className="protected-button">Access</button>

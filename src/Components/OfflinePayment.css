@@ -1,0 +1,213 @@
+/* Container */
+.offline-container {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #222;
+}
+
+/* Hero */
+.offline-hero {
+  text-align: center;
+  background: linear-gradient(135deg, #0044ff, #00c6ff);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 68, 255, 0.3);
+}
+
+.offline-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.offline-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Payment Options */
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.pay-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.pay-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 68, 255, 0.15);
+}
+
+.pay-card h3 {
+  margin-bottom: 0.75rem;
+  color: #0044ff;
+}
+
+.pay-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.pay-phone {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.paypal-link {
+  display: inline-block;
+  color: #0070ba;
+  font-weight: bold;
+  word-break: break-all;
+  text-decoration: none;
+}
+
+.paypal-link:hover {
+  text-decoration: underline;
+}
+
+/* Form */
+.offline-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.offline-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0044ff;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #0044ff;
+  box-shadow: 0 0 0 3px rgba(0, 68, 255, 0.15);
+  outline: none;
+}
+
+.file-upload input {
+  border: none;
+  padding: 0.2rem 0;
+}
+
+/* Buttons */
+.copy-btn,
+.submit-btn,
+.help-btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.copy-btn {
+  background: #eaf0ff;
+  color: #0044ff;
+}
+
+.copy-btn:hover {
+  background: #d4e2ff;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #0044ff, #00c6ff);
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 68, 255, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 68, 255, 0.4);
+}
+
+.help-btn {
+  background: #f9f9f9;
+  color: #444;
+  margin-left: 0.75rem;
+}
+
+.help-btn:hover {
+  background: #efefef;
+}
+
+/* Form Actions */
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Messages */
+.offline-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.offline-message.info {
+  background: #f0f4ff;
+  color: #0044ff;
+}
+
+.offline-message.success {
+  background: #e7fbe7;
+  color: #107c10;
+}
+
+.offline-message.error {
+  background: #fdeaea;
+  color: #b91c1c;
+}
+
+.offline-success {
+  margin-top: 1rem;
+  background: #f0fff4;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #c6f6d5;
+  color: #046c4e;
+  text-align: center;
+  font-weight: 600;
+}
