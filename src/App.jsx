@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './pages/Navbar.jsx';
-import StudentResources from './components/StudentResources.jsx';
+import StudentResources from './pages/StudentResources.jsx';
 import ParentResources from './components/ParentResources.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';

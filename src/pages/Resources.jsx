@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import StudentResources from '../components/StudentResources';
+import StudentResources from './StudentResources';
 import ParentResources from '../components/ParentResources';
 
 const Resources = () => {
