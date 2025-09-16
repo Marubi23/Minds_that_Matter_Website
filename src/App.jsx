@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar.jsx';
+import Navbar from './Components/Navbar.jsx';
 import StudentResources from './components/StudentResources.jsx';
 import ParentResources from './components/ParentResources.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
