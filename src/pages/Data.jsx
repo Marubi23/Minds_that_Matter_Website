@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Data.css';
-import MTMInfoCard from "../Components/MTMInfoCard";
+import MTMInfoCard from "../components/MTMInfoCard";
 
 function Data({ setStudent }) {
   const navigate = useNavigate();

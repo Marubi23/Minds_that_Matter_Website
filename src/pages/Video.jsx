@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import AttentionMonitor from '../Components/AttentionMonitor';
+import AttentionMonitor from '../components/AttentionMonitor';
 import './Video.css';
 
 function Video() {

@@ -4,7 +4,7 @@ import {
   Home, Video, FileText, Users, Calendar, Settings as SettingsIcon,
   Bell, Clock, ClipboardList, UserCheck
 } from 'lucide-react';
-import '../Components/Settings.css';
+import './Settings.css';
 
 function Settings() {
   const [showPasscode, setShowPasscode] =useState(false);

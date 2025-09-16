@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from './Components/Navbar.jsx';
+import Navbar from './pages/Navbar.jsx';
 import StudentResources from './components/StudentResources.jsx';
 import ParentResources from './components/ParentResources.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -20,7 +20,7 @@ import Success from './pages/Success.jsx';
 import CreateRoom from './pages/CreateRoom.jsx';
 import PsychiatristLogin from './pages/PsychiatristLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
-import AttentionMonitor from './Components/AttentionMonitor.jsx';
+import AttentionMonitor from './components/AttentionMonitor.jsx';
 import Records from './pages/Records.jsx';
 import Settings from './components/Settings.jsx';
 import Notifications from './pages/Notifications.jsx';
