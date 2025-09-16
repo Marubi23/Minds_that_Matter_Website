@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './pages/Navbar.jsx';
 import StudentResources from './pages/StudentResources.jsx';
 import ParentResources from './pages/ParentResources.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
+import ProtectedRoute from './pages/ProtectedRoute.jsx';
 import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';
 
 import Home from './pages/Home.jsx';
