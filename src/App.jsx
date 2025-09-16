@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './Components/Navbar.jsx';
-import StudentResources from './Components/StudentResources.jsx';
-import ParentResources from './Components/ParentResources.jsx';
-import ProtectedRoute from './Components/ProtectedRoute.jsx';
+import StudentResources from './components/StudentResources.jsx';
+import ParentResources from './components/ParentResources.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import RequirePsychiatristAuth from './utils/RequirePsychiatristAuth.jsx';
 
 import Home from './pages/Home.jsx';
@@ -22,12 +22,12 @@ import PsychiatristLogin from './pages/PsychiatristLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
 import AttentionMonitor from './Components/AttentionMonitor.jsx';
 import Records from './pages/Records.jsx';
-import Settings from './Components/Settings.jsx';
+import Settings from './components/Settings.jsx';
 import Notifications from './pages/Notifications.jsx';
-import ParentDashboard from './Components/ParentDashboard.jsx';
+import ParentDashboard from './components/ParentDashboard.jsx';
 import Resources from './pages/Resources.jsx';
-import PinDisplay from './Components/PinDisplay.jsx';
-import OfflinePayment from "./Components/OfflinePayment.jsx";
+import PinDisplay from './components/PinDisplay.jsx';
+import OfflinePayment from './components/OfflinePayment.jsx';
 
 import './App.css';
 
@@ -92,7 +92,7 @@ function App() {
         <Route path="/parent-dash" element={<ParentDashboard />} />
         <Route path="/pin" element={<PinDisplay />} />
         <Route path="/progress" element={<Progress />} />
-        <Route path='/payment' element={<OfflinePayment />} />
+        <Route path="/payment" element={<OfflinePayment />} />
 
         {/* Protected student route */}
         <Route
