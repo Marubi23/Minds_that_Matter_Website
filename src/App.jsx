@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Panel from './components/Panel.jsx';
+import Navbar from './Components/Navbar.jsx';
 import StudentResources from './components/StudentResources.jsx';
 import ParentResources from './components/ParentResources.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -63,7 +63,7 @@ function App() {
 
   return (
     <div className="main">
-      <Panel
+      <Navbar
         student={student}
         parent={parent}
         setStudent={setStudent}

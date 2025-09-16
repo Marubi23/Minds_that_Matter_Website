@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/front.png";
 
-function Panel({ student, setStudent }) {
+function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -131,4 +131,4 @@ function Panel({ student, setStudent }) {
   );
 }
 
-export default Panel;
+export default Navbar;
