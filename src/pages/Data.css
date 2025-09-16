@@ -16,7 +16,7 @@ html, body {
   background-repeat: no-repeat;
   height: 100vh;
   padding: 20px;
-  gap: 350px;
+  gap: 80px;
   overflow: hidden;
 }
 
@@ -25,7 +25,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 390px;
+  gap: 80px;
 }
 
 .formlogin-container {
@@ -33,25 +33,30 @@ html, body {
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   padding: 30px 25px;
   width: 320px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
 }
 
 .formlogin-container h2 {
   color: white;
   font-size: 28px;
   font-weight: 800;
-  text-align: center;
   margin-bottom: 25px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Default form */
+.full-login {
+  display: flex;
+  flex-direction: column;
 }
 
 .login-input {
   width: 90%;
   padding: 12px;
-  margin: 12px 0;
+  margin: 12px auto;
   border: none;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -76,11 +81,6 @@ html, body {
   background: linear-gradient(135deg, hsl(198, 76%, 40%), hsl(200, 76%, 35%));
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .logo-company {
   display: flex;
   flex-direction: column;
@@ -94,15 +94,12 @@ form {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
-
-
-/* ✅ Avatar Section Styling */
+/* Avatar Section */
 .avatar-select {
   margin-top: 15px;
   color: white;
   font-weight: 600;
   font-size: 1rem;
-  text-align: center;
 }
 
 .avatar-options {
@@ -148,14 +145,15 @@ form {
   background-color: #eaffea;
   transform: scale(1.05);
 }
+
+/* New Student Section */
 .new-student-section {
   margin-top: 1.5rem;
-  text-align: center;
 }
-.new-student-section p{
+
+.new-student-section p {
   color: #000;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .new-student-button {
@@ -173,54 +171,67 @@ form {
   background-color: #f18f0f;
 }
 
+/* Simple button for mobile */
+.simple-login {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
 
-/* ✅ Responsive */
+.simple-login-button {
+  padding: 12px 20px;
+  background-color: hsl(210, 80%, 45%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 90%;
+  max-width: 300px;
+}
+
+.simple-login-button:hover {
+  background-color: hsl(210, 75%, 38%);
+}
+
+/* ✅ Responsive: Column layout for small screens */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
-    padding-top: 100px;
-    gap: 50px;
-  }
-
-  .login-button {
-    width: 50%;
-    margin-left: 80px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 60px;
+    gap: 30px;
   }
 
   .data-background {
     flex-direction: column;
-    gap: 40px;
+    align-items: center;
+    gap: 30px;
   }
 
-  .formlogin-container {
-    width: 90%;
+  .full-login {
+    display: none; /* hide full form on small screens */
+  }
+
+  .simple-login {
+    display: flex; /* show simple login button */
+  }
+
+  .logo-company {
+    order: 2; /* place card below button */
   }
 
   .logo-company img {
-    width: 140px;
+    width: 120px;
     height: auto;
   }
 
-  .avatar-box {
-    width: 80px;
-    padding: 8px;
-  }
-
-  .avatar-box img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .avatar-box p {
-    font-size: 0.8rem;
+  .formlogin-container {
+    width: 80%;
+    max-width: 350px;
   }
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}

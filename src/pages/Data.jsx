@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Data.css';
 import MTMInfoCard from "../Components/MTMInfoCard";
 
@@ -17,59 +17,50 @@ function Data({ setStudent }) {
     { label: '', url: '/avatars/jokey.jpeg' },
   ];
 
-const handleStudentSubmit = async (e) => {
-  e.preventDefault();
-
-  if (student.pin.length !== 4) {
-    alert("PIN must be exactly 4 digits");
-    return;
-  }
-
-  if (!student.avatar) {
-    alert("Please select an avatar.");
-    return;
-  }
-
-  try {
-  const response = await fetch(`http://localhost:5000/api/records/login`, {
-
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(student),
-    });
-
-    const data = await response.json();
-
-    if (response.ok && data) {
-      // ✅ Login success
-      localStorage.setItem("student", JSON.stringify(data));
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem("role", "student");
-
-      setStudent(data);
-      navigate("/resources");
-    } else {
-      // ❌ Login failed – student not found
-      alert("Student not found. Please take the test.");
-      localStorage.setItem("pendingStudent", JSON.stringify(student));
-      navigate("/test");
+  const handleStudentSubmit = async (e) => {
+    e.preventDefault();
+    if (student.pin.length !== 4) {
+      alert("PIN must be exactly 4 digits");
+      return;
+    }
+    if (!student.avatar) {
+      alert("Please select an avatar.");
+      return;
     }
 
-  } catch (err) {
-    console.error("Login error:", err);
-    alert("Something went wrong. Try again.");
-  }
-};
+    try {
+      const response = await fetch(`http://localhost:5000/api/records/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(student),
+      });
 
+      const data = await response.json();
+
+      if (response.ok && data) {
+        localStorage.setItem("student", JSON.stringify(data));
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("role", "student");
+        setStudent(data);
+        navigate("/resources");
+      } else {
+        alert("Student not found. Please take the test.");
+        localStorage.setItem("pendingStudent", JSON.stringify(student));
+        navigate("/test");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Something went wrong. Try again.");
+    }
+  };
 
   return (
     <div className="login-container">
       <div className="data-background">
-        <div className="formlogin-container">
-          <h2> Student </h2>
-          <div style={{ marginBottom: '1rem' }}>
-            
-          </div>
+        
+        {/* ✅ Full login form for desktop */}
+        <div className="formlogin-container full-login">
+          <h2>Student Login</h2>
 
           <form onSubmit={handleStudentSubmit}>
             <div className="avatar-select">
@@ -102,7 +93,6 @@ const handleStudentSubmit = async (e) => {
             <button className="login-button" type="submit">LOGIN</button>
           </form>
 
-          {/* 👇 New Student Button */}
           <div className="new-student-section">
             <p>New Student?</p>
             <button className="new-student-button" onClick={() => navigate('/test')}>
@@ -111,9 +101,19 @@ const handleStudentSubmit = async (e) => {
           </div>
         </div>
 
-        <div className="logo-company">
-          <MTMInfoCard/>
-         
+        {/* ✅ Simple login button for small screens */}
+        <div className="simple-login">
+          <button className="simple-login-button" onClick={() => navigate('/student-login')}>
+            Student Login
+          </button>
+          <div style={{ marginTop: '20px' }}>
+            <MTMInfoCard />
+          </div>
+        </div>
+
+        {/* ✅ Logo card for desktop */}
+        <div className="logo-company full-login">
+          <MTMInfoCard />
         </div>
       </div>
     </div>

@@ -20,14 +20,14 @@ import Success from './pages/Success.jsx';
 import CreateRoom from './pages/CreateRoom.jsx';
 import PsychiatristLogin from './pages/PsychiatristLogin.jsx';
 import PsychiatristDashboard from './pages/PsychiatristDashboard.jsx';
-import AttentionMonitor from '../components/AttentionMonitor.jsx';
+import AttentionMonitor from './Components/AttentionMonitor.jsx';
 import Records from './pages/Records.jsx';
 import Settings from './components/Settings.jsx';
 import Notifications from './pages/Notifications.jsx';
 import ParentDashboard from './components/ParentDashboard.jsx';
 import Resources from './pages/Resources.jsx';
-import PinDisplay from './components/PinDisplay.jsx';
-import OfflinePayment from "../components/OfflinePayment.jsx";
+import PinDisplay from './Components/PinDisplay.jsx';
+import OfflinePayment from "./Components/OfflinePayment.jsx";
 
 import './App.css';
 

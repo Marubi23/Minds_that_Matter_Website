@@ -124,3 +124,103 @@
 .monitor button{
   background-color:peru;
 }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    padding: 20px;
+    justify-content: center;   /* center vertically */
+    align-items: center;       /* center horizontally */
+    text-align: center;
+  }
+
+  .video-meeting-cont {
+    padding-top: 280px;
+    background-position: top center;
+  }
+
+  .video-container {
+    width: 90%;
+    max-width: 320px;
+    padding: 20px;
+    margin: 0 auto;           /* center container */
+    text-align: center;
+  }
+
+  .video-title {
+    font-size: 18px;
+  }
+
+  .meeting-input {
+    font-size: 14px;
+    height: 36px;
+    width: 90%;
+  
+    text-align: left;
+  }
+
+  .join-button {
+    font-size: 14px;
+    padding: 10px;
+    margin: 0 auto;          /* center button */
+    display: block;
+    width: 80%;              /* avoid stretching too wide */
+    max-width: 240px;
+  }
+
+  .monitor {
+    padding: 20px;
+    max-width: 90%;
+    margin: 0 auto;          /* center monitor box */
+    text-align: center;
+  }
+
+  .monitor button {
+    display: block;
+    margin: 15px auto 0;     /* center button inside monitor */
+    width: auto;
+    padding: 10px 20px;
+  }
+
+  .waiting-img {
+    width: 120px;
+    margin: 0 auto;          /* center image */
+    display: block;
+  }
+
+  .waiting-text {
+    font-size: 1.1rem;
+  }
+
+  .waiting-subtext {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-container {
+    max-width: 280px;
+    padding: 15px;
+  }
+
+  .video-title {
+    font-size: 16px;
+  }
+
+  .join-button {
+    font-size: 13px;
+    padding: 8px;
+    width: 90%;             /* fits nicely on small screens */
+    max-width: 220px;
+  }
+
+  .waiting-text {
+    font-size: 1rem;
+  }
+
+  .waiting-subtext {
+    font-size: 0.85rem;
+  }
+}

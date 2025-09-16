@@ -260,3 +260,86 @@
   border-color: #f39c12;
   color: white;
 }
+/* Make the layout responsive */
+@media (max-width: 768px) {
+  .about-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-header p {
+    font-size: 1rem;
+  }
+
+  .values-grid,
+  .package-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .value-card,
+  .package-card {
+    width: 90%; /* full width on small screens */
+    max-width: 350px;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subscribe-input {
+    margin-left: 0;
+    width: 90%;
+  }
+
+  .subscribe-btn {
+    margin-left: 0;
+    width: auto;
+    padding: 0.8rem 1.2rem;
+    margin-top: 0.8rem;
+  }
+
+  .toggle-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .toggle-btn {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .social-icons {
+    gap: 1rem;
+  }
+
+  .footer-link {
+    display: inline-block;
+    margin: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .about-header p {
+    font-size: 0.9rem;
+  }
+
+  .value-card,
+  .package-card {
+    padding: 1rem;
+  }
+
+  .subscribe-input {
+    font-size: 0.9rem;
+  }
+
+  .subscribe-btn {
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+}
+

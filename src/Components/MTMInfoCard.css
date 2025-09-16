@@ -5,39 +5,10 @@
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   max-width: 500px;
-
   margin: auto;
   text-align: center;
 }
 
-.portal {
-  display: flex;
-  gap: 15px;
-}
-
-.portal button {
-  padding: 14px 24px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.portal button:hover {
-  transform: translateY(-3px);
-}
-
-.portal button:first-child {
-  background-color: hsl(151, 93%, 50%);
-  color: #000;
-}
-
-.portal button:last-child {
-  background-color: hsl(272, 74%, 39%);
-  color: #fff;
-}
 .mtm-header {
   display: flex;
   align-items: center;
@@ -65,6 +36,37 @@
   margin: 1rem 0;
 }
 
+.portal {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap; /* ensures buttons wrap on small screens */
+}
+
+.portal button {
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.portal button:hover {
+  transform: translateY(-3px);
+}
+
+.portal button:first-child {
+  background-color: hsl(151, 93%, 50%);
+  color: #000;
+}
+
+.portal button:last-child {
+  background-color: hsl(272, 74%, 39%);
+  color: #fff;
+}
+
 .mtm-button {
   background-color: #FFD700;
   color: #102A4D;
@@ -78,4 +80,29 @@
 
 .mtm-button:hover {
   background-color: #e6c200;
+}
+
+/* ✅ Responsive for small screens */
+@media (max-width: 780px) {
+  .mtm-card {
+    max-width: 90%;   /* prevents touching edges */
+    padding: 1.5rem;
+  }
+
+  .mtm-title {
+    font-size: 1.3rem;
+  }
+
+  .mtm-description {
+    font-size: 0.9rem;
+  }
+
+  .portal {
+    gap: 10px;
+    flex-direction: column; /* stack buttons vertically */
+  }
+
+  .portal button {
+    width: 100%;  /* full-width buttons on small screens */
+  }
 }

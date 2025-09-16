@@ -1,20 +1,19 @@
 .navbar {
   width: 80%;
-  margin: 0 auto; 
+  margin: 40px auto 0 auto; 
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgb(0, 0, 0);
   padding: 15px 10px;
-   margin: 40px auto 0 auto; 
   position: fixed;
   z-index: 100;
   left: 150px;
-  
+  height: 90px;
 }
 
-
+/* Keep logo container as-is */
 .logo-container img {
   width: 150px;
   height: 85px;
@@ -26,13 +25,9 @@
   display: flex;
   gap: 15px;
   list-style: none;
-  
-  
 }
 
 .nav-links li {
-  padding: 5px 10px;
-  display: inline-block;
   padding: 8px 14px;
   margin: 5px;
   background-color: rgba(255, 255, 255, 0.8); 
@@ -44,69 +39,80 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-  
-  
+
 .desktop-only {
   display: flex;
 }
 
+/* Hamburger styling */
 .hamburger {
   display: none;
-  left:2px;
-  position: fixed;
   font-size: 40px;
   cursor: pointer;
   z-index: 101;
-  
+  transition: transform 0.2s ease;
 }
 
+.hamburger:hover {
+  transform: rotate(90deg);
+}
+
+/* Overlay for mobile menu */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+/* Mobile dropdown slide-in */
 .dropdown-menu {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: -35px;
-  left: 35px;
-  background: hsla(268, 83%, 34%, 0.644); 
-  backdrop-filter: blur(12px);           
-  border-radius: 16px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
-  padding: 16px 20px;
+  position: fixed;
+  top: 0;
+  right: -300px; /* hidden initially */
+  height: 100vh;
+  width: 250px;
+  background: hsla(268, 83%, 34%, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 0 0 0 16px;
+  padding: 40px 20px;
   list-style: none;
   z-index: 1000;
-  min-width: 160px;
-  animation: fadeInScale 0.3s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: right 0.3s ease;
+}
+
+.dropdown-menu.open {
+  right: 0; /* slide-in */
 }
 
 .dropdown-menu li {
-  margin: 10px  0;
+  margin: 15px 0;
   cursor: pointer;
-   padding: 10px 0;
-  font-size: 19px;
-  color: #333;
-  font-weight: 900;
-  font-family: Arial, Helvetica, sans-serif;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px;
+  transition: background 0.3s ease;
 }
 
 .dropdown-menu li:hover {
-  color: #fff;
-  background: hsl(293, 62%, 67%); 
+  background: hsla(293, 62%, 67%, 0.9);
   border-radius: 8px;
-  padding-left: 12px;
-}
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  padding-left: 14px;
 }
 
+/* Start buttons */
 .start-button button {
   padding: 10px 16px;
   border: none;
@@ -117,30 +123,31 @@
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 .start-button.desktop-only {
   display: block;
   animation: bounce 1.5s infinite ease-in-out;
 }
 
-
-@media (max-width: 768px) {
-  .start-button.desktop-only {
-    display: none;
-  }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
-
 
 .start-button.mobile-only {
   display: none;
 }
 
-
 @media (max-width: 768px) {
+  .start-button.desktop-only {
+    display: none;
+  }
+
   .start-button.mobile-only {
     display: block;
     position: fixed;
     top: 70px;
-    left: 180px; 
+    left: 180px;
     z-index: 999;
   }
 
@@ -150,35 +157,24 @@
     border-radius: 8px;
     padding: 10px 15px;
     font-weight: bold;
-
   }
 
   .start-button.mobile-only button:hover {
     background-color: #07fd49;
   }
-    .nav-links.desktop-only {
+
+  .nav-links.desktop-only {
     display: none;
   }
 
   .hamburger {
     display: block;
-    top: 125px;
+    top: 65px;
+    right: 25px;
     color: white;
-    font-weight: bolder;
+    position: fixed;
   }
-  .navbar{
-    height: 90px;
-  }
- 
-}
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 

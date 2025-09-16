@@ -17,7 +17,7 @@ function Navbar({ student, setStudent }) {
   const handleLogout = () => {
     localStorage.removeItem("student");
     localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("hasClickedGetStarted"); // Reset get started state
+    localStorage.removeItem("hasClickedGetStarted");
     setStudent(null);
     setHasClickedGetStarted(false);
 
@@ -38,6 +38,7 @@ function Navbar({ student, setStudent }) {
     setMenuOpen((prev) => !prev);
   };
 
+  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -52,6 +53,7 @@ function Navbar({ student, setStudent }) {
     };
   }, [menuOpen]);
 
+  // Close menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setMenuOpen(false);
@@ -60,79 +62,50 @@ function Navbar({ student, setStudent }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const menuLinks = [
+    { path: "/", label: "Home" },
+    { path: "/login", label: "Portals" },
+    { path: "/resources", label: "Resources" },
+    { path: "/videocall", label: "Live Sessions" },
+    { path: "/progress", label: "Progress" },
+    { path: "/about", label: "About" },
+    { path: "/contact", label: "Contact" },
+  ];
+
   return (
     <div className="navbar">
+      {/* Logo */}
       <div className="logo-container">
-        <img
-          src={logo}
-          alt="Logo"
-          style={{
-            opacity: 0.8,
-            mixBlendMode: "screen",
-            position: "fixed",
-            top: "24px",
-            left: "15px",
-            width: "120px",
-            height: "auto",
-            zIndex: 999,
-          }}
-        />
+        <img src={logo} alt="Logo" className="navbar-logo" />
       </div>
 
+      {/* Hamburger */}
       <div className="hamburger" onClick={toggleMenu}>
         ☰
-        {menuOpen && (
-          <ul className="dropdown-menu" ref={dropdownRef}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "yellow" }}>Home</li>
-            </Link>
-            <Link to="/login" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "white" }}>Portals</li>
-            </Link>
-            <Link to="/resources" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "red" }}>Resources</li>
-            </Link>
-            <Link to="/videocall" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "tomato" }}>Live Sessions</li>
-            </Link>
-            <Link to="/progress" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "wheat" }}>Progress</li>
-            </Link>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "white" }}>About</li>
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              <li style={{ color: "orange" }}>Contact</li>
-            </Link>
-          </ul>
-        )}
       </div>
 
-      <ul className="nav-links desktop-only">
-        <Link to="/">
-          <li style={{ color: "blue" }}>Home</li>
-        </Link>
-        <Link to="/login">
-          <li style={{ color: "purple" }}>Portals</li>
-        </Link>
-        <Link to="/resources">
-          <li style={{ color: "purple" }}>Resources</li>
-        </Link>
-        <Link to="/videocall">
-          <li style={{ color: "purple" }}>Live Sessions</li>
-        </Link>
-        <Link to="/progress">
-          <li style={{ color: "purple" }}>Progress</li>
-        </Link>
-        <Link to="/about">
-          <li style={{ color: "purple" }}>About</li>
-        </Link>
-        <Link to="/contact">
-          <li style={{ color: "blue" }}>Contact</li>
-        </Link>
+      {/* Overlay */}
+      {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)} />}
+
+      {/* Sliding Menu */}
+      <ul className={`dropdown-menu ${menuOpen ? "open" : ""}`} ref={dropdownRef}>
+        {menuLinks.map((link, i) => (
+          <Link key={i} to={link.path} onClick={() => setMenuOpen(false)}>
+            <li>{link.label}</li>
+          </Link>
+        ))}
       </ul>
 
-      {/* ✅ Show only on Home + only if not already clicked */}
+      {/* Desktop Nav Links */}
+      <ul className="nav-links desktop-only">
+        {menuLinks.map((link, i) => (
+          <Link key={i} to={link.path}>
+            <li>{link.label}</li>
+          </Link>
+        ))}
+      </ul>
+
+      {/* Get Started Button */}
       {isHomePage && !hasClickedGetStarted && (
         <>
           <div className="start-button desktop-only">
@@ -144,59 +117,16 @@ function Navbar({ student, setStudent }) {
         </>
       )}
 
+      {/* Student Info + Logout */}
       {student && (
-        <div
-          style={{
-            position: "absolute",
-            top: "30px",
-            right: "10px",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            backgroundColor: "#1e3a8a",
-            padding: "8px 12px",
-            borderRadius: "8px",
-            zIndex: 1000,
-          }}
-        >
-          <span style={{ fontWeight: "700", color: "white" }}>
-            Hello, {student.name || student.email}
-          </span>
-          <button
-            onClick={handleLogout}
-            style={{
-              background: "crimson",
-              color: "white",
-              border: "none",
-              padding: "5px 10px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontWeight: "bolder",
-            }}
-          >
-            Logout
-          </button>
+        <div className="student-info">
+          <span>Hello, {student.name || student.email}</span>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       )}
 
-      {logoutMessage && (
-        <div
-          style={{
-            position: "absolute",
-            top: "80px",
-            right: "10px",
-            backgroundColor: "#f0f8ff",
-            color: "#333",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-            fontWeight: "bold",
-            zIndex: 9999,
-          }}
-        >
-          {logoutMessage}
-        </div>
-      )}
+      {/* Logout message */}
+      {logoutMessage && <div className="logout-message">{logoutMessage}</div>}
     </div>
   );
 }
