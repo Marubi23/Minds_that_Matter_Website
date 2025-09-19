@@ -1,17 +1,40 @@
-// backend/Routes/notifications.js
+// notifications.js
+import express from "express";
+import { supabase } from "../supabaseClient.js";
 
-const express = require('express');
 const router = express.Router();
-const Notification = require('../models/Notification.js'); 
 
-router.get("/notifications", async (req, res) => {
-  const notifications = await Notification.find({ role: "psychiatrist" }).sort({ createdAt: -1 });
-  res.json(notifications);
+// Get notifications for psychiatrist
+router.get("/", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("notifications")
+      .select("*")
+      .eq("role", "psychiatrist")
+      .order("createdAt", { ascending: false });
+
+    if (error) throw error;
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 });
 
-router.patch("/notifications/:id/read", async (req, res) => {
-  await Notification.findByIdAndUpdate(req.params.id, { read: true });
-  res.sendStatus(204);
+// Mark notification as read
+router.patch("/:id/read", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { error } = await supabase
+      .from("notifications")
+      .update({ read: true })
+      .eq("id", id);
+
+    if (error) throw error;
+    res.sendStatus(204);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 });
 
-module.exports = router;
+export default router;
+

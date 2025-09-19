@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
+const { data, error } = await supabase
+  .from('notifications')
+  .select('*')
+  .eq('role', 'psychiatrist')
+  .order('created_at', { ascending: false });
 
-const notificationSchema = new mongoose.Schema({
-  type: String,
-  title: String,
-  message: String,
-  studentId: String,
-  role: String, 
-  read: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now }
-});
-
-module.exports = mongoose.model("Notification", notificationSchema);
+if (error) {
+  console.error(error);
+} else {
+  console.log(data);
+}

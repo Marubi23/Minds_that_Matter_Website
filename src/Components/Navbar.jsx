@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/front.png";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
@@ -73,15 +73,20 @@ function Navbar({ student, setStudent }) {
   ];
 
   return (
-    <div className="navbar">
-      {/* Logo */}
-      <div className="logo-container">
-        <img src={logo} alt="Logo" className="navbar-logo" />
-      </div>
+    <>
+      {/* Top-right section (always visible) */}
+      <div className="top-right">
+        {/* Social Icons */}
+        <div className="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        </div>
 
-      {/* Hamburger */}
-      <div className="hamburger" onClick={toggleMenu}>
-        ☰
+        {/* Hamburger */}
+        <div className="hamburger" onClick={toggleMenu}>
+          ☰
+        </div>
       </div>
 
       {/* Overlay */}
@@ -96,39 +101,40 @@ function Navbar({ student, setStudent }) {
         ))}
       </ul>
 
-      {/* Desktop Nav Links */}
-      <ul className="nav-links desktop-only">
-        {menuLinks.map((link, i) => (
-          <Link key={i} to={link.path}>
-            <li>{link.label}</li>
-          </Link>
-        ))}
-      </ul>
+      {/* Desktop Navbar */}
+      <div className="navbar">
+        <div className="logo-container"></div>
 
-      {/* Get Started Button */}
-      {isHomePage && !hasClickedGetStarted && (
-        <>
+        {/* Desktop Nav Links */}
+        <ul className="nav-links desktop-only">
+          {menuLinks.map((link, i) => (
+            <Link key={i} to={link.path}>
+              <li>{link.label}</li>
+            </Link>
+          ))}
+        </ul>
+
+        {/* Get Started Button */}
+        {isHomePage && !hasClickedGetStarted && (
           <div className="start-button desktop-only">
             <button onClick={handleGetStartedClick}>Get Started</button>
           </div>
-          <div className="start-button mobile-only">
-            <button onClick={handleGetStartedClick}>Get Started</button>
+        )}
+
+        {/* Student Info + Logout */}
+        {student && (
+          <div className="student-info">
+            <span>Hello, {student.name || student.email}</span>
+            <button onClick={handleLogout}>Logout</button>
           </div>
-        </>
-      )}
+        )}
 
-      {/* Student Info + Logout */}
-      {student && (
-        <div className="student-info">
-          <span>Hello, {student.name || student.email}</span>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
-
-      {/* Logout message */}
-      {logoutMessage && <div className="logout-message">{logoutMessage}</div>}
-    </div>
+        {/* Logout message */}
+        {logoutMessage && <div className="logout-message">{logoutMessage}</div>}
+      </div>
+    </>
   );
 }
 
 export default Navbar;
+

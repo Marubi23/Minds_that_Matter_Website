@@ -7,9 +7,8 @@ import back5 from '../assets/background.JPG';
 import ngo from '../assets/ngo.jpeg';
 import school from '../assets/school.jpeg';
 import unicef from '../assets/unicef.jpeg';
-import twitter from '../assets/twitter.jpeg';
-import instagram from '../assets/instagram.jpeg';
 import { Link, useNavigate } from "react-router-dom";
+import { FaInfoCircle, FaComments, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Home() {
   const backgrounds = [back1, back2, back4, back5];
@@ -42,7 +41,30 @@ function Home() {
 
   return (
     <div className="home-container">
-      <button className="about-click-button" onClick={() => navigate('/about')}>❔</button>
+
+      {/* Glass Navbar with icons + hamburger */}
+      <div className="navbar">
+        <div className="logo">MTM</div>
+        <div className="nav-actions">
+          {/* Social Icons */}
+          <div className="social-icons">
+            <a href="#"><FaFacebook /></a>
+            <a href="#"><FaTwitter /></a>
+            <a href="#"><FaInstagram /></a>
+          </div>
+
+          {/* About & Contact icons */}
+          <div className="page-icons">
+            <FaInfoCircle onClick={() => navigate('/about')} title="About" />
+            <FaComments onClick={() => navigate('/contact')} title="Contact" />
+          </div>
+
+          {/* Hamburger (if you want dropdown later) */}
+          <div className="hamburger">
+            ☰
+          </div>
+        </div>
+      </div>
 
       <div className="home-background-wrapper">
         <div
@@ -69,33 +91,28 @@ function Home() {
               </div>
             </>
           ) : (
-            <p className="inspo-message">
-              “{messages[currentMessage - 1]}”
-            </p>
+            <p className="inspo-message">“{messages[currentMessage - 1]}”</p>
           )}
 
-      <div className="cta-buttons">
-  <button
-    className="primary-btn"
-    onClick={() => {
-      // If already on About page, scroll to Packages
-      if (window.location.pathname === "/about") {
-        const packagesSection = document.querySelector("#packages");
-        packagesSection?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        // Navigate to About with hash
-        navigate("/about#packages");
-      }
-    }}
-  >
-    Get Started
-  </button>
+          <div className="cta-buttons">
+            <button
+              className="primary-btn"
+              onClick={() => {
+                if (window.location.pathname === "/about") {
+                  const packagesSection = document.querySelector("#packages");
+                  packagesSection?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  navigate("/about#packages");
+                }
+              }}
+            >
+              Get Started
+            </button>
 
-  <Link to="/resources">
-    <button className="secondary-btn">Explore Resources</button>
-  </Link>
-</div>
-
+            <Link to="/resources">
+              <button className="secondary-btn">Explore Resources</button>
+            </Link>
+          </div>
 
           <div
             className="scroll-indicator"
@@ -107,10 +124,6 @@ function Home() {
           >
             <span className="arrow-down">▼</span>
           </div>
-
-          <Link to={'/contact'}>
-            <button className="chat-button">💬</button>
-          </Link>
         </div>
       </div>
 
@@ -147,19 +160,8 @@ function Home() {
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/resources">Resources</Link></li>
-                     <li><Link to="#">FAQ</Link></li>
+                <li><Link to="#">FAQ</Link></li>
               </ul>
-            </div>
-            <div>
-              <h4>Follow Us</h4>
-              <p>
-                <img style={{ height: '50px', width: '50px', marginRight: '40px' }} src={twitter} alt="twitter" />
-                || Twitter
-              </p>
-              <p>
-                <img style={{ height: '50px', width: '50px', marginRight: '30px' }} src={instagram} alt="instagram" />
-               ||  Instagram
-              </p>
             </div>
           </div>
           <p>© 2025 Minds That Matter. All rights reserved.</p>

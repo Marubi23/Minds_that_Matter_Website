@@ -1,22 +1,26 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Psychiatrist = require('./models/Psychiatrist');
+const { createClient } = require('@supabase/supabase-js');
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 
 const addPsychiatrist = async () => {
-  await mongoose.connect(process.env.MONGO_URI);
+  try {
+    const hashedPassword = await bcrypt.hash('felo2305', 10);
 
-  const hashedPassword = await bcrypt.hash('felo2305', 10);
+    const { data, error } = await supabase
+      .from('psychiatrists') // your Supabase table name
+      .insert([{ name: 'Dr. Felix', email: 'felixmarubi@gmail.com', password: hashedPassword }]);
 
-  const psychiatrist = new Psychiatrist({
-    name: 'Dr. Felix',
-    email: 'felixmarubi@gmail.com',
-    password: hashedPassword,
-  });
+    if (error) throw error;
 
-  await psychiatrist.save();
-  console.log('✅ Psychiatrist added');
-  mongoose.disconnect();
+    console.log('✅ Psychiatrist added:', data[0]);
+  } catch (err) {
+    console.error('❌ Error adding psychiatrist:', err);
+  }
 };
 
 addPsychiatrist();

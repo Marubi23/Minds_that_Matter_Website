@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Contact.css";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [confirmationMsg, setConfirmationMsg] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,10 +24,36 @@ const Contact = () => {
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        setConfirmationMsg(
+          "Message sent successfully! ✅ Please check your email for confirmation."
+        );
+      } else {
+        alert("Failed to send message. Try again later.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error sending message.");
+    }
+
+    // Reset form after submission
+    setTimeout(() => {
+      setSubmitted(false);
+      setConfirmationMsg("");
+    }, 5000);
+
     setForm({ name: "", email: "", message: "" });
     setStep(1);
   };
@@ -28,7 +62,9 @@ const Contact = () => {
     <div className="contact-page-wrapper">
       <div className="hero-section">
         <h1>We’re Here For You</h1>
-        <p>Have a question or feedback? Reach out anytime, we’ll respond fast.</p>
+        <p>
+          Have a question or feedback? Reach out anytime, we’ll respond fast.
+        </p>
       </div>
 
       {/* Contact Info Cards */}
@@ -114,21 +150,32 @@ const Contact = () => {
                   ← Back
                 </button>
                 <button type="submit" className="send-btn">
-                  {submitted ? "Sent ✅" : "Send Message"}
+                  {submitted ? "✅ Sent" : "Send Message"}
                 </button>
               </div>
             </div>
           )}
         </form>
+
+        {/* Confirmation message */}
+        {confirmationMsg && (
+          <p className="confirmation-message">{confirmationMsg}</p>
+        )}
       </div>
 
       {/* Social Section */}
       <div className="social-section">
         <h2>Follow Us</h2>
         <div className="social-icons">
-          <a href="#"><FaFacebookF /></a>
-          <a href="#"><FaTwitter /></a>
-          <a href="#"><FaInstagram /></a>
+          <a href="#">
+            <FaFacebookF />
+          </a>
+          <a href="#">
+            <FaTwitter />
+          </a>
+          <a href="#">
+            <FaInstagram />
+          </a>
         </div>
       </div>
 
@@ -146,45 +193,67 @@ const Contact = () => {
       </div>
 
       {/* FAQ Section */}
-    {/* FAQ Section */}
-<div className="faq-section">
-  <h2>FAQs</h2>
+      <div className="faq-section">
+        <h2>FAQs</h2>
 
-  <div className="faq-item">
-    <div className="faq-question">
-      <img src="src/assets/customerA.jpeg" alt="User" className="faq-avatar" />
-      <div>
-        <p className="faq-name">Alice K.</p>
-        <p className="faq-text"><strong>Q:</strong> How long will it take to get a response?</p>
-      </div>
-    </div>
-    <div className="faq-answer">
-      <img src="src/assets/logo.png" alt="Org" className="faq-avatar" />
-      <div>
-        <p className="faq-name">Minds that matter</p>
-        <p className="faq-text"><strong>A:</strong> We usually respond within 24 hours.</p>
-      </div>
-    </div>
-  </div>
+        <div className="faq-item">
+          <div className="faq-question">
+            <img
+              src="src/assets/customerA.jpeg"
+              alt="User"
+              className="faq-avatar"
+            />
+            <div>
+              <p className="faq-name">Alice K.</p>
+              <p className="faq-text">
+                <strong>Q:</strong> How long will it take to get a response?
+              </p>
+            </div>
+          </div>
+          <div className="faq-answer">
+            <img
+              src="src/assets/logo.png"
+              alt="Org"
+              className="faq-avatar"
+            />
+            <div>
+              <p className="faq-name">Minds that matter</p>
+              <p className="faq-text">
+                <strong>A:</strong> We usually respond within 24 hours.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <div className="faq-item">
-    <div className="faq-question">
-      <img src="src/assets/customerB.jpeg" alt="User" className="faq-avatar" />
-      <div>
-        <p className="faq-name">John M.</p>
-        <p className="faq-text"><strong>Q:</strong> Can I contact you for partnerships?</p>
+        <div className="faq-item">
+          <div className="faq-question">
+            <img
+              src="src/assets/customerB.jpeg"
+              alt="User"
+              className="faq-avatar"
+            />
+            <div>
+              <p className="faq-name">John M.</p>
+              <p className="faq-text">
+                <strong>Q:</strong> Can I contact you for partnerships?
+              </p>
+            </div>
+          </div>
+          <div className="faq-answer">
+            <img
+              src="src/assets/logo.png"
+              alt="Org"
+              className="faq-avatar"
+            />
+            <div>
+              <p className="faq-name">Minds that matter</p>
+              <p className="faq-text">
+                <strong>A:</strong> Absolutely! Use the form above or email us directly.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="faq-answer">
-      <img src="src/assets/logo.png" alt="Org" className="faq-avatar" />
-      <div>
-        <p className="faq-name">Minds that matter</p>
-        <p className="faq-text"><strong>A:</strong> Absolutely! Use the form above or email us directly.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
     </div>
   );
 };

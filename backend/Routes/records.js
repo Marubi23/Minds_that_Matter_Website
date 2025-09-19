@@ -1,25 +1,40 @@
+// backend/Routes/records.js
 const express = require("express");
+
 const router = express.Router();
-const Record = require("../models/Record");
+const { createClient } = require("@supabase/supabase-js");
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 
 // ✅ Create new student record
 router.post("/", async (req, res) => {
   try {
     const { fullName, age, gender, school, avatar, pin, parentId } = req.body;
 
-    const newRecord = new Record({
-      fullName,
-      age,
-      gender,
-      school,
-      avatar,
-      pin,
-      parentId: parentId || null,
-      hasPaid: false, // default lock when student is created
-    });
+    const { data, error } = await supabase
+      .from("records") // Supabase table name
+      .insert([
+        {
+          fullName,
+          age,
+          gender,
+          school,
+          avatar,
+          pin,
+          parentId: parentId || null,
+          hasPaid: false, // default lock when student is created
+          subscriptionExpiry: null,
+          createdAt: new Date().toISOString(),
+        },
+      ]);
 
-    await newRecord.save();
-    res.status(201).json(newRecord);
+    if (error) throw error;
+
+    res.status(201).json(data[0]);
   } catch (err) {
     console.error("❌ Error saving record:", err);
     res.status(500).json({ message: "Server error", error: err.message });
@@ -30,9 +45,14 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const { parentId } = req.query;
-    const query = parentId ? { parentId } : {};
-    const records = await Record.find(query);
-    res.json(records);
+
+    let query = supabase.from("records").select("*");
+    if (parentId) query = query.eq("parentId", parentId);
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    res.json(data);
   } catch (err) {
     console.error("❌ Error fetching records:", err);
     res.status(500).json({ message: "Server error", error: err.message });
@@ -48,9 +68,14 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Avatar and PIN are required" });
     }
 
-    const student = await Record.findOne({ avatar, pin });
+    const { data: student, error } = await supabase
+      .from("records")
+      .select("*")
+      .eq("avatar", avatar)
+      .eq("pin", pin)
+      .single();
 
-    if (!student) {
+    if (error || !student) {
       return res.status(401).json({ message: "Invalid avatar or PIN" });
     }
 
@@ -62,7 +87,7 @@ router.post("/login", async (req, res) => {
     res.json({
       message: "Login successful",
       student: {
-        id: student._id,
+        id: student.id,
         fullName: student.fullName,
         avatar: student.avatar,
         school: student.school,

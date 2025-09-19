@@ -11,16 +11,19 @@
   z-index: 100;
   left: 150px;
   height: 90px;
+background: rgba(255, 255, 255, 0.08);  /* lighter, more transparent */
+backdrop-filter: blur(0px) saturate(180%);  
+-webkit-backdrop-filter: blur(20px) saturate(180%); 
+border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Keep logo container as-is */
-.logo-container img {
+/* Logo container (empty now, no image) */
+.logo-container {
   width: 150px;
   height: 85px;
-  mix-blend-mode: screen;
-  opacity: 0.8;
 }
 
+/* Nav links */
 .nav-links {
   display: flex;
   gap: 15px;
@@ -44,13 +47,17 @@
   display: flex;
 }
 
-/* Hamburger styling */
+/* Hamburger (hidden on desktop, fixed on mobile) */
 .hamburger {
   display: none;
   font-size: 40px;
   cursor: pointer;
-  z-index: 101;
+  z-index: 1001;
   transition: transform 0.2s ease;
+  position: fixed; 
+  top: 20px;
+  right: 20px;
+  color: white;
 }
 
 .hamburger:hover {
@@ -67,7 +74,7 @@
   height: 100vh;
   background: rgba(0,0,0,0.4);
   backdrop-filter: blur(2px);
-  z-index: 99;
+  z-index: 999;
 }
 
 .menu-overlay.active {
@@ -80,7 +87,7 @@
   flex-direction: column;
   position: fixed;
   top: 0;
-  right: -300px; /* hidden initially */
+  right: -300px;
   height: 100vh;
   width: 250px;
   background: hsla(268, 83%, 34%, 0.9);
@@ -93,7 +100,7 @@
 }
 
 .dropdown-menu.open {
-  right: 0; /* slide-in */
+  right: 0;
 }
 
 .dropdown-menu li {
@@ -138,7 +145,19 @@
   display: none;
 }
 
+/* 📱 Mobile rules */
 @media (max-width: 768px) {
+  /* Hide glass navbar */
+  .navbar {
+    display: none !important;
+  }
+
+  /* Show floating hamburger */
+  .hamburger {
+    display: block !important;
+    top:60px;
+  }
+
   .start-button.desktop-only {
     display: none;
   }
@@ -147,7 +166,8 @@
     display: block;
     position: fixed;
     top: 70px;
-    left: 180px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 999;
   }
 
@@ -166,17 +186,4 @@
   .nav-links.desktop-only {
     display: none;
   }
-
-  .hamburger {
-    display: block;
-    top: 65px;
-    right: 25px;
-    color: white;
-    position: fixed;
-  }
-
 }
-
-
-
-
