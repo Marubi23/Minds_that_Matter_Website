@@ -8,7 +8,6 @@ import ngo from '../assets/ngo.jpeg';
 import school from '../assets/school.jpeg';
 import unicef from '../assets/unicef.jpeg';
 import { Link, useNavigate } from "react-router-dom";
-import { FaInfoCircle, FaComments, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Home() {
   const backgrounds = [back1, back2, back4, back5];
@@ -41,31 +40,7 @@ function Home() {
 
   return (
     <div className="home-container">
-
-      {/* Glass Navbar with icons + hamburger */}
-      <div className="navbar">
-        <div className="logo">MTM</div>
-        <div className="nav-actions">
-          {/* Social Icons */}
-          <div className="social-icons">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaTwitter /></a>
-            <a href="#"><FaInstagram /></a>
-          </div>
-
-          {/* About & Contact icons */}
-          <div className="page-icons">
-            <FaInfoCircle onClick={() => navigate('/about')} title="About" />
-            <FaComments onClick={() => navigate('/contact')} title="Contact" />
-          </div>
-
-          {/* Hamburger (if you want dropdown later) */}
-          <div className="hamburger">
-            ☰
-          </div>
-        </div>
-      </div>
-
+      {/* Background */}
       <div className="home-background-wrapper">
         <div
           className={`background-layer ${isFading ? "fade-out" : ""}`}
@@ -76,19 +51,18 @@ function Home() {
           style={{ backgroundImage: `url(${backgrounds[currentBack]})` }}
         ></div>
 
+        {/* Content */}
         <div className="content-layer">
           {currentMessage === 0 || currentMessage === -1 ? (
             <>
               <h1 className="welcome">
                 <strong>Welcome To Minds that Matter</strong>
               </h1>
-              <div>
-                <p>
-                  <strong>
-                    Where The <span style={{ color: 'yellow' }}>Future</span> Begins With You
-                  </strong>
-                </p>
-              </div>
+              <p>
+                <strong>
+                  Where The <span style={{ color: 'yellow' }}>Future</span> Begins With You
+                </strong>
+              </p>
             </>
           ) : (
             <p className="inspo-message">“{messages[currentMessage - 1]}”</p>
@@ -97,14 +71,7 @@ function Home() {
           <div className="cta-buttons">
             <button
               className="primary-btn"
-              onClick={() => {
-                if (window.location.pathname === "/about") {
-                  const packagesSection = document.querySelector("#packages");
-                  packagesSection?.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  navigate("/about#packages");
-                }
-              }}
+              onClick={() => navigate("/about#packages")}
             >
               Get Started
             </button>
@@ -113,20 +80,10 @@ function Home() {
               <button className="secondary-btn">Explore Resources</button>
             </Link>
           </div>
-
-          <div
-            className="scroll-indicator"
-            onClick={() =>
-              document
-                .querySelector(".features-section")
-                .scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            <span className="arrow-down">▼</span>
-          </div>
         </div>
       </div>
 
+      {/* Features */}
       <section className="features-section">
         <div className="feature-card">
           <h3> Student-Friendly Learning</h3>
@@ -142,6 +99,7 @@ function Home() {
         </div>
       </section>
 
+      {/* Partners */}
       <section className="partners-section">
         <h2>Trusted by:</h2>
         <div className="partners-logos">
@@ -151,23 +109,22 @@ function Home() {
         </div>
       </section>
 
-      <div className="footer-container">
-        <footer className="enhanced-footer">
-          <div className="footer-content">
-            <div>
-              <h4>Quick Links</h4>
-              <ul>
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/resources">Resources</Link></li>
-                <li><Link to="#">FAQ</Link></li>
-              </ul>
-            </div>
+      {/* Footer */}
+      <footer className="enhanced-footer">
+        <div className="footer-content">
+          <div>
+            <h4>Quick Links</h4>
+            <ul>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/resources">Resources</Link></li>
+              <li><Link to="#">FAQ</Link></li>
+            </ul>
           </div>
-          <p>© 2025 Minds That Matter. All rights reserved.</p>
-          <p>0712683708</p>
-        </footer>
-      </div>
+        </div>
+        <p>© 2025 Minds That Matter. All rights reserved.</p>
+        <p>0712683708</p>
+      </footer>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaInfoCircle, FaComments } from "react-icons/fa";
+import '../index.css';
 
 function Navbar({ student, setStudent }) {
   const navigate = useNavigate();
@@ -74,26 +75,24 @@ function Navbar({ student, setStudent }) {
 
   return (
     <>
-      {/* Top-right section (always visible) */}
-      <div className="top-right">
-        {/* Social Icons */}
+      {/* MOBILE ONLY: top-right small bar */}
+      <div className="top-right mobile-only">
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         </div>
 
-        {/* Hamburger */}
         <div className="hamburger" onClick={toggleMenu}>
           ☰
         </div>
       </div>
 
       {/* Overlay */}
-      {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)} />}
+      <div className={`menu-overlay ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(false)} />
 
-      {/* Sliding Menu */}
-      <ul className={`dropdown-menu ${menuOpen ? "open" : ""}`} ref={dropdownRef}>
+      {/* MOBILE DROPDOWN */}
+      <ul className={`dropdown-menu ${menuOpen ? "open" : ""} mobile-only`} ref={dropdownRef}>
         {menuLinks.map((link, i) => (
           <Link key={i} to={link.path} onClick={() => setMenuOpen(false)}>
             <li>{link.label}</li>
@@ -101,9 +100,9 @@ function Navbar({ student, setStudent }) {
         ))}
       </ul>
 
-      {/* Desktop Navbar */}
-      <div className="navbar">
-        <div className="logo-container"></div>
+      {/* DESKTOP NAVBAR */}
+      <div className="navbar desktop-only">
+        <div className="logo-container">MTM</div>
 
         {/* Desktop Nav Links */}
         <ul className="nav-links desktop-only">
@@ -132,9 +131,18 @@ function Navbar({ student, setStudent }) {
         {/* Logout message */}
         {logoutMessage && <div className="logout-message">{logoutMessage}</div>}
       </div>
+
+      {/* Bottom icons */}
+      <div className="bottom-icons">
+        <Link to="/about" className="bottom-icon" title="About">
+          <FaInfoCircle />
+        </Link>
+        <Link to="/contact" className="bottom-icon" title="Contact">
+          <FaComments />
+        </Link>
+      </div>
     </>
   );
 }
 
 export default Navbar;
-
