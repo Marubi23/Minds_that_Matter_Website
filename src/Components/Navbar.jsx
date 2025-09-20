@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaInstagram, FaInfoCircle, FaComments } from "react-icons/fa";
+import { FaYoutube, FaTwitter, FaInstagram, FaInfoCircle, FaComments } from "react-icons/fa"; 
 import '../index.css';
 
 function Navbar({ student, setStudent }) {
@@ -34,11 +34,8 @@ function Navbar({ student, setStudent }) {
     navigate("/login");
   };
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -49,7 +46,6 @@ function Navbar({ student, setStudent }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
-  // Close menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setMenuOpen(false);
@@ -73,9 +69,9 @@ function Navbar({ student, setStudent }) {
       {/* MOBILE ONLY: top-right bar */}
       <div className="top-right mobile-only">
         <div className="social-icons mobile-only">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+          <a href="https://www.youtube.com/@felix_marubi" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+          <a href="https://www.instagram.com/marubi___/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         </div>
         <div className="hamburger" onClick={toggleMenu}>☰</div>
       </div>
@@ -96,7 +92,6 @@ function Navbar({ student, setStudent }) {
       <div className="navbar desktop-only">
         <div className="logo-container">MTM</div>
 
-        {/* Desktop Nav Links */}
         <ul className="nav-links desktop-only">
           {menuLinks.map((link, i) => (
             <Link key={i} to={link.path}>
@@ -105,21 +100,19 @@ function Navbar({ student, setStudent }) {
           ))}
         </ul>
 
-        {/* Desktop Social Icons */}
+        {/* Desktop social icons now only YouTube, Twitter, Instagram */}
         <div className="social-icons desktop-only">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+          <a href="https://www.youtube.com/@felix_marubi" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+          <a href="https://www.instagram.com/marubi___/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         </div>
 
-        {/* Get Started Button */}
         {isHomePage && !hasClickedGetStarted && (
           <div className="start-button desktop-only">
             <button onClick={handleGetStartedClick}>Get Started</button>
           </div>
         )}
 
-        {/* Student Info + Logout */}
         {student && (
           <div className="student-info">
             <span>Hello, {student.name || student.email}</span>
@@ -127,11 +120,9 @@ function Navbar({ student, setStudent }) {
           </div>
         )}
 
-        {/* Logout message */}
         {logoutMessage && <div className="logout-message">{logoutMessage}</div>}
       </div>
 
-      {/* Bottom icons */}
       <div className="bottom-icons">
         <Link to="/about" className="bottom-icon" title="About"><FaInfoCircle /></Link>
         <Link to="/contact" className="bottom-icon" title="Contact"><FaComments /></Link>
