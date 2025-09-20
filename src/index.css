@@ -38,6 +38,12 @@ html, body {
 .logo-container {
   width: 150px;
   height: 85px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
 /* Nav links (desktop) */
@@ -73,38 +79,27 @@ html, body {
 }
 
 .start-button.desktop-only {
-  display: block;
-  animation: bounce 1.5s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  display: none; /* hide start button on desktop */
 }
 
 /* -------------------------
    SOCIAL ICONS
    ------------------------- */
-
-/* Desktop-only social icons */
+/* Remove social icons from desktop */
 .social-icons.desktop-only {
+  display: none;
+}
+
+/* Mobile-only social icons */
+.social-icons.mobile-only {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
-
-/* Mobile-only social icons */
-.social-icons.mobile-only {
-  display: none;
-  gap: 12px;
-  align-items: center;
-}
-
-/* Desktop-only social icons */
-.social-icons.desktop-only a {
-  color: gold; /* changed from #fff to gold */
-  font-size: 1.2rem;
+.social-icons.mobile-only a {
+  color: rgb(250, 234, 14);
+  font-size: 2.05rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,33 +107,17 @@ html, body {
   transition: transform 0.2s ease, color 0.3s ease;
 }
 
-.social-icons.desktop-only a:hover {
-  color: #10b7ef; /* keeps the hover effect */
-  transform: scale(1.1);
-}
-
-/* Mobile-only social icons */
-.social-icons.mobile-only a {
-  color: gold; /* already gold, just confirming */
-  font-size: 1.05rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-}
-
 .social-icons.mobile-only a:hover {
   color: #fff;
   transform: scale(1.1);
 }
-
 
 /* -------------------------
    MOBILE TOP-RIGHT
    ------------------------- */
 .top-right {
   position: fixed;
-  top: 18px;
+  top: 30px; /* increased from 18px to 30px */
   right: 18px;
   display: flex;
   gap: 12px;
@@ -148,11 +127,12 @@ html, body {
 
 /* Hamburger in mobile */
 .top-right .hamburger {
-  font-size: 28px;
-  color: white;
+  font-size: 48px;
+  color: rgb(31, 216, 210);
   cursor: pointer;
   padding: 6px 8px;
 }
+
 
 /* -------------------------
    MOBILE DROPDOWN & OVERLAY
@@ -178,31 +158,34 @@ html, body {
   flex-direction: column;
   position: fixed;
   top: 0;
-  right: -300px; /* hidden initially */
+  right: -350px; /* hidden initially */
   height: 100vh;
-  width: 250px;
+  width: 300px;
   background: hsla(268, 83%, 34%, 0.95);
   backdrop-filter: blur(12px);
   border-radius: 0 0 0 16px;
-  padding: 40px 20px;
+  padding: 80px 20px 40px 20px; /* increased top padding to move items down */
   list-style: none;
   z-index: 1060;
   transition: right 0.28s ease;
 }
 
-.dropdown-menu.open {
-  right: 0;
-}
-
 .dropdown-menu li {
-  margin: 15px 0;
+  margin: 25px 0; /* keeps spacing between items */
   cursor: pointer;
   font-size: 18px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 700;
   padding: 10px;
   transition: background 0.3s ease;
 }
+
+
+.dropdown-menu.open {
+  right: 0;
+}
+
+
 
 .dropdown-menu li:hover {
   background: hsla(293, 62%, 67%, 0.9);

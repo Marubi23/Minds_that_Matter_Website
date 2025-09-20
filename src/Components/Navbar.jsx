@@ -10,7 +10,6 @@ function Navbar({ student, setStudent }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [logoutMessage, setLogoutMessage] = useState("");
-
   const [hasClickedGetStarted, setHasClickedGetStarted] = useState(() => {
     return localStorage.getItem("hasClickedGetStarted") === "true";
   });
@@ -46,12 +45,8 @@ function Navbar({ student, setStudent }) {
         setMenuOpen(false);
       }
     };
-    if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (menuOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
   // Close menu on resize
@@ -75,17 +70,14 @@ function Navbar({ student, setStudent }) {
 
   return (
     <>
-      {/* MOBILE ONLY: top-right small bar */}
+      {/* MOBILE ONLY: top-right bar */}
       <div className="top-right mobile-only">
-        <div className="social-icons">
+        <div className="social-icons mobile-only">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         </div>
-
-        <div className="hamburger" onClick={toggleMenu}>
-          ☰
-        </div>
+        <div className="hamburger" onClick={toggleMenu}>☰</div>
       </div>
 
       {/* Overlay */}
@@ -113,6 +105,13 @@ function Navbar({ student, setStudent }) {
           ))}
         </ul>
 
+        {/* Desktop Social Icons */}
+        <div className="social-icons desktop-only">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        </div>
+
         {/* Get Started Button */}
         {isHomePage && !hasClickedGetStarted && (
           <div className="start-button desktop-only">
@@ -134,12 +133,8 @@ function Navbar({ student, setStudent }) {
 
       {/* Bottom icons */}
       <div className="bottom-icons">
-        <Link to="/about" className="bottom-icon" title="About">
-          <FaInfoCircle />
-        </Link>
-        <Link to="/contact" className="bottom-icon" title="Contact">
-          <FaComments />
-        </Link>
+        <Link to="/about" className="bottom-icon" title="About"><FaInfoCircle /></Link>
+        <Link to="/contact" className="bottom-icon" title="Contact"><FaComments /></Link>
       </div>
     </>
   );

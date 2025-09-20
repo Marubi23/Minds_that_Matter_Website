@@ -38,6 +38,14 @@ function Home() {
     return () => clearInterval(interval);
   }, [currentBack]);
 
+  // Automatic slight scroll to indicate more content
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 50, behavior: 'smooth' });
+    }, 800); // small delay after page load
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="home-container">
       {/* Background */}
@@ -80,10 +88,16 @@ function Home() {
               <button className="secondary-btn">Explore Resources</button>
             </Link>
           </div>
+
+          {/* Scroll indicator */}
+          <div 
+            className="scroll-indicator" 
+            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          ></div>
         </div>
       </div>
 
-      {/* Features */}
+      {/* Features Section */}
       <section className="features-section">
         <div className="feature-card">
           <h3> Student-Friendly Learning</h3>
@@ -99,7 +113,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Partners */}
+      {/* Partners Section */}
       <section className="partners-section">
         <h2>Trusted by:</h2>
         <div className="partners-logos">
